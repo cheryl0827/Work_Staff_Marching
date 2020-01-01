@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@mipmap/loginbakground"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    tools:context=".cyf.MainActivity" >
+
+    <ImageView
+        android:id="@+id/imageview1"
+        android:layout_width="38dp"
+        android:layout_height="33dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="244dp"
+        android:src="@mipmap/phone" />
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageview1"
+        android:layout_toRightOf="@+id/imageview1"
+        android:hint="请输入手机号码"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="38dp"
+        android:layout_height="33dp"
+        android:layout_alignLeft="@+id/imageview1"
+        android:layout_below="@+id/phone"
+        android:layout_marginTop="16dp"
+        android:src="@mipmap/password" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView2"
+        android:layout_toRightOf="@+id/imageView2"
+        android:ems="10"
+        android:hint="请输入密码"
+        android:inputType="textPassword" />
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="73dp"
+        android:layout_marginTop="355dp"
+        android:layout_height="match_parent">
+
+        <RadioButton
+            android:id="@+id/user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="普通用户"
+            android:textColor="#515151"
+            android:textSize="17dp"/>
+
+        <RadioButton
+            android:id="@+id/workuser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="工作用户"
+            android:textColor="#515151"
+            android:textSize="17dp"/>
+        <RadioButton
+            android:id="@+id/admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="管理员"
+            android:textColor="#515151"
+            android:textSize="17dp"/>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/forgetpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView2"
+        android:layout_below="@+id/imageView2"
+        android:layout_marginTop="60dp"
+        android:text="忘记密码"
+        android:textColor="#515151"
+        android:textSize="17dp"/>
+
+    <TextView
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/forgetpassword"
+        android:layout_alignBottom="@+id/forgetpassword"
+        android:layout_alignRight="@+id/phone"
+        android:text="注册"
+        android:textColor="#515151"
+        android:textSize="17dp"/>
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/forgetpassword"
+        android:layout_alignLeft="@+id/password"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginRight="-6dp"
+        android:layout_toLeftOf="@+id/register"
+        android:text="登录"
+        android:textColor="#2c2c2c" />
+</RelativeLayout>
