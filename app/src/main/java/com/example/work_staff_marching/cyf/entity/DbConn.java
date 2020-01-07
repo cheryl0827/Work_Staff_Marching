@@ -35,7 +35,7 @@ public class DbConn {
 
     public static void closeAll(Connection conn, PreparedStatement ps) {
 
-        System.out.println("关闭成功");
+        System.out.println("数据库断开连接");
 
         if (conn != null) {
 
