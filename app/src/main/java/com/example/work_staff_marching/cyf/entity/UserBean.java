@@ -5,11 +5,13 @@ public class UserBean {
     private String userName;
     private String indentificationCard;
     private String phone;
-    private int countryID;
+    private String country;
     private String address;
-    private int role;
+    private String roleName;
     private String password;
     private int registerStatus;
+    private String city;
+    private String province;
 
     public int getUserID() {
         return userID;
@@ -43,12 +45,12 @@ public class UserBean {
         this.phone = phone;
     }
 
-    public int getCountryID() {
-        return countryID;
+    public String getCountry() {
+        return country;
     }
 
-    public void setCountryID(int countryID) {
-        this.countryID = countryID;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getAddress() {
@@ -59,12 +61,12 @@ public class UserBean {
         this.address = address;
     }
 
-    public int getRole() {
-        return role;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRole(int role) {
-        this.role = role;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     public String getPassword() {
@@ -81,5 +83,21 @@ public class UserBean {
 
     public void setRegisterStatus(int registerStatus) {
         this.registerStatus = registerStatus;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
     }
 }
