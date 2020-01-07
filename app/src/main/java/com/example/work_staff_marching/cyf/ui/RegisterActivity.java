@@ -64,18 +64,14 @@ public class RegisterActivity extends BaseActivity {
     @OnClick({ R.id.next, R.id.cancel})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.register:
-               try {
-                   if(usertype.equals("普通用户")&&UserDao.add_user(userName.getText().toString(),phone.getText().toString(), password.getText().toString(),usertype))
-                   {
-                       new Intent(RegisterActivity.this,RegisterUserActivity.class);;
-                   }
-//                   MyThread myThread = new MyThread();
-//                   new Thread(myThread).start();
-                   break;
-               } catch (SQLException e) {
-                   e.printStackTrace();
-               }
+            case R.id.next:
+                //                   if(usertype.equals("普通用户")&&UserDao.add_user(userName.getText().toString(),phone.getText().toString(), password.getText().toString(),usertype))
+//                   {
+//                       new Intent(RegisterActivity.this,RegisterUserActivity.class);;
+//                   }
+                MyThread myThread = new MyThread();
+                new Thread(myThread).start();
+                break;
             case R.id.cancel:
                 userName.setText("");
                 phone.setText("");
@@ -87,25 +83,25 @@ public class RegisterActivity extends BaseActivity {
 //    /**
 //     * 1.使用实现 Runnable接 口的方式来定义一个线程
 //     */
-//    class MyThread implements Runnable {
-//        @Override
-//        public void run() {
-//            try {
-//                boolean add_user = UserDao.add_user(userName.getText().toString(), phone.getText().toString(), password.getText().toString(), usertype);
-//                Log.v("re",add_user+"");
-//                if (usertype.equals("普通用户")&& add_user) {
-//                    RegisterActivity.this.runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            startActivity(new Intent(RegisterActivity.this,RegisterUserActivity.class));
-//                        }
-//                    });
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
+    class MyThread implements Runnable {
+        @Override
+        public void run() {
+            try {
+                boolean add_user = UserDao.add_user(userName.getText().toString(), phone.getText().toString(), password.getText().toString(), usertype);
+                Log.v("re",add_user+"");
+                if (usertype.equals("普通用户")&& add_user) {
+                    RegisterActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            startActivity(new Intent(RegisterActivity.this,RegisterUserActivity.class));
+                        }
+                    });
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     //验证各个控件
     public boolean check(){
         if(userName.getText().toString().equals("")){

@@ -12,7 +12,7 @@ public class UserDao {
     private static PreparedStatement ps=null;
     private static ResultSet rs=null;
     public static boolean add_user(String userName,String phone,String password,String role) throws SQLException {
-        String sql="insert into user(userName,phone,password,role) value (?,?,?,?)";
+        String sql="insert into user(userName,phone,password,roleName) value (?,?,?,?)";
         boolean flag=false;
         ps=con.prepareStatement(sql);
         ps.setString(1,userName);
