@@ -1,5 +1,8 @@
 package com.example.work_staff_marching.cyf.ui;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,9 +18,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.work_staff_marching.R;
-import com.example.work_staff_marching.cyf.dao.UserDao;
 import com.example.work_staff_marching.cyf.utils.BaseActivity;
+import com.example.work_staff_marching.cyf.utils.Constant;
+import com.example.work_staff_marching.cyf.utils.OkCallback;
+import com.example.work_staff_marching.cyf.utils.OkHttp;
+import com.example.work_staff_marching.cyf.utils.Result;
+
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -56,7 +66,6 @@ public class RegisterActivity extends BaseActivity {
     protected int getContentView() {
         return R.layout.activity_register;
     }
-
     @Override
     protected void init(Bundle saveInstanceState) {
         setTitle("注册页面");
@@ -67,7 +76,6 @@ public class RegisterActivity extends BaseActivity {
                 usertype=rb.getText().toString();
             }
         });
-
         userName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -133,8 +141,21 @@ public class RegisterActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.next:
-                MyThread myThread = new MyThread();
-                new Thread(myThread).start();
+                Map<String, String> map = new HashMap<>();
+                map.put("userName", userName.getText().toString());
+                map.put("phone", phone.getText().toString());
+                map.put("password", password.getText().toString());
+                map.put("roleName", usertype);
+                OkHttp.post(RegisterActivity.this, Constant.get_register, map, new OkCallback<String>() {
+                    @Override
+                    public void onResponse(Result response) {
+                        startActivity(new Intent(RegisterActivity.this, RegisterUserActivity.class));
+                    }
+                    @Override
+                    public void onFailure(String state, String msg) {
+                        Toast.makeText(RegisterActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                } );
                 break;
             case R.id.cancel:
                 userName.setText("");
@@ -144,25 +165,7 @@ public class RegisterActivity extends BaseActivity {
                 break;
            }
         }
-    /**
-     * 1.使用实现 Runnable接 口的方式来定义一个线程
-     */
-    class MyThread implements Runnable {
-        @Override
-        public void run() {
-            try {
-               if(userName1.getText().toString().equals("")&&phone1.getText().toString().equals("")&&password1.getText().toString().equals("")&&passwordSure1.getText().toString().equals("")){
-                   boolean add_user = UserDao.add_user(userName.getText().toString(), phone.getText().toString(), password.getText().toString(), usertype);
-                   Log.v("re",add_user+"");
-                   if (usertype.equals("普通用户")&&add_user) {
-                        uiChange(1);
-                    }
-                  }
-            }catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+
     //验证手机号码
     public static boolean isMobileNo(String mobiles) {
         /*
@@ -185,18 +188,7 @@ public class RegisterActivity extends BaseActivity {
             return mobiles.matches(telRegex);
         }
     }
-    /**
-     * @param operate 各种ui更新
-     *   1代表输入正确信息后跳转至普通用户的其它注册页面
-     */
-    private void uiChange(int operate) {
-        RegisterActivity.this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (operate == 1)
-                    startActivity(new Intent(RegisterActivity.this, RegisterUserActivity.class));
-            }
-        });
-    }
+
+
     }
 

@@ -16,7 +16,7 @@ public class DbConn {
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            String driver_url = "jdbc:mysql:// 172.20.10.5:3306/wsm?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull";
+            String driver_url = "jdbc:mysql://172.20.10.5:3306/wsm?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&failOverReadOnly=false";
             conn = DriverManager.getConnection(driver_url, "root", "");
 
             if (conn != null) {

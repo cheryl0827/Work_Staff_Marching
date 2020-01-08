@@ -23,6 +23,7 @@ android {
     }
 }
 def bk_version = '10.1.0'
+def glide_version = '4.9.0'
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.0.2'
@@ -34,5 +35,27 @@ dependencies {
     implementation "com.jakewharton:butterknife:$bk_version"
     annotationProcessor "com.jakewharton:butterknife-compiler:$bk_version"
     //----------------- butter knife end   -----------------
-    implementation files('libs/mysql-connector-java-5.1.18-bin.jar')
+    implementation files('libs/mysql-connector-java-5.1.40-bin.jar')
+    //okhttp网络请求依赖
+    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+    //gson解析数据依赖
+    implementation 'com.google.code.gson:gson:2.4'
+
+    //----------------- qmui -----------------
+    implementation 'com.qmuiteam:qmui:1.4.0'
+    // ---- okhttp ----
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    //----------------- matisse图片选择 -----------------
+    implementation 'com.zhihu.android:matisse:0.5.3-beta2'
+    //----------------- glide begin -----------------
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+    implementation "com.github.bumptech.glide:okhttp3-integration:$glide_version"
+    //----------------- glide end   -----------------
+    //-----------------gson----------------------------
+    implementation 'com.google.code.gson:gson:2.6.2'
+    //-----------------cardview-----------------------
+    //noinspection GradleCompatible
+    implementation 'com.android.support:recyclerview-v7:27.0.2'
+
 }
