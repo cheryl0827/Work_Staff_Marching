@@ -146,9 +146,9 @@ public class RegisterActivity extends BaseActivity {
                 map.put("phone", phone.getText().toString());
                 map.put("password", password.getText().toString());
                 map.put("roleName", usertype);
-                OkHttp.post(RegisterActivity.this, Constant.get_register, map, new OkCallback<String>() {
+                OkHttp.post(RegisterActivity.this, Constant.get_register, map, new OkCallback<Result<String>>() {
                     @Override
-                    public void onResponse(Result response) {
+                    public void onResponse(Result<String> response) {
                         startActivity(new Intent(RegisterActivity.this, RegisterUserActivity.class));
                     }
                     @Override

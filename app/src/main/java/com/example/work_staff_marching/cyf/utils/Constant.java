@@ -1,7 +1,7 @@
 package com.example.work_staff_marching.cyf.utils;
+
 //请求对应
 public class Constant {
-
 
 
     // 172.20.10.5 无线地址   Staff_Work_Marching服务器
@@ -31,7 +31,6 @@ public class Constant {
      */
     public static String get_code = BASE_URL + "/AddIdentifyCodeServlet";
     public static String get_register = BASE_URL + "/UserBaseRegisterServlet";
-
 
 
 }

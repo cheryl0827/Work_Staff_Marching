@@ -1,4 +1,4 @@
-package com.example.work_staff_marching.cyf.utils;
+package com.example.psychologicalcounseling.okhttp;
 
 
 import android.content.Context;
@@ -17,6 +17,7 @@ import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 
 public class OkHttp {
@@ -37,6 +38,7 @@ public class OkHttp {
                         .writeTimeout(30, TimeUnit.SECONDS)
 
                         .connectTimeout(30, TimeUnit.SECONDS)
+                        .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
 
                         .build();
 
@@ -64,7 +66,7 @@ public class OkHttp {
      * @param callback 回调函数
      * @return call
      */
-//相当于表单的get方法，callback回调，get方法相当于请求数据
+
     public static Call get(Context context, String url, Map<String, String> params, OkCallback callback) {
 
         return get(context, url, params, null, callback);
@@ -170,7 +172,7 @@ public class OkHttp {
      * @param callback 回调函数
      * @return call
      */
-//post==提交数据
+
     public static Call post(Context context, String url, Map<String, String> params, OkCallback callback) {
 
         return post(context, url, params, null, callback);

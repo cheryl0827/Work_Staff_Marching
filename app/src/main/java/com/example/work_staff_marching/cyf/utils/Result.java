@@ -1,4 +1,4 @@
-package com.example.work_staff_marching.cyf.utils;
+package com.example.psychologicalcounseling.okhttp;
 
 /**
  * data 存放 数据库查询出来的数据
@@ -13,7 +13,6 @@ public class Result<T> {
     private String message;
 
     private T data;
-    //T是泛型，什么类型都可以
 
 
     public String getCode() {
