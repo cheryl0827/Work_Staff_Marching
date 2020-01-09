@@ -1,9 +1,10 @@
-package com.example.psychologicalcounseling.okhttp;
+package com.example.work_staff_marching.cyf.utils;
 
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.example.work_staff_marching.cyf.utils.ObjectCallback;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.internal.$Gson$Types;
@@ -17,7 +18,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 
-public abstract class OkCallback<T extends Result> implements Callback,ObjectCallback<T> {
+public abstract class OkCallback<T extends Result> implements Callback, ObjectCallback<T> {
 
     private static final String SUCCESS_LOGIN = "200";
 

@@ -1,14 +1,10 @@
 package com.example.work_staff_marching.cyf.ui;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,12 +20,10 @@ import com.example.work_staff_marching.cyf.utils.OkCallback;
 import com.example.work_staff_marching.cyf.utils.OkHttp;
 import com.example.work_staff_marching.cyf.utils.Result;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegisterActivity extends BaseActivity {
