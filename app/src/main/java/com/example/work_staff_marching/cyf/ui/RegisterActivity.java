@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,8 +54,6 @@ public class RegisterActivity extends BaseActivity {
     Button next;
     @BindView(R.id.cancel)
     Button cancel;
-    @BindView(R.id.tishi)
-    TextView tishi;
     String usertype;
     @Override
     protected int getContentView() {
@@ -133,32 +132,40 @@ public class RegisterActivity extends BaseActivity {
     }
     @OnClick({ R.id.next, R.id.cancel})
     public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.next:
-                Map<String, String> map = new HashMap<>();
-                map.put("userName", userName.getText().toString());
-                map.put("phone", phone.getText().toString());
-                map.put("password", password.getText().toString());
-                map.put("roleName", usertype);
-                OkHttp.post(RegisterActivity.this, Constant.get_register, map, new OkCallback<Result<String>>() {
-                    @Override
-                    public void onResponse(Result<String> response) {
-                        startActivity(new Intent(RegisterActivity.this, RegisterUserActivity.class));
-                    }
-                    @Override
-                    public void onFailure(String state, String msg) {
-                        Toast.makeText(RegisterActivity.this, msg, Toast.LENGTH_SHORT).show();
-                    }
-                } );
-                break;
-            case R.id.cancel:
-                userName.setText("");
-                phone.setText("");
-                password.setText("");
-                passwordSure.setText("");
-                break;
-           }
+        if (userName1.getText().toString().equals("") && password1.getText().toString().equals("") && passwordSure1.getText().toString().equals("") && phone1.getText().toString().equals(""))
+          {
+                    Map<String, String> map = new HashMap<>();
+                    map.put("userName", userName.getText().toString());
+                    map.put("phone", phone.getText().toString());
+                    map.put("password", password.getText().toString());
+                    map.put("roleName", usertype);
+                    Log.v("re", usertype);
+                    Log.v("re", userName.getText().toString());
+                    OkHttp.post(RegisterActivity.this, Constant.get_register, map, new OkCallback<Result<String>>() {
+                        @Override
+                        public void onResponse(Result<String> response)
+                           {
+                               if (view.getId() == R.id.next && usertype.equals("普通用户"))
+                                   startActivity(new Intent(RegisterActivity.this, RegisterUserActivity.class));
+                               if (view.getId() == R.id.next && usertype.equals("工作用户"))
+                                   startActivity(new Intent(RegisterActivity.this, RegisterWorkActivity.class));
+                           }
+                        @Override
+                        public void onFailure(String state, String msg)
+                             {
+                            Toast.makeText(RegisterActivity.this, msg, Toast.LENGTH_SHORT).show();
+                            }
+                    });
         }
+        if (view.getId() == R.id.cancel) {
+            userName.setText("");
+            phone.setText("");
+            password.setText("");
+            passwordSure.setText("");
+           }
+        if (!(userName1.getText().toString().equals("") && password1.getText().toString().equals("") && passwordSure1.getText().toString().equals("") && phone1.getText().toString().equals("")))
+            Toast.makeText(RegisterActivity.this, "请正确填写以上信息！", Toast.LENGTH_SHORT).show();
+    }
 
     //验证手机号码
     public static boolean isMobileNo(String mobiles) {
