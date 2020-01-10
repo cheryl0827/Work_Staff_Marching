@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".cyf.ui.UserIndexActivity">
+
+    <FrameLayout
+        android:id="@+id/root_fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cccccc" />
+
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+        <RadioButton
+            android:id="@+id/radiobutton_home"
+            style="@style/main_radiobutton_stype"
+            android:checked="true"
+            android:drawableTop="@mipmap/sex"
+            android:text="主页" />
+
+        <RadioButton
+            android:id="@+id/radiobutton_message"
+            style="@style/main_radiobutton_stype"
+            android:drawableTop="@mipmap/sex"
+            android:text="消息" />
+
+        <RadioButton
+            android:id="@+id/radiobutton_post"
+            android:drawableTop="@mipmap/sex"
+            style="@style/main_radiobutton_stype"
+            android:text="发布" />
+
+        <RadioButton
+            android:id="@+id/radiobutton_discover"
+            style="@style/main_radiobutton_stype"
+            android:drawableTop="@mipmap/sex"
+            android:text="发现" />
+
+        <RadioButton
+            android:id="@+id/radiobutton_profile"
+            style="@style/main_radiobutton_stype"
+            android:drawableTop="@mipmap/sex"
+            android:text="我" />
+    </RadioGroup>
+</LinearLayout>
