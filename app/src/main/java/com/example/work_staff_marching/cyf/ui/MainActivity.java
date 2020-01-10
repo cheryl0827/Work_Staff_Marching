@@ -43,8 +43,11 @@ public class MainActivity extends AppCompatActivity {
             String ppassword = password.getText().toString();
             if (!(isMobileNo(pphone))) {
                 Toast.makeText(MainActivity.this, "您输入的手机号码不正确，请重新输入！", Toast.LENGTH_LONG).show();
-            } else if (ppassword.equals(""))
+            }
+            else if (ppassword.equals(""))
                 Toast.makeText(MainActivity.this, "密码不能为空！", Toast.LENGTH_LONG).show();
+            else
+            startActivity(new Intent(MainActivity.this,UserIndexActivity.class));
         }
     }
     //验证手机号码

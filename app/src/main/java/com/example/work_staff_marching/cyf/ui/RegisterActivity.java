@@ -147,17 +147,17 @@ public class RegisterActivity extends BaseActivity {
                         @Override
                         public void onResponse(Result<String> response)
                            {
-                               if (view.getId() == R.id.next && usertype.equals("普通用户")){
-//                                   intent.setClass(RegisterActivity.this,RegisterUserActivity.class);
-//                                   RegisterActivity.this.startActivity(intent);
-                                   startActivity(new Intent(RegisterActivity.this, RegisterUserActivity.class));
+                           if (view.getId() == R.id.next && usertype.equals("普通用户")){
+//////                                   intent.setClass(RegisterActivity.this,RegisterUserActivity.class);
+//////                                   RegisterActivity.this.startActivity(intent);
+                                 startActivity(new Intent(RegisterActivity.this, RegisterUserActivity.class));
+                              }
+                             if (view.getId() == R.id.next && usertype.equals("工作用户")){
+//////                                   intent.setClass(RegisterActivity.this,RegisterWorkActivity.class);
+//////                                   RegisterActivity.this.startActivity(intent);
+                                 startActivity(new Intent(RegisterActivity.this, RegisterWorkActivity.class));
                                }
-                               if (view.getId() == R.id.next && usertype.equals("工作用户")){
-//                                   intent.setClass(RegisterActivity.this,RegisterWorkActivity.class);
-//                                   RegisterActivity.this.startActivity(intent);
-                                   startActivity(new Intent(RegisterActivity.this, RegisterWorkActivity.class));
-                                }
-                           }
+                         }
                         @Override
                         public void onFailure(String state, String msg)
                              {
