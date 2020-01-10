@@ -139,16 +139,24 @@ public class RegisterActivity extends BaseActivity {
                     map.put("phone", phone.getText().toString());
                     map.put("password", password.getText().toString());
                     map.put("roleName", usertype);
-                    Log.v("re", usertype);
-                    Log.v("re", userName.getText().toString());
+                //    Intent intent = new Intent();
+//                    intent.putExtra("userName",userName.getText().toString());
+//                    intent.putExtra("phone",phone.getText().toString());
+//                    intent.putExtra("password",password.getText().toString());
                     OkHttp.post(RegisterActivity.this, Constant.get_register, map, new OkCallback<Result<String>>() {
                         @Override
                         public void onResponse(Result<String> response)
                            {
-                               if (view.getId() == R.id.next && usertype.equals("普通用户"))
+                               if (view.getId() == R.id.next && usertype.equals("普通用户")){
+//                                   intent.setClass(RegisterActivity.this,RegisterUserActivity.class);
+//                                   RegisterActivity.this.startActivity(intent);
                                    startActivity(new Intent(RegisterActivity.this, RegisterUserActivity.class));
-                               if (view.getId() == R.id.next && usertype.equals("工作用户"))
+                               }
+                               if (view.getId() == R.id.next && usertype.equals("工作用户")){
+//                                   intent.setClass(RegisterActivity.this,RegisterWorkActivity.class);
+//                                   RegisterActivity.this.startActivity(intent);
                                    startActivity(new Intent(RegisterActivity.this, RegisterWorkActivity.class));
+                                }
                            }
                         @Override
                         public void onFailure(String state, String msg)

@@ -1,6 +1,7 @@
 package com.example.work_staff_marching.cyf.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -96,6 +97,14 @@ public class RegisterUserActivity extends BaseActivity {
         protected void init (Bundle saveInstanceState){
             setTitle("普通用户注册");
             setSpinner();
+//            String userName = getIntent().getStringExtra("userName");
+//            String phone = getIntent().getStringExtra("phone");
+//            String password = getIntent().getStringExtra("password");
+//            //String roleName = getIntent().getStringExtra("roleName");
+//            Log.v("re","userName");
+//            Log.v("re","phone");
+//            Log.v("re","password");
+
 
         }
         @OnClick({R.id.register, R.id.cancel})
