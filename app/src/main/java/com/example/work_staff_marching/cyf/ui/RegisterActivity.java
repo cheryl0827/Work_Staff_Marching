@@ -16,15 +16,21 @@ import android.widget.Toast;
 
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.utils.BaseActivity;
+import com.example.work_staff_marching.cyf.utils.CommonDialog;
 import com.example.work_staff_marching.cyf.utils.Constant;
 import com.example.work_staff_marching.cyf.utils.OkCallback;
 import com.example.work_staff_marching.cyf.utils.OkHttp;
 import com.example.work_staff_marching.cyf.utils.Result;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegisterActivity extends BaseActivity {
@@ -54,31 +60,43 @@ public class RegisterActivity extends BaseActivity {
     Button next;
     @BindView(R.id.cancel)
     Button cancel;
-    String usertype;
+    @BindView(R.id.man)
+    RadioButton man;
+    @BindView(R.id.woman)
+    RadioButton woman;
+    @BindView(R.id.sex)
+    RadioGroup sex;
+    String sex1="男";
+    String usertype="普通用户";
+    String date1;
+    String workuserNo;
     @Override
     protected int getContentView() {
         return R.layout.activity_register;
     }
+
     @Override
     protected void init(Bundle saveInstanceState) {
         setTitle("注册页面");
         radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton rb=(RadioButton)RegisterActivity.this.findViewById(radio.getCheckedRadioButtonId());
-                usertype=rb.getText().toString();
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton rb = (RadioButton) RegisterActivity.this.findViewById(radio.getCheckedRadioButtonId());
+                usertype = rb.getText().toString();
             }
         });
         userName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
             @Override
             public void afterTextChanged(Editable s) {
-                if(!("").equals(userName.getText().toString()))
+                if (!("").equals(userName.getText().toString()))
                     userName1.setText("");
                 else
                     userName1.setText("*");
@@ -93,7 +111,7 @@ public class RegisterActivity extends BaseActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if(!("").equals(phone.getText().toString())&&(isMobileNo(phone.getText().toString())))
+                if (!("").equals(phone.getText().toString()) && (isMobileNo(phone.getText().toString())))
                     phone1.setText("");
                 else
                     phone1.setText("*");
@@ -108,7 +126,7 @@ public class RegisterActivity extends BaseActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if(!("").equals(password.getText().toString()))
+                if (!("").equals(password.getText().toString()))
                     password1.setText("");
                 else
                     password1.setText("*");
@@ -123,54 +141,84 @@ public class RegisterActivity extends BaseActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if(!("").equals(passwordSure.getText().toString())&&password.getText().toString().equals(passwordSure.getText().toString()))
+                if (!("").equals(passwordSure.getText().toString()) && password.getText().toString().equals(passwordSure.getText().toString()))
                     passwordSure1.setText("");
                 else
                     passwordSure1.setText("*");
             }
         });
+        sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton rb1=(RadioButton)RegisterActivity.this.findViewById(sex.getCheckedRadioButtonId());
+                sex1=rb1.getText().toString();
+            }
+        });
     }
-    @OnClick({ R.id.next, R.id.cancel})
+
+    @OnClick({R.id.next, R.id.cancel})
     public void onViewClicked(View view) {
-        if (userName1.getText().toString().equals("") && password1.getText().toString().equals("") && passwordSure1.getText().toString().equals("") && phone1.getText().toString().equals(""))
-          {
-                    Map<String, String> map = new HashMap<>();
-                    map.put("userName", userName.getText().toString());
-                    map.put("phone", phone.getText().toString());
-                    map.put("password", password.getText().toString());
-                    map.put("roleName", usertype);
-                //    Intent intent = new Intent();
-//                    intent.putExtra("userName",userName.getText().toString());
-//                    intent.putExtra("phone",phone.getText().toString());
-//                    intent.putExtra("password",password.getText().toString());
-                    OkHttp.post(RegisterActivity.this, Constant.get_register, map, new OkCallback<Result<String>>() {
-                        @Override
-                        public void onResponse(Result<String> response)
-                           {
-                           if (view.getId() == R.id.next && usertype.equals("普通用户")){
-//////                                   intent.setClass(RegisterActivity.this,RegisterUserActivity.class);
-//////                                   RegisterActivity.this.startActivity(intent);
-                                 startActivity(new Intent(RegisterActivity.this, RegisterUserActivity.class));
-                              }
-                             if (view.getId() == R.id.next && usertype.equals("工作用户")){
-//////                                   intent.setClass(RegisterActivity.this,RegisterWorkActivity.class);
-//////                                   RegisterActivity.this.startActivity(intent);
-                                 startActivity(new Intent(RegisterActivity.this, RegisterWorkActivity.class));
-                               }
-                         }
-                        @Override
-                        public void onFailure(String state, String msg)
-                             {
-                            Toast.makeText(RegisterActivity.this, msg, Toast.LENGTH_SHORT).show();
+        if (userName1.getText().toString().equals("") && password1.getText().toString().equals("") && passwordSure1.getText().toString().equals("") && phone1.getText().toString().equals("")) {
+            CommonDialog commonDialog = new CommonDialog(this);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+            String time=sdf.format(new java.util.Date());
+            if(usertype.equals("工作用户")){
+                workuserNo=dataOne(time);
+            }
+            if(usertype.equals("普通用户")) {
+                workuserNo = "";
+            }
+            Map<String, String> map = new HashMap<>();
+            map.put("userName",userName.getText().toString());
+            map.put("phone",phone.getText().toString());
+            map.put("password",password.getText().toString());
+            map.put("roleName",usertype);
+            map.put("sex",sex1);
+            //map.put("workuserNo",workuserNo);
+            Intent intent = new Intent();
+           intent.putExtra("userName", userName.getText().toString());
+           intent.putExtra("phone", phone.getText().toString());
+           intent.putExtra("password", password.getText().toString());
+           intent.putExtra("roleName", usertype);
+           intent.putExtra("sex",sex1);
+           intent.putExtra("workuserNo",workuserNo);
+            OkHttp.post(RegisterActivity.this, Constant.get_register, map, new OkCallback<Result<String>>() {
+                @Override
+                public void onResponse(Result<String> response) {
+                    if (view.getId() == R.id.next && usertype.equals("普通用户")) {
+                       // map.put("workuserNo",workuserNo);
+                        //startActivity(new Intent(RegisterActivity.this,RegisterUserActivity.class));
+                        // Toast.makeText(RegisterActivity.this, "nisdajkd！", Toast.LENGTH_SHORT).show();
+                      intent.setClass(RegisterActivity.this, RegisterUserActivity.class);
+                       RegisterActivity.this.startActivity(intent);
+                    }
+                    if (view.getId() == R.id.next && usertype.equals("工作用户")) {
+                        commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("注册成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                            @Override
+                            public void onPositiveClick() {
+                                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                                commonDialog.dismiss();
                             }
-                    });
+                            @Override
+                            public void onNegtiveClick() {
+                                commonDialog.dismiss();
+                            }
+                        }).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(String state, String msg) {
+                    Toast.makeText(RegisterActivity.this, msg, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
         if (view.getId() == R.id.cancel) {
             userName.setText("");
             phone.setText("");
             password.setText("");
             passwordSure.setText("");
-           }
+        }
         if (!(userName1.getText().toString().equals("") && password1.getText().toString().equals("") && passwordSure1.getText().toString().equals("") && phone1.getText().toString().equals("")))
             Toast.makeText(RegisterActivity.this, "请正确填写以上信息！", Toast.LENGTH_SHORT).show();
     }
@@ -198,6 +246,27 @@ public class RegisterActivity extends BaseActivity {
         }
     }
 
-
+//    public String stampToDate(long timeMillis) {
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Date date = new Date(timeMillis);
+//        return simpleDateFormat.format(date);
+//    }
+    public static String dataOne(String time) {
+        SimpleDateFormat sdr = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.CHINA);
+        Date date;
+        String times = null;
+        try {
+            date = sdr.parse(time);
+            long l = date.getTime();
+            String stf = String.valueOf(l);
+            times = stf.substring(0, 10);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return times;
     }
+
+
+
+}
 

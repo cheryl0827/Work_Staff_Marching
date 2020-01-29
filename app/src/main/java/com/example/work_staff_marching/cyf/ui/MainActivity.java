@@ -27,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
         register=(TextView)findViewById(R.id.register);
         login=(Button)findViewById(R.id.login);
         login.setOnClickListener(new Onbuttonlistener());
+        forgetpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ForgetPasswordActivity.class));
+            }
+        });
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

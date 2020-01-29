@@ -1,5 +1,6 @@
 package com.example.work_staff_marching.cyf.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,9 +9,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.utils.BaseActivity;
+import com.example.work_staff_marching.cyf.utils.CommonDialog;
+import com.example.work_staff_marching.cyf.utils.Constant;
+import com.example.work_staff_marching.cyf.utils.OkCallback;
+import com.example.work_staff_marching.cyf.utils.OkHttp;
+import com.example.work_staff_marching.cyf.utils.Result;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,8 +40,6 @@ public class RegisterUserActivity extends BaseActivity {
     EditText address;
     @BindView(R.id.register)
     Button register;
-    @BindView(R.id.cancel)
-    Button cancel;
     ArrayAdapter<String> provinceAdapter = null;  //省级适配器
     ArrayAdapter<String> cityAdapter = null;    //地级适配器
     ArrayAdapter<String> countyAdapter = null;    //县级适配器
@@ -97,24 +105,46 @@ public class RegisterUserActivity extends BaseActivity {
         protected void init (Bundle saveInstanceState){
             setTitle("普通用户注册");
             setSpinner();
-//            String userName = getIntent().getStringExtra("userName");
-//            String phone = getIntent().getStringExtra("phone");
-//            String password = getIntent().getStringExtra("password");
-//            //String roleName = getIntent().getStringExtra("roleName");
-//            Log.v("re","userName");
-//            Log.v("re","phone");
-//            Log.v("re","password");
-
-
         }
-        @OnClick({R.id.register, R.id.cancel})
+        @OnClick({R.id.register})
         public void onViewClicked (View view){
-            switch (view.getId()) {
-                case R.id.register:
-                    break;
-                case R.id.cancel:
-                    break;
-            }
+            CommonDialog commonDialog = new CommonDialog(this);
+            Intent intent=getIntent();
+            Map<String, String> map = new HashMap<>();
+            map.put("userName",intent.getStringExtra("userName"));
+          //  Log.v("RE",intent.getStringExtra("userName"));
+            map.put("phone",intent.getStringExtra("phone"));
+            map.put("password",intent.getStringExtra("password"));
+            map.put("roleName",intent.getStringExtra("roleName"));
+            map.put("sex",intent.getStringExtra("sex"));
+            //map.put("workuserNo",intent.getStringExtra("workuserNo"));
+            map.put("indentificationCard",indentificationCard.getText().toString());
+            map.put("province",province.getSelectedItem().toString());
+            map.put("city",city.getSelectedItem().toString());
+            map.put("country",country.getSelectedItem().toString());
+            map.put("address",address.getText().toString());
+            OkHttp.post(RegisterUserActivity.this, Constant. get_userregister, map, new OkCallback<Result<String>>() {
+                @Override
+                public void onResponse(Result<String> response) {
+                    if (view.getId() == R.id.register) {
+                        commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("注册成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                            @Override
+                            public void onPositiveClick() {
+                                startActivity(new Intent(RegisterUserActivity.this, MainActivity.class));
+                                commonDialog.dismiss();
+                            }
+                            @Override
+                            public void onNegtiveClick() {
+                                commonDialog.dismiss();
+                            }
+                        }).show();
+                    }
+                }
+                @Override
+                public void onFailure(String state, String msg) {
+                    Toast.makeText(RegisterUserActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     /*
      * 设置下拉框

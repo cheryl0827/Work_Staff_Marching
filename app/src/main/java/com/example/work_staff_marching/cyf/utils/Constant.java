@@ -5,7 +5,7 @@ public class Constant {
 
 
     // 172.20.10.5 无线地址   Staff_Work_Marching服务器
-    public static String BASE_URL = "http://172.20.10.5:8080/Staff_Work_Marching";
+    public static String BASE_URL = "http://192.168.9.104:8080/Staff_Work_Marching";
 
     /**
      * 登录
@@ -31,6 +31,7 @@ public class Constant {
      */
     public static String get_code = BASE_URL + "/AddIdentifyCodeServlet";
     public static String get_register = BASE_URL + "/UserBaseRegisterServlet";
+    public static String get_userregister = BASE_URL + "/UserRegisterServlet";
 
 
 }
