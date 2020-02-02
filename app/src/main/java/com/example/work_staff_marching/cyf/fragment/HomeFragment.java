@@ -1,95 +1,94 @@
 package com.example.work_staff_marching.cyf.fragment;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.annotation.Nullable;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.work_staff_marching.R;
-import com.example.work_staff_marching.cyf.ui.MainActivity;
+import com.example.work_staff_marching.cyf.ui.CatageryActivity;
+import com.example.work_staff_marching.cyf.ui.ContentActivity;
+import com.example.work_staff_marching.cyf.ui.OnlinePetitionSureActivity;
+import com.example.work_staff_marching.cyf.utils.BaseFragment;
 
-public class HomeFragment extends Fragment {
+import butterknife.BindView;
+import butterknife.OnClick;
 
-    public Activity mActivity;
-    public LayoutInflater mInflater;
+public class HomeFragment extends BaseFragment {
 
+    @BindView(R.id.catagery)
+    TextView catagery;
+    @BindView(R.id.catageryLinearLayout)
+    LinearLayout catageryLinearLayout;
+    @BindView(R.id.content)
+    TextView content;
+    @BindView(R.id.contentLineaeLayout)
+    LinearLayout contentLineaeLayout;
+    @BindView(R.id.address)
+    TextView address;
+    @BindView(R.id.addressLinearLayout)
+    LinearLayout addressLinearLayout;
+    @BindView(R.id.detailAdress)
+    EditText detailAdress;
+    @BindView(R.id.detailAdressLinearLayout)
+    LinearLayout detailAdressLinearLayout;
+    @BindView(R.id.button)
+    Button button;
+    public static String contentString;
+    public static String catagery1String;
+    public static String catagery2String;
+    public static String catagery3String;
 
     @Override
-    public void onAttach(Context context) {
-
-        super.onAttach(context);
-
+    protected int initLayout() {
+        return R.layout.activity_online_petition;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //activity创建时回掉，在这里获去依赖的activity对象
-        mActivity = getActivity();
-        //startActivity(new Intent(mActivity, MainActivity.class));
-
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        mInflater = inflater;//用来将xml文件实例化成View的类实例
-        //在HomeFragment的xml文件渲染成view。
-        View rootView = mInflater.inflate(R.layout.activity_online_petition,null);
-        //返回的View即为fragment要显示的View
-        return rootView;
-
-//        Intent intent = new Intent(getActivity(),MainActivity.class);
-//        startActivity(intent);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        //fragment依赖的activity创建完成时回掉，一般在这里做fragment页面数据的初始化
+    protected void initView(View view) {
+        content.setText(contentString);
+        catagery.setText(catagery1String);
+        contentLineaeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("content",content.getText().toString());
+                intent.setClass(getContext(), ContentActivity.class);
+                getContext().startActivity(intent);
+            }
+        });
+        catageryLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getContext(), CatageryActivity.class);
+                getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    protected void initData(Context mContext) {
+
     }
 
+    @OnClick(R.id.button)
+    public void onViewClicked(View view) {
+        Intent intent = new Intent();
+        intent.putExtra("content",content.getText().toString());
+        intent.putExtra("detailaddress",detailAdress.getText().toString());
+        if(view.getId()==R.id.button){
+            intent.setClass(getContext(), OnlinePetitionSureActivity.class);
+            getContext().startActivity(intent);
+        }
+    }
+//回到保存页面
     @Override
     public void onResume() {
         super.onResume();
+        initView(getView());
     }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    public void onDetach() {
-
-        super.onDetach();
-    }
-
 }

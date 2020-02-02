@@ -27,6 +27,7 @@
         android:layout_alignTop="@+id/imageview1"
         android:layout_toRightOf="@+id/imageview1"
         android:hint="请输入手机号码"
+        android:text="13164820880"
         android:ems="10" >
 
         <requestFocus />
@@ -49,6 +50,7 @@
         android:layout_toRightOf="@+id/imageView2"
         android:ems="10"
         android:hint="请输入密码"
+        android:text="4"
         android:inputType="textPassword" />
     <RadioGroup
         android:id="@+id/radio"

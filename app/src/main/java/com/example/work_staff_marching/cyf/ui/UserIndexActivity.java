@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.RadioGroup;
 import com.example.work_staff_marching.R;
@@ -36,7 +36,7 @@ public class UserIndexActivity extends AppCompatActivity {
         我这里的fragment是import android.app.Fragment; 所以我导入的fragmentManager也是android.app包下面的
         * */
         /*如果是v4包的要用this.getSupportFragmentManager();*/
-        fragmentManager = this.getFragmentManager();
+        fragmentManager = this.getSupportFragmentManager();
     }
 
     private void initEvent() {

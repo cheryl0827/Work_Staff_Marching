@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.work_staff_marching.R;
+import com.example.work_staff_marching.cyf.fragment.HomeFragment;
 import com.example.work_staff_marching.cyf.utils.BaseActivity;
 
 import butterknife.BindView;
@@ -55,11 +56,7 @@ public class ContentActivity extends BaseActivity {
     }
     @OnClick(R.id.button)
     public void onViewClicked(View view) {
-        Intent intent = new Intent();
-        intent.putExtra("content",etWord.getText().toString());
-        if(view.getId()==R.id.button){
-            intent.setClass(ContentActivity.this, OnlinePetitionActivity.class);
-            ContentActivity.this.startActivity(intent);
-        }
+        HomeFragment.contentString=etWord.getText().toString();
+        finish();
     }
 }

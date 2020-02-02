@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Result response){
                        SharePrefrenceUtil.saveObject(MainActivity.this,response.getData());
                         if(usertype.equals("普通用户"))
-                            startActivity(new Intent(MainActivity.this,OnlinePetitionActivity.class));
+                            startActivity(new Intent(MainActivity.this,UserIndexActivity.class));
                     }
 
                     @Override
