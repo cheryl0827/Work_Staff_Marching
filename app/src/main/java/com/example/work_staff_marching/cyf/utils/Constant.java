@@ -30,8 +30,21 @@ public class Constant {
      * 获取验证码,类似前后台交接的接口
      */
     public static String get_code = BASE_URL + "/AddIdentifyCodeServlet";
+    /**
+     * 工作用户注册
+     */
     public static String get_register = BASE_URL + "/UserBaseRegisterServlet";
+    /**
+     * 普通用户注册
+     */
     public static String get_userregister = BASE_URL + "/UserRegisterServlet";
-
+    /**
+     * 找回密码，并更新
+     */
+    public static String get_forgetpassword = BASE_URL + "/ForgetPasswordServlet";
+    /**
+     * 用户登录
+     */
+    public static String get_userlogin= BASE_URL + "/UserLoginServlet";
 
 }

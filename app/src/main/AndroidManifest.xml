@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".cyf.ui.ForgetPasswordActivity"></activity>
+        <activity android:name=".cyf.ui.ContentSureActivity"></activity>
+        <activity android:name=".cyf.ui.ContentActivity" />
+        <activity android:name=".cyf.ui.OnlinePetitionSureActivity" />
+        <activity android:name=".cyf.ui.OnlinePetitionActivity" />
+        <activity android:name=".cyf.ui.ForgetPasswordActivity" />
         <activity android:name=".cyf.ui.UserIndexActivity" />
         <activity android:name=".cyf.ui.RegisterUserActivity" />
         <activity android:name=".cyf.ui.RegisterActivity" />

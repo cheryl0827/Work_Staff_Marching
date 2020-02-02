@@ -1,8 +1,9 @@
-package com.example.work_staff_marching.cyf.utils;
+package com.example.work_staff_marching.cyf.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 
 import com.example.work_staff_marching.R;
+import com.example.work_staff_marching.cyf.ui.MainActivity;
 
 public class HomeFragment extends Fragment {
 
@@ -30,6 +32,8 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         //activity创建时回掉，在这里获去依赖的activity对象
         mActivity = getActivity();
+        //startActivity(new Intent(mActivity, MainActivity.class));
+
     }
 
     @Nullable
@@ -38,9 +42,12 @@ public class HomeFragment extends Fragment {
 
         mInflater = inflater;//用来将xml文件实例化成View的类实例
         //在HomeFragment的xml文件渲染成view。
-        View rootView = mInflater.inflate(R.layout.activity_main,null);
+        View rootView = mInflater.inflate(R.layout.activity_online_petition,null);
         //返回的View即为fragment要显示的View
         return rootView;
+
+//        Intent intent = new Intent(getActivity(),MainActivity.class);
+//        startActivity(intent);
     }
 
     @Override

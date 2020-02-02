@@ -51,6 +51,7 @@
         android:hint="请输入密码"
         android:inputType="textPassword" />
     <RadioGroup
+        android:id="@+id/radio"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_marginLeft="73dp"

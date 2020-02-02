@@ -1,8 +1,9 @@
-package com.example.work_staff_marching.cyf.utils;
+package com.example.work_staff_marching.cyf.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 
 import com.example.work_staff_marching.R;
+import com.example.work_staff_marching.cyf.ui.ForgetPasswordActivity;
+import com.example.work_staff_marching.cyf.ui.MainActivity;
 
 public class MessageFragment extends Fragment
 
@@ -31,8 +34,10 @@ public class MessageFragment extends Fragment
         public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //activity创建时回掉，在这里获去依赖的activity对象
-        mActivity = getActivity();
-    }
+            mActivity = getActivity();
+            //startActivity(new Intent(mActivity, ForgetPasswordActivity.class));
+
+        }
 
         @Nullable
         @Override

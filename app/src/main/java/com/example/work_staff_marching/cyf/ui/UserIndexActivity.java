@@ -10,8 +10,8 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.RadioGroup;
 import com.example.work_staff_marching.R;
-import com.example.work_staff_marching.cyf.utils.HomeFragment;
-import com.example.work_staff_marching.cyf.utils.MessageFragment;
+import com.example.work_staff_marching.cyf.fragment.HomeFragment;
+import com.example.work_staff_marching.cyf.fragment.MessageFragment;
 
 import java.util.ArrayList;
 public class UserIndexActivity extends AppCompatActivity {
@@ -52,12 +52,8 @@ public class UserIndexActivity extends AppCompatActivity {
                         setCurrentFragment(1);
                         break;
                     }
-                    case R.id.radiobutton_discover: {
-                        setCurrentFragment(2);
-                        break;
-                    }
                     case R.id.radiobutton_profile: {
-                        setCurrentFragment(3);
+                        setCurrentFragment(2);
                         break;
                     }
                     case R.id.radiobutton_post:{

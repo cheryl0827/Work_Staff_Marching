@@ -2,21 +2,38 @@ package com.example.work_staff_marching.cyf.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.work_staff_marching.R;
+import com.example.work_staff_marching.cyf.entity.UserBean;
+import com.example.work_staff_marching.cyf.utils.Constant;
+import com.example.work_staff_marching.cyf.utils.OkCallback;
+import com.example.work_staff_marching.cyf.utils.OkHttp;
+import com.example.work_staff_marching.cyf.utils.Result;
+import com.example.work_staff_marching.cyf.utils.SharePrefrenceUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     EditText phone,password;
     TextView forgetpassword,register;
     Button login;
+    RadioGroup radio;
+    String usertype="普通用户";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         forgetpassword=(TextView)findViewById(R.id.forgetpassword);
         register=(TextView)findViewById(R.id.register);
         login=(Button)findViewById(R.id.login);
+        radio=(RadioGroup)findViewById(R.id.radio);
         login.setOnClickListener(new Onbuttonlistener());
         forgetpassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +57,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,RegisterActivity.class));
             }
         });
+        radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton rb = (RadioButton) MainActivity.this.findViewById(radio.getCheckedRadioButtonId());
+                usertype = rb.getText().toString();
+            }
+        });
     }
     class Onbuttonlistener implements View.OnClickListener {
 
@@ -50,12 +75,32 @@ public class MainActivity extends AppCompatActivity {
             if (!(isMobileNo(pphone))) {
                 Toast.makeText(MainActivity.this, "您输入的手机号码不正确，请重新输入！", Toast.LENGTH_LONG).show();
             }
-            else if (ppassword.equals(""))
+            if (ppassword.equals(""))
                 Toast.makeText(MainActivity.this, "密码不能为空！", Toast.LENGTH_LONG).show();
-            else
-            startActivity(new Intent(MainActivity.this,UserIndexActivity.class));
+//            else
+//            startActivity(new Intent(MainActivity.this,UserIndexActivity.class));
+           // if(v.getId()==R.id.register){
+                Map<String, String> map = new HashMap<>();
+                map.put("phone",pphone);
+                map.put("password",ppassword);
+                map.put("usertype",usertype);
+                OkHttp.post(MainActivity.this, Constant.get_userlogin, map, new OkCallback<Result<UserBean>>() {
+                    @Override
+                    public void onResponse(Result response){
+                       SharePrefrenceUtil.saveObject(MainActivity.this,response.getData());
+                        if(usertype.equals("普通用户"))
+                            startActivity(new Intent(MainActivity.this,OnlinePetitionActivity.class));
+                    }
+
+                    @Override
+                    public void onFailure(String state, String msg) {
+                        Toast.makeText(MainActivity.this, "用户信息不正确，请重新输入！", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
         }
-    }
+   // }
     //验证手机号码
     public static boolean isMobileNo(String mobiles) {
         /*

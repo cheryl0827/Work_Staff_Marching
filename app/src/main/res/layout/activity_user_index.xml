@@ -31,31 +31,25 @@
             android:id="@+id/radiobutton_home"
             style="@style/main_radiobutton_stype"
             android:checked="true"
-            android:drawableTop="@mipmap/sex"
-            android:text="主页" />
+            android:drawableTop="@mipmap/letter"
+            android:text="网上上访" />
 
         <RadioButton
             android:id="@+id/radiobutton_message"
             style="@style/main_radiobutton_stype"
-            android:drawableTop="@mipmap/sex"
-            android:text="消息" />
+            android:drawableTop="@mipmap/a"
+            android:text="人员信息" />
 
         <RadioButton
             android:id="@+id/radiobutton_post"
-            android:drawableTop="@mipmap/sex"
             style="@style/main_radiobutton_stype"
-            android:text="发布" />
-
-        <RadioButton
-            android:id="@+id/radiobutton_discover"
-            style="@style/main_radiobutton_stype"
-            android:drawableTop="@mipmap/sex"
-            android:text="发现" />
+            android:drawableTop="@mipmap/b"
+            android:text="诉求任务" />
 
         <RadioButton
             android:id="@+id/radiobutton_profile"
             style="@style/main_radiobutton_stype"
-            android:drawableTop="@mipmap/sex"
+            android:drawableTop="@mipmap/me"
             android:text="我" />
     </RadioGroup>
 </LinearLayout>
