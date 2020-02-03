@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".cyf.ui.CatageryActivity"></activity>
+        <activity android:name=".cyf.ui.TaskProportionActivity"></activity>
+        <activity android:name=".cyf.ui.AdressActivity" />
+        <activity android:name=".cyf.ui.CatageryActivity" />
         <activity android:name=".cyf.ui.ContentSureActivity" />
         <activity android:name=".cyf.ui.ContentActivity" />
         <activity android:name=".cyf.ui.OnlinePetitionSureActivity" />

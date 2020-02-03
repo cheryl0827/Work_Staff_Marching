@@ -46,5 +46,13 @@ public class Constant {
      * 用户登录
      */
     public static String get_userlogin= BASE_URL + "/UserLoginServlet";
+    /**
+     * 网上上访
+     */
+    public static String get_taskadd= BASE_URL + "/TaskAddServlet";
+    /**
+     * 诉求任务权重表
+     */
+    public static String get_taskproportion= BASE_URL + "/UserTaskProportionServlet";
 
 }

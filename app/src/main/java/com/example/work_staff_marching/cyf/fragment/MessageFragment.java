@@ -20,7 +20,7 @@ public class MessageFragment extends BaseFragment
 
         @Override
         protected int initLayout() {
-            return R.layout.activity_online_petition;
+            return R.layout.activity_forget_password;
         }
 
         @Override

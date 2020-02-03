@@ -57,6 +57,7 @@ public class ContentActivity extends BaseActivity {
     @OnClick(R.id.button)
     public void onViewClicked(View view) {
         HomeFragment.contentString=etWord.getText().toString();
+        setResult(RESULT_OK);
         finish();
     }
 }

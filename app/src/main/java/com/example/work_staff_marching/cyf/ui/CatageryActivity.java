@@ -27,8 +27,8 @@ public class CatageryActivity extends BaseActivity {
     ListView lvMiddle;
     @BindView(R.id.lv_right)
     ListView lvRight;
-    ArrayAdapter<String> Adapter1 = null;  //省级适配器
-    ArrayAdapter<String> Adapter2 = null;    //地级适配器
+    ArrayAdapter<String> Adapter1 = null;
+    ArrayAdapter<String> Adapter2 = null;
     ArrayAdapter<String> Adapter3 = null;
     static int provincePosition = 0;
     private String [] data1=new String[]{"农村农业","国土资源","城乡建设","劳动和社会保障","教育文体","卫生计生"};
@@ -87,7 +87,6 @@ public class CatageryActivity extends BaseActivity {
     @Override
     protected void init(Bundle saveInstanceState) {
      setTitle("问题类别");
-
      Adapter1 = new ArrayAdapter<String>(
              CatageryActivity.this, R.layout.catagery_design,data1);
      lvLeft.setAdapter(Adapter1);
@@ -103,9 +102,9 @@ public class CatageryActivity extends BaseActivity {
                 provincePosition = position;
                 Adapter3=null;
                 lvRight.setAdapter(Adapter3);
-                TextView textView=(TextView)findViewById(R.id.TextView);
+                TextView textView=(TextView)view.findViewById(R.id.TextView);
                 HomeFragment.catagery1String = textView.getText().toString();
-                Log.v("re", textView.getText().toString());
+               // Log.v("re", textView.getText().toString());
             }
         });
      lvMiddle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -115,6 +114,9 @@ public class CatageryActivity extends BaseActivity {
              Adapter3 = new ArrayAdapter<String>(
                      CatageryActivity.this, R.layout.catagery_design, data3[provincePosition][position]);
              lvRight.setAdapter(Adapter3);
+             TextView textView1=(TextView)view.findViewById(R.id.TextView);
+             HomeFragment.catagery2String = textView1.getText().toString();
+  //           Log.v("re", textView1.getText().toString());
 //             TextView textView=(TextView)findViewById(R.id.TextView);
 //             HomeFragment.catagery2String = textView.getText().toString();
 //             Log.v("re", textView.getText().toString());
@@ -123,7 +125,11 @@ public class CatageryActivity extends BaseActivity {
      lvRight.setOnItemClickListener(new AdapterView.OnItemClickListener() {
          @Override
          public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+             TextView textView2=(TextView)view.findViewById(R.id.TextView);
+             HomeFragment.catagery3String = textView2.getText().toString();
+             HomeFragment.catageryString=HomeFragment.catagery1String+"-"+HomeFragment.catagery2String+"-"+HomeFragment.catagery3String;
 //             HomeFragment.catagery3String = textView.getText().toString();
+            setResult(RESULT_OK);
             finish();
          }
      });
