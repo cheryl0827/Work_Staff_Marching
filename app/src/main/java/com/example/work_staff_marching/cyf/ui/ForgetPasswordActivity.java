@@ -87,16 +87,14 @@ public class ForgetPasswordActivity extends BaseActivity {
             });
         }
         if(view.getId()== R.id.register) {
-            Map<String, String> map1 = new HashMap<>();
-            map1.put("phone", phoneText.getText().toString());
-            map1.put("password", passwordText.getText().toString());
-//                Log.v("re", indentifycode);
             if (identityCodeText.getText().toString().equals("") || passwordText.getText().toString().equals(""))
                 Toast.makeText(ForgetPasswordActivity.this, "请输入以上内容，不能为空！", Toast.LENGTH_SHORT).show();
-            if (!(identityCodeText.getText().toString().equals(indentifycode))) {
+            if (!(identityCodeText.getText().toString().equals(indentifycode)))
                 Toast.makeText(ForgetPasswordActivity.this, "验证码不正确，请重新输入！", Toast.LENGTH_SHORT).show();
-            }
-            if (identityCodeText.getText().toString().equals(indentifycode)) {
+            if (identityCodeText.getText().toString().equals(indentifycode)){
+                Map<String, String> map1 = new HashMap<>();
+                map1.put("phone", phoneText.getText().toString());
+                map1.put("password", passwordText.getText().toString());
                 OkHttp.post(ForgetPasswordActivity.this, Constant.get_forgetpassword, map1, new OkCallback<Result<String>>() {
                     @Override
                     public void onResponse(Result response) {
@@ -113,18 +111,17 @@ public class ForgetPasswordActivity extends BaseActivity {
                                 commonDialog.dismiss();
                             }
                         }).show();
-
                     }
 
                     @Override
                     public void onFailure(String state, String msg) {
-
                     }
                 });
             }
         }
         }
+        }
 
 
-    }
+
 
