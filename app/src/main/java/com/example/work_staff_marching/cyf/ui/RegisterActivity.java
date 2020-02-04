@@ -193,6 +193,7 @@ public class RegisterActivity extends BaseActivity {
                        RegisterActivity.this.startActivity(intent);
                     }
                     if (view.getId() == R.id.next && usertype.equals("工作用户")) {
+                        commonDialog.isSingle=true;
                         commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("注册成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                             @Override
                             public void onPositiveClick() {

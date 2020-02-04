@@ -55,7 +55,7 @@ public class CommonDialog extends Dialog {
     /**
      * 底部是否只有一个按钮
      */
-    private boolean isSingle = false;
+    public boolean isSingle = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

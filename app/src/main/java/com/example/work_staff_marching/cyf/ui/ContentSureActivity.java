@@ -26,10 +26,4 @@ public class ContentSureActivity extends BaseActivity {
         etWord.setText(intent1.getStringExtra("content"));
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

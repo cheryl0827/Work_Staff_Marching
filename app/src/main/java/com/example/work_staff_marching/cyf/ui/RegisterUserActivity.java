@@ -127,6 +127,7 @@ public class RegisterUserActivity extends BaseActivity {
                 @Override
                 public void onResponse(Result<String> response) {
                     if (view.getId() == R.id.register) {
+                        commonDialog.isSingle=true;
                         commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("注册成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                             @Override
                             public void onPositiveClick() {

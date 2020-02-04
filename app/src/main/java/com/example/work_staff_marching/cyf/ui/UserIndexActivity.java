@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.fragment.HomeFragment;
 import com.example.work_staff_marching.cyf.fragment.MessageFragment;
+import com.example.work_staff_marching.cyf.fragment.UserMeFragment;
 
 import java.util.ArrayList;
 public class UserIndexActivity extends AppCompatActivity {
@@ -57,6 +58,7 @@ public class UserIndexActivity extends AppCompatActivity {
                         break;
                     }
                     case R.id.radiobutton_post:{
+                        setCurrentFragment(3);
                         break;
                     }
                     default: {
@@ -71,12 +73,12 @@ public class UserIndexActivity extends AppCompatActivity {
         /*3、数据的准备*/
         HomeFragment homeFragment = new HomeFragment();
         fragmentList.add(homeFragment);
-      MessageFragment messageFragment = new MessageFragment();
+        MessageFragment messageFragment = new MessageFragment();
        fragmentList.add(messageFragment);
 //       DiscoverFragment discoverFragment = new DiscoverFragment();
 //        fragmentList.add(discoverFragment);
-//        ProfileFragment profileFragment = new ProfileFragment();
-//       fragmentList.add(profileFragment);
+        UserMeFragment userMeFragment = new UserMeFragment();
+       fragmentList.add(userMeFragment);
 //        //默认显示第1个也就是fragmentList.get(0)
         setCurrentFragment(0);
 

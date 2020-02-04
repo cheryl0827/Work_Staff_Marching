@@ -70,7 +70,7 @@ public class TaskProportionActivity extends BaseActivity {
                     OkHttp.post(TaskProportionActivity.this, Constant.get_taskproportion, map, new OkCallback<Result<String>>() {
                         @Override
                         public void onResponse(Result<String> response) {
-                            commonDialog.setNegtive("");
+                            commonDialog.isSingle=true;
                             commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("诉求任务权重填写成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                                 @Override
                                 public void onPositiveClick() {

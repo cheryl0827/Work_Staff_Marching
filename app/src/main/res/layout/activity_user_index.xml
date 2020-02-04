@@ -49,7 +49,7 @@
         <RadioButton
             android:id="@+id/radiobutton_profile"
             style="@style/main_radiobutton_stype"
-            android:drawableTop="@mipmap/me"
+            android:drawableTop="@mipmap/me1"
             android:text="我" />
     </RadioGroup>
 </LinearLayout>
