@@ -12,8 +12,13 @@ import com.bumptech.glide.Glide;
 import com.example.work_staff_marching.BuildConfig;
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.entity.UserBean;
+import com.example.work_staff_marching.cyf.ui.ChangeUserInformationActivity;
 import com.example.work_staff_marching.cyf.ui.ChangeUserPasswordActivity;
+import com.example.work_staff_marching.cyf.ui.MainActivity;
+import com.example.work_staff_marching.cyf.ui.PhoneCallActivity;
+import com.example.work_staff_marching.cyf.ui.RegisterActivity;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
+import com.example.work_staff_marching.cyf.utils.CommonDialog;
 import com.example.work_staff_marching.cyf.utils.MyGlideEngine;
 import com.example.work_staff_marching.cyf.utils.SharePrefrenceUtil;
 import com.qmuiteam.qmui.widget.QMUIRadiusImageView;
@@ -68,6 +73,18 @@ public class UserMeFragment extends BaseFragment {
                 startActivity(new Intent(getContext(), ChangeUserPasswordActivity.class));
             }
         });
+        PeopleInformatinChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), ChangeUserInformationActivity.class));
+            }
+        });
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), PhoneCallActivity.class));
+            }
+        });
     }
 
     @Override
@@ -75,8 +92,9 @@ public class UserMeFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.iv_upload_image, R.id.tv_upload_image})
+    @OnClick({R.id.iv_upload_image, R.id.tv_upload_image,R.id.exit})
     public void onViewClicked(View view) {
+        CommonDialog commonDialog = new CommonDialog(getContext());
         switch (view.getId()) {
             case R.id.tv_upload_image:
                 Matisse.from(this)
@@ -90,7 +108,18 @@ public class UserMeFragment extends BaseFragment {
                         .imageEngine(new MyGlideEngine())//图片加载类，需要重写框架自带的不然会报错
                         .forResult(REQUEST_CODE_CHOOSE);//请求码
                 break;
-            case R.id.iv_upload_image:
+            case R.id.exit:
+                commonDialog.setTitle("提示").setImageResId(R.mipmap.exit).setMessage("你确定要退出该程序吗？").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                    @Override
+                    public void onPositiveClick() {
+                        startActivity(new Intent(getContext(),MainActivity.class));
+                        commonDialog.dismiss();
+                    }
+                    @Override
+                    public void onNegtiveClick() {
+                        commonDialog.dismiss();
+                    }
+                }).show();
                 break;
         }
     }
@@ -105,7 +134,5 @@ public class UserMeFragment extends BaseFragment {
         }
     }
 
-    @OnClick(R.id.exit)
-    public void onViewClicked() {
-    }
+
 }

@@ -59,7 +59,8 @@ public class ForgetPasswordActivity extends BaseActivity {
     @OnClick({R.id.indentifyCodeGet, R.id.register})
     public void onViewClicked(View view) {
         CommonDialog commonDialog = new CommonDialog(this);
-        if(view.getId()== R.id.indentifyCodeGet) {
+        switch (view.getId()) {
+            case R.id.indentifyCodeGet:
             Map<String, String> map = new HashMap<>();
             map.put("phone", phoneText.getText().toString());
             OkHttp.post(ForgetPasswordActivity.this, Constant.get_code, map, new OkCallback<Result<String>>() {
@@ -85,8 +86,8 @@ public class ForgetPasswordActivity extends BaseActivity {
                     Toast.makeText(ForgetPasswordActivity.this, "该用户不存在，请重新输入！", Toast.LENGTH_SHORT).show();
                 }
             });
-        }
-        if(view.getId()== R.id.register) {
+          break;
+          case R.id.register:
             if (identityCodeText.getText().toString().equals("") || passwordText.getText().toString().equals(""))
                 Toast.makeText(ForgetPasswordActivity.this, "请输入以上内容，不能为空！", Toast.LENGTH_SHORT).show();
             if (!(identityCodeText.getText().toString().equals(indentifycode)))
@@ -115,9 +116,11 @@ public class ForgetPasswordActivity extends BaseActivity {
 
                     @Override
                     public void onFailure(String state, String msg) {
+                        Toast.makeText(ForgetPasswordActivity.this,msg, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
+            break;
         }
         }
         }

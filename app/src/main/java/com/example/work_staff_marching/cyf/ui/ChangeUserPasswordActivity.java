@@ -36,7 +36,7 @@ public class ChangeUserPasswordActivity extends BaseActivity {
     @BindView(R.id.phone)
     TextView phone;
     @BindView(R.id.phoneText)
-    EditText phoneText;
+    TextView phoneText;
     @BindView(R.id.phoneLinear)
     LinearLayout phoneLinear;
     @BindView(R.id.identifyCode)

@@ -36,6 +36,18 @@ public class Constant {
      * 修改用户的密码
      */
     public static String get_changepassword= BASE_URL + "/ChangePasswodServlet";
+    /**
+     * 修改用户的个人信息
+     */
+    public static String get_changeinformation= BASE_URL + "/UserChangeInformationServlet";
+    /**
+     * 修改用户的个人信息的手机号码
+     */
+    public static String get_changephone= BASE_URL + "/UserChangePhoneServlet";
+    /**
+     * 修改用户的个人信息的地址
+     */
+    public static String get_changeaddress= BASE_URL + "/UserChangeAdressServlet";
 
 
 }
