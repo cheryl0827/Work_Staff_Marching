@@ -20,7 +20,7 @@ public class MessageFragment extends BaseFragment
 
         @Override
         protected int initLayout() {
-            return R.layout.activity_forget_password;
+            return R.layout.activity_taskrecycle_view;
         }
 
         @Override

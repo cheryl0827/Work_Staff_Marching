@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/powderblue"
+        >
+
+        <TextView
+            android:id="@+id/textView71"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:text="信访诉求任务"
+            android:textSize="28dp"
+            android:textStyle="italic"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#fff">
+
+        <Button
+            android:id="@+id/go"
+            android:layout_width="51dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/darksalmon"
+            android:text="未审核" />
+
+        <Button
+            android:id="@+id/ed"
+            android:layout_width="59dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/burlywood"
+            android:text="审核通过" />
+
+        <Button
+            android:id="@+id/end"
+            android:layout_width="59dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/rosybrown"
+            android:text="办理结束" />
+        <Button
+            android:id="@+id/no"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/wheat"
+            android:text="不合格任务" />
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        />
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swiperereshlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

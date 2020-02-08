@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".cyf.ui.InformationAddressActivity"></activity>
+        <activity android:name=".cyf.fragment.TaskFragment"></activity>
+        <activity android:name=".cyf.ui.InformationAddressActivity" />
         <activity android:name=".cyf.ui.ChangeUserInformationActivity" />
         <activity android:name=".cyf.ui.PhoneCallActivity">
             <intent-filter>

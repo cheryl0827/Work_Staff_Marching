@@ -48,6 +48,8 @@ public class Constant {
      * 修改用户的个人信息的地址
      */
     public static String get_changeaddress= BASE_URL + "/UserChangeAdressServlet";
-
-
+    /**
+     * 查看诉求任务不通过的所有信息
+     */
+    public static String get_taskreviewing= BASE_URL + "/TaskReviewingShowServlet";
 }
