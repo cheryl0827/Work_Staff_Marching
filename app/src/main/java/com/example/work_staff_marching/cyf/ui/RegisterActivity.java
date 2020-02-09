@@ -174,7 +174,7 @@ public class RegisterActivity extends BaseActivity {
             map.put("password",password.getText().toString());
             map.put("roleName",usertype);
             map.put("sex",sex1);
-            //map.put("workuserNo",workuserNo);
+            map.put("workuserNo",workuserNo);
             Intent intent = new Intent();
            intent.putExtra("userName", userName.getText().toString());
            intent.putExtra("phone", phone.getText().toString());
