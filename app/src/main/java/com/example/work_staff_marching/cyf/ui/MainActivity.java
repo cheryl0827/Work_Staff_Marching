@@ -90,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
                        SharePrefrenceUtil.saveObject(MainActivity.this,response.getData());
                         if(usertype.equals("普通用户"))
                             startActivity(new Intent(MainActivity.this,UserIndexActivity.class));
+                        if(usertype.equals("管理员"))
+                            startActivity(new Intent(MainActivity.this,AdminIndexActivity.class));
                     }
 
                     @Override

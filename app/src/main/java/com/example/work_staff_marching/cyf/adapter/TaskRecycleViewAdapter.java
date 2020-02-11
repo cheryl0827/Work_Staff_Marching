@@ -34,6 +34,7 @@ public class TaskRecycleViewAdapter extends BaseRecyclerViewAdapter<TaskBean,Rec
     public Button updateButton,deleteButton,pingjiabutton,detailEndButton;
     public LinearLayout pingjia,opetation,detailEndLinearLayout,adressLinearLayout,workuserLinearLayout;
     private Context mContext;
+    String workuserno;
 
     public TaskRecycleViewAdapter(Context context) {
         super(context);
@@ -52,7 +53,7 @@ public class TaskRecycleViewAdapter extends BaseRecyclerViewAdapter<TaskBean,Rec
         task_content.setText(data.getTaskContent());
         task_time.setText(data.getTaskTime());
         address.setText(data.getTaskAdress());
-        username.setText("张三");
+        workuserno=data.getTaskWorknumber();
         workuserNo.setText(data.getTaskWorknumber());
         detailaddress.setText(data.getTaskDetaiAdress());
         pingjia=(LinearLayout)holder.getView(R.id.pingjia);
@@ -68,6 +69,23 @@ public class TaskRecycleViewAdapter extends BaseRecyclerViewAdapter<TaskBean,Rec
         holder.addOnClickListener(R.id.updateButton);
         holder.addOnClickListener(R.id.pingjiabutton);
         holder.addOnClickListener(R.id.detailEndButton);
+
+
+        Map<String, String> map = new HashMap<>();
+        map.put("workuserno",workuserno);
+        OkHttp.get(mContext, Constant.get_username, map, new OkCallback<Result<String>>() {
+            @Override
+            public void onResponse(Result<String> response) {
+                username.setText(response.getData() + "");
+            }
+
+            @Override
+            public void onFailure(String state, String msg) {
+
+            }
+        });
+
+
 
 
         switch(data.getTaskStatus()){
@@ -140,5 +158,6 @@ public class TaskRecycleViewAdapter extends BaseRecyclerViewAdapter<TaskBean,Rec
     protected int getViewType(int position, TaskBean data) {
         return 0;
     }
+
 
 }

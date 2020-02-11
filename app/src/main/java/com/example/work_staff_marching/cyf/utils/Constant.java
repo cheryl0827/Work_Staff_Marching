@@ -64,5 +64,8 @@ public class Constant {
      * 修改诉求任务
      */
     public static String get_estimateadd= BASE_URL + "/EstimateAddServlet";
-
+    /**
+     * 查询工作用户的姓名
+     */
+    public static String get_username= BASE_URL + "/UserNameShowServlet";
 }
