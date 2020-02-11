@@ -131,16 +131,20 @@ public class TaskFragment extends BaseFragment {
             case R.id.go:
                 taskStatus="1";
                 loadData();
+                setEnable(go);
                 break;
             case R.id.ed:
                 taskStatus="2";
                 loadData();
+                setEnable(ed);
                 break;
             case R.id.end:
                 taskStatus="3";
+                setEnable(end);
                 loadData();
                 break;
             case R.id.no:
+                setEnable(no);
                 taskStatus="4";
                 loadData();
                 break;
@@ -154,5 +158,17 @@ public class TaskFragment extends BaseFragment {
             }
         }
     }
-
+    private void setEnable(Button btn) {
+        List<Button> buttonList=new ArrayList<>();
+        if (buttonList.size()==0){
+            buttonList.add(go);
+            buttonList.add(ed);
+            buttonList.add(no);
+            buttonList.add(end);
+        }
+        for (int i = 0; i <buttonList.size() ; i++) {
+            buttonList.get(i).setEnabled(true);
+        }
+        btn.setEnabled(false);
+    }
 }

@@ -11,15 +11,10 @@ import android.widget.Toast;
 
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.entity.TaskBean;
-import com.example.work_staff_marching.cyf.fragment.TaskFragment;
-import com.example.work_staff_marching.cyf.ui.ChangeOnlinePetitionActivity;
-import com.example.work_staff_marching.cyf.ui.ChangeUserInformationActivity;
-import com.example.work_staff_marching.cyf.ui.MainActivity;
-import com.example.work_staff_marching.cyf.ui.RegisterActivity;
-import com.example.work_staff_marching.cyf.ui.RegisterUserActivity;
+
 import com.example.work_staff_marching.cyf.utils.CommonDialog;
 import com.example.work_staff_marching.cyf.utils.Constant;
-import com.example.work_staff_marching.cyf.utils.CustomToast;
+
 import com.example.work_staff_marching.cyf.utils.OkCallback;
 import com.example.work_staff_marching.cyf.utils.OkHttp;
 import com.example.work_staff_marching.cyf.utils.RecyclerViewHolder;
@@ -69,8 +64,7 @@ public class TaskRecycleViewAdapter extends BaseRecyclerViewAdapter<TaskBean,Rec
         holder.addOnClickListener(R.id.updateButton);
         holder.addOnClickListener(R.id.pingjiabutton);
         holder.addOnClickListener(R.id.detailEndButton);
-
-
+//显示工作人员的姓名
         Map<String, String> map = new HashMap<>();
         map.put("workuserno",workuserno);
         OkHttp.get(mContext, Constant.get_username, map, new OkCallback<Result<String>>() {
@@ -78,15 +72,11 @@ public class TaskRecycleViewAdapter extends BaseRecyclerViewAdapter<TaskBean,Rec
             public void onResponse(Result<String> response) {
                 username.setText(response.getData() + "");
             }
-
             @Override
             public void onFailure(String state, String msg) {
 
             }
         });
-
-
-
 
         switch(data.getTaskStatus()){
             case 1:

@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="65dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:background="@color/powderblue"
@@ -27,46 +27,52 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:orientation="horizontal"
         android:background="#fff">
 
         <Button
             android:id="@+id/go"
-            android:layout_width="51dp"
+            android:layout_width="68dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="7dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/darksalmon"
-            android:text="未审核" />
+            android:background="@drawable/set_button_color1"
+            android:text="未审核"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/ed"
-            android:layout_width="59dp"
+            android:layout_width="78dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="7dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/burlywood"
-            android:text="审核通过" />
+            android:background="@drawable/set_button_color2"
+            android:text="审核通过"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/no"
-            android:layout_width="59dp"
+            android:layout_width="78dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="7dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/rosybrown"
-            android:text="审核失败" />
+            android:background="@drawable/set_button_color3"
+            android:text="审核失败"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
 
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="59dp"
-            android:layout_height="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="7dp"
             android:layout_marginBottom="5dp"
 
              />
@@ -75,8 +81,8 @@
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray"
+        android:layout_height="2dp"
+        android:background="@color/thistle"
         />
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swiperereshlayout"

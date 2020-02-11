@@ -68,4 +68,8 @@ public class Constant {
      * 查询工作用户的姓名
      */
     public static String get_username= BASE_URL + "/UserNameShowServlet";
+    /**
+     * 查询用户信息
+     */
+    public static String get_user= BASE_URL + "/UserShowServlet";
 }
