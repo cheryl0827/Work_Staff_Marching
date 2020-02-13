@@ -1,6 +1,7 @@
 package com.example.work_staff_marching.cyf.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,10 +17,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.work_staff_marching.R;
+import com.example.work_staff_marching.cyf.adapter.BaseRecyclerViewAdapter;
 import com.example.work_staff_marching.cyf.adapter.PeopleAuditRecycleViewAdapter;
 import com.example.work_staff_marching.cyf.adapter.TaskRecycleViewAdapter;
 import com.example.work_staff_marching.cyf.entity.UserBean;
+import com.example.work_staff_marching.cyf.inteface.OnItemChildClickListener;
+import com.example.work_staff_marching.cyf.ui.WorkuserAddEvaluatingIndicatorActivity;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
+import com.example.work_staff_marching.cyf.utils.CommonDialog;
 import com.example.work_staff_marching.cyf.utils.Constant;
 import com.example.work_staff_marching.cyf.utils.CustomToast;
 import com.example.work_staff_marching.cyf.utils.OkCallback;
@@ -77,19 +83,132 @@ public class PersonAuditFragment extends BaseFragment {
                 swiperereshlayout.setRefreshing(false);
             }
         });
-spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mPeopleAuditRecycleViewAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseRecyclerViewAdapter adapter, View view, int position) {
+                switch(view.getId()){
+                    case R.id.audit:
+                        CommonDialog commonDialog = new CommonDialog(getContext());
+                        commonDialog.setPositive("审核通过");
+                        commonDialog.setNegtive("审核不通过");
+                        commonDialog.setTitle("提示").setImageResId(R.mipmap.me1).setMessage("请对该人员信息进行审核是否通过？").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                            @Override
+                            public void onPositiveClick() {
+                                Map<String, String> map = new HashMap<>();
+                                map.put("userID", mPeopleAuditRecycleViewAdapter.getItem(position).getUserID()+"");
+                               // map.put("registerStatus", mPeopleAuditRecycleViewAdapter.getItem(position).getRegisterStatus()+"");
+                                OkHttp.post(getContext(), Constant.get_useraudit,map, new OkCallback<Result<String>>() {
+                                    @Override
+                                    public void onResponse(Result response) {
+                                        loadData();
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        roleName=spinner.getSelectedItem().toString();
-        loadData();
-    }
+                                    }
+                                    @Override
+                                    public void onFailure(String state, String msg) {
+                                        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+                                    }
+                                });
+                                commonDialog.dismiss();
+                            }
+                            @Override
+                            public void onNegtiveClick() {
+                                Map<String, String> map1 = new HashMap<>();
+                                map1.put("userID", mPeopleAuditRecycleViewAdapter.getItem(position).getUserID()+"");
+                                // map.put("registerStatus", mPeopleAuditRecycleViewAdapter.getItem(position).getRegisterStatus()+"");
+                                OkHttp.post(getContext(), Constant.get_userauditfailure,map1, new OkCallback<Result<String>>() {
+                                    @Override
+                                    public void onResponse(Result response) {
+                                        loadData();
 
-    }
-});
+                                    }
+                                    @Override
+                                    public void onFailure(String state, String msg) {
+                                        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+
+                                    }
+                                });
+                                commonDialog.dismiss();
+                            }
+                        }).show();
+                        break;
+                    case  R.id.audit1:
+                        CommonDialog commonDialog1 = new CommonDialog(getContext());
+                        commonDialog1.setPositive("审核通过");
+                        commonDialog1.setNegtive("审核不通过");
+                        commonDialog1.setTitle("提示").setImageResId(R.mipmap.me1).setMessage("请对该人员信息进行审核是否通过？").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                            @Override
+                            public void onPositiveClick() {
+                                Map<String, String> map2 = new HashMap<>();
+                                map2.put("userID", mPeopleAuditRecycleViewAdapter.getItem(position).getUserID()+"");
+                                // map.put("registerStatus", mPeopleAuditRecycleViewAdapter.getItem(position).getRegisterStatus()+"");
+                                OkHttp.post(getContext(), Constant.get_useraudit,map2, new OkCallback<Result<String>>() {
+                                    @Override
+                                    public void onResponse(Result response) {
+                                        loadData();
+
+                                    }
+                                    @Override
+                                    public void onFailure(String state, String msg) {
+                                        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+
+                                    }
+                                });
+                                commonDialog1.dismiss();
+                            }
+                            @Override
+                            public void onNegtiveClick() {
+                                Map<String, String> map4 = new HashMap<>();
+                                map4.put("userID", mPeopleAuditRecycleViewAdapter.getItem(position).getUserID()+"");
+                                // map.put("registerStatus", mPeopleAuditRecycleViewAdapter.getItem(position).getRegisterStatus()+"");
+                                OkHttp.post(getContext(), Constant.get_userauditfailure,map4, new OkCallback<Result<String>>() {
+                                    @Override
+                                    public void onResponse(Result response) {
+                                        loadData();
+
+                                    }
+                                    @Override
+                                    public void onFailure(String state, String msg) {
+                                        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+
+                                    }
+                                });
+                                commonDialog1.dismiss();
+                            }
+                        }).show();
+                        break;
+                    case R.id.addworkEvaluatingIndicator:
+                        Intent intent1 = new Intent();
+                        intent1.putExtra("userID",mPeopleAuditRecycleViewAdapter.getItem(position).getUserID()+"");
+                        intent1.setClass(getContext(), WorkuserAddEvaluatingIndicatorActivity.class);
+                        startActivityForResult(intent1,1);
+                        break;
+                    case R.id.updateworkEvaluatingIndicator:
+
+                        break;
+                    case R.id.deleteworkEvaluatingIndicator:
+
+                        break;
+
+
+
+                }
+
+            }
+        });
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                roleName=spinner.getSelectedItem().toString();
+                loadData();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         loadData();
     }
 

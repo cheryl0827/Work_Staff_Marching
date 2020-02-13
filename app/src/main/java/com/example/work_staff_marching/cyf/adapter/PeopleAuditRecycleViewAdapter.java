@@ -11,10 +11,11 @@ import com.example.work_staff_marching.cyf.entity.UserBean;
 import com.example.work_staff_marching.cyf.utils.RecyclerViewHolder;
 
 public class PeopleAuditRecycleViewAdapter extends BaseRecyclerViewAdapter<UserBean, RecyclerViewHolder> {
-    public TextView userName,phone,workuserNoText,workuserNo,sex,address;
-    public Button audit;
-    public LinearLayout addressLinearLayout;
+    public TextView userName,phone,workuserNoText,workuserNo,sex,address,identification,sexuser;
+    public Button audit,audit1,addworkEvaluatingIndicator,updateworkEvaluatingIndicator,deleteworkEvaluatingIndicator;
+    public LinearLayout addressLinearLayout,user,work,opetation,opetation1,workEvaluatingIndicator;
     private Context mContext;
+    String userID="";
 
     public PeopleAuditRecycleViewAdapter(Context context) {
         super(context);
@@ -22,26 +23,77 @@ public class PeopleAuditRecycleViewAdapter extends BaseRecyclerViewAdapter<UserB
     }
     @Override
     protected void convert(RecyclerViewHolder holder, UserBean data, int position, int viewType) {
+        userID=data.getUserID()+"";
         userName=(TextView)holder.getView(R.id.userName);
         phone=(TextView)holder.getView(R.id.phone);
         workuserNoText=(TextView)holder.getView(R.id.workuserNoText);
         workuserNo=(TextView)holder.getView(R.id.workuserNo);
         addressLinearLayout=(LinearLayout)holder.getView(R.id.addressLinearLayout);
+        user=(LinearLayout)holder.getView(R.id.user);
+        work=(LinearLayout)holder.getView(R.id.work);
+        workEvaluatingIndicator=(LinearLayout)holder.getView(R.id.workEvaluatingIndicator);
+        opetation=(LinearLayout)holder.getView(R.id.opetation);
+        opetation1=(LinearLayout)holder.getView(R.id.opetation1);
         sex=(TextView)holder.getView(R.id.sex);
         address=(TextView)holder.getView(R.id.address);
+        identification=(TextView)holder.getView(R.id.identification);
+        sexuser=(TextView)holder.getView(R.id.sexuser);
         audit=(Button)holder.getView(R.id.audit);
+        audit1=(Button)holder.getView(R.id.audit1);
+        addworkEvaluatingIndicator=(Button)holder.getView(R.id.addworkEvaluatingIndicator);
+        updateworkEvaluatingIndicator=(Button)holder.getView(R.id.updateworkEvaluatingIndicator);
+        deleteworkEvaluatingIndicator=(Button)holder.getView(R.id.deleteworkEvaluatingIndicator);
         userName.setText(data.getUserName());
         phone.setText(data.getPhone());
         sex.setText(data.getSex());
         workuserNo.setText(data.getWorkuserNo());
-        address.setText(data.getProvince()+"-"+data.getCity()+"-"+data.getCountry()+"-"+data.getAddress());
+        identification.setText(data.getIndentificationCard());
+        sexuser.setText(data.getSex());
         holder.addOnClickListener(R.id.audit);
+        holder.addOnClickListener(R.id.audit1);
+        holder.addOnClickListener(R.id.addworkEvaluatingIndicator);
+        holder.addOnClickListener(R.id.updateworkEvaluatingIndicator);
+        holder.addOnClickListener(R.id.deleteworkEvaluatingIndicator);
+       if(data.getRoleName().equals("工作用户")) {
+            addressLinearLayout.setVisibility(View.GONE);
+            user.setVisibility(View.GONE);
+            work.setVisibility(View.VISIBLE);
+           if(data.getRegisterStatus()==2){
+               workEvaluatingIndicator.setVisibility(View.VISIBLE);}
+           if(data.getRegisterStatus()==1)
+           {workEvaluatingIndicator.setVisibility(View.GONE);}
+           if(data.getRegisterStatus()==3)
+           {workEvaluatingIndicator.setVisibility(View.GONE);}
+        }
+        if(data.getRoleName().equals("普通用户")) {
+            addressLinearLayout.setVisibility(View.VISIBLE);
+            user.setVisibility(View.VISIBLE);
+            work.setVisibility(View.GONE);
+            workEvaluatingIndicator.setVisibility(View.GONE);
+        }
+        switch (data.getRegisterStatus()){
+            case 1:
+                opetation.setVisibility(View.VISIBLE);
+                opetation1.setVisibility(View.GONE);
+                workEvaluatingIndicator.setVisibility(View.GONE);
+                break;
+            case 2:
+                opetation1.setVisibility(View.GONE);
+                opetation.setVisibility(View.GONE);
+                if(data.getRoleName().equals("工作用户")){
+                workEvaluatingIndicator.setVisibility(View.VISIBLE);
+                }
+                if(data.getRoleName().equals("普通用户")){
+                    workEvaluatingIndicator.setVisibility(View.GONE);
+                }
+                break;
+            case 3:
+                opetation1.setVisibility(View.VISIBLE);
+                opetation.setVisibility(View.GONE);
+                workEvaluatingIndicator.setVisibility(View.GONE);
 
-       if(data.getUserName().equals("工作用户")) {
-           addressLinearLayout.setVisibility(View.GONE);
-           workuserNoText.setText("身份证号：");
-           workuserNo.setText(data.getIndentificationCard());
-       }
+                break;
+        }
     }
 
     @Override
@@ -53,4 +105,5 @@ public class PeopleAuditRecycleViewAdapter extends BaseRecyclerViewAdapter<UserB
     protected int getViewType(int position, UserBean data) {
         return 0;
     }
+
 }

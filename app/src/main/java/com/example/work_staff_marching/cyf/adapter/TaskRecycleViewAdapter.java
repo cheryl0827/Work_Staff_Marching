@@ -112,29 +112,29 @@ public class TaskRecycleViewAdapter extends BaseRecyclerViewAdapter<TaskBean,Rec
             @Override
             public void onClick(View view) {
                 CommonDialog commonDialog = new CommonDialog(mContext);
-                Map<String, String> map = new HashMap<>();
-                map.put("taskID",data.getTaskID()+"");
-                OkHttp.post(mContext, Constant.get_taskdelete,map, new OkCallback<Result<String>>() {
+                commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("你确定要删除这条诉求任务吗？").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                     @Override
-                    public void onResponse(Result response) {
-                        commonDialog.isSingle=true;
-                        commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("删除成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                    public void onPositiveClick() {
+                        Map<String, String> map = new HashMap<>();
+                        map.put("taskID",data.getTaskID()+"");
+                        OkHttp.post(mContext, Constant.get_taskdelete,map, new OkCallback<Result<String>>() {
                             @Override
-                            public void onPositiveClick() {
-                                commonDialog.dismiss();
-                                notifyItemRemoved(position);
+                            public void onResponse(Result response) {
+
                             }
                             @Override
-                            public void onNegtiveClick() {
-                                commonDialog.dismiss();
+                            public void onFailure(String state, String msg) {
+                                Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
                             }
-                        }).show();
+                        });
+                        commonDialog.dismiss();
+                        notifyItemRemoved(position);
                     }
                     @Override
-                    public void onFailure(String state, String msg) {
-                        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+                    public void onNegtiveClick() {
+                        commonDialog.dismiss();
                     }
-                });
+                }).show();
             }
         });
     }

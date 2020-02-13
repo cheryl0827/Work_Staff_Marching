@@ -57,13 +57,13 @@
 
         <Button
             android:id="@+id/no"
-            android:layout_width="78dp"
+            android:layout_width="83dp"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="7dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/set_button_color3"
-            android:text="审核失败"
+            android:text="审核不通过"
             android:textSize="16dp"
             android:textColor="@color/black"/>
 
@@ -71,7 +71,7 @@
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="7dp"
             android:layout_marginBottom="5dp"
 

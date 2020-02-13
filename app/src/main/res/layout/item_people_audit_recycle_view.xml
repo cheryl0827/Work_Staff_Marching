@@ -88,6 +88,47 @@
             android:textSize="18dp" />
 
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="4dp">
+
+        <TextView
+            android:id="@+id/indentificationCard1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:text="身份证号："
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/identification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="13553385352"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/sds122"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="37dp"
+            android:text="性别："
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/sexuser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="女"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -127,11 +168,61 @@
             android:layout_marginLeft="330dp"
             android:background="@color/mediumpurple"/>
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/opetation1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/audit1"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:text="重新审核"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="330dp"
+            android:background="@color/mediumpurple"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/workEvaluatingIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        >
+
+        <Button
+        android:id="@+id/addworkEvaluatingIndicator"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:text="增加人员指标"
+        android:layout_marginTop="5dp"
+            android:layout_marginLeft="90dp"
+        android:background="@color/mediumpurple"/>
+        <Button
+            android:id="@+id/updateworkEvaluatingIndicator"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:text="修改人员指标"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/powderblue"/>
+        <Button
+            android:id="@+id/deleteworkEvaluatingIndicator"
+            android:layout_width="90dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="30dp"
+            android:text="删除人员指标"
+            android:layout_marginTop="5dp"
+            android:background="@color/lightgreen"/>
+    </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/thistle"
         />
+
 
 
 

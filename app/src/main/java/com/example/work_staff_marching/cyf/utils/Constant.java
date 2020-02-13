@@ -61,7 +61,7 @@ public class Constant {
      */
     public static String get_taskupdate= BASE_URL + "/TaskUpdateServlet";
     /**
-     * 修改诉求任务
+     *诉求任务评价
      */
     public static String get_estimateadd= BASE_URL + "/EstimateAddServlet";
     /**
@@ -72,4 +72,16 @@ public class Constant {
      * 查询用户信息
      */
     public static String get_user= BASE_URL + "/UserShowServlet";
+    /**
+     * 审核通过用户信息
+     */
+    public static String get_useraudit= BASE_URL + "/UserAuditServlet";
+    /**
+     * 审核不通过用户信息
+     */
+    public static String get_userauditfailure= BASE_URL + "/UserAuditFaillureServlet";
+    /**
+     * 增加工作人员评价指标
+     */
+    public static String get_addworkuserevaluatingindicator= BASE_URL + "/AddWorkUserEvaluatingIndicatorServlet";
 }
