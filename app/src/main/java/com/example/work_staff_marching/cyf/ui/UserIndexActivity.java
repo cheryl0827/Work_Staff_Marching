@@ -46,11 +46,11 @@ public class UserIndexActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
-                    case R.id.radiobutton_home: {
+                    case R.id.radiobutton_message: {
                         setCurrentFragment(0);
                         break;
                     }
-                    case R.id.radiobutton_message: {
+                    case R.id.radiobutton_home: {
                         setCurrentFragment(1);
                         break;
                     }
@@ -72,10 +72,10 @@ public class UserIndexActivity extends AppCompatActivity {
 
     private void initData() {
         /*3、数据的准备*/
-        HomeFragment homeFragment = new HomeFragment();
-        fragmentList.add(homeFragment);
         MessageFragment messageFragment = new MessageFragment();
        fragmentList.add(messageFragment);
+        HomeFragment homeFragment = new HomeFragment();
+        fragmentList.add(homeFragment);
        TaskFragment taskFragment = new TaskFragment();
         fragmentList.add(taskFragment);
         UserMeFragment userMeFragment = new UserMeFragment();

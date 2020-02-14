@@ -23,65 +23,69 @@ public class Constant {
     /**
      * 用户登录
      */
-    public static String get_userlogin= BASE_URL + "/UserLoginServlet";
+    public static String get_userlogin = BASE_URL + "/UserLoginServlet";
     /**
      * 网上上访
      */
-    public static String get_taskadd= BASE_URL + "/TaskAddServlet";
+    public static String get_taskadd = BASE_URL + "/TaskAddServlet";
     /**
      * 诉求任务权重表
      */
-    public static String get_taskproportion= BASE_URL + "/UserTaskProportionServlet";
+    public static String get_taskproportion = BASE_URL + "/UserTaskProportionServlet";
     /**
      * 修改用户的密码
      */
-    public static String get_changepassword= BASE_URL + "/ChangePasswodServlet";
+    public static String get_changepassword = BASE_URL + "/ChangePasswodServlet";
     /**
      * 修改用户的个人信息
      */
-    public static String get_changeinformation= BASE_URL + "/UserChangeInformationServlet";
+    public static String get_changeinformation = BASE_URL + "/UserChangeInformationServlet";
     /**
      * 修改用户的个人信息的手机号码
      */
-    public static String get_changephone= BASE_URL + "/UserChangePhoneServlet";
+    public static String get_changephone = BASE_URL + "/UserChangePhoneServlet";
     /**
      * 修改用户的个人信息的地址
      */
-    public static String get_changeaddress= BASE_URL + "/UserChangeAdressServlet";
+    public static String get_changeaddress = BASE_URL + "/UserChangeAdressServlet";
     /**
      * 查看诉求任务的所有信息
      */
-    public static String get_taskreviewing= BASE_URL + "/TaskReviewingShowServlet";
+    public static String get_taskreviewing = BASE_URL + "/TaskReviewingShowServlet";
     /**
      * 删除诉求任务
      */
-    public static String get_taskdelete= BASE_URL + "/TaskDeleteServlet";
+    public static String get_taskdelete = BASE_URL + "/TaskDeleteServlet";
     /**
      * 修改诉求任务
      */
-    public static String get_taskupdate= BASE_URL + "/TaskUpdateServlet";
+    public static String get_taskupdate = BASE_URL + "/TaskUpdateServlet";
     /**
-     *诉求任务评价
+     * 诉求任务评价
      */
-    public static String get_estimateadd= BASE_URL + "/EstimateAddServlet";
+    public static String get_estimateadd = BASE_URL + "/EstimateAddServlet";
     /**
      * 查询工作用户的姓名
      */
-    public static String get_username= BASE_URL + "/UserNameShowServlet";
+    public static String get_username = BASE_URL + "/UserNameShowServlet";
     /**
      * 查询用户信息
      */
-    public static String get_user= BASE_URL + "/UserShowServlet";
+    public static String get_user = BASE_URL + "/UserShowServlet";
     /**
      * 审核通过用户信息
      */
-    public static String get_useraudit= BASE_URL + "/UserAuditServlet";
+    public static String get_useraudit = BASE_URL + "/UserAuditServlet";
     /**
      * 审核不通过用户信息
      */
-    public static String get_userauditfailure= BASE_URL + "/UserAuditFaillureServlet";
+    public static String get_userauditfailure = BASE_URL + "/UserAuditFaillureServlet";
     /**
      * 增加工作人员评价指标
      */
-    public static String get_addworkuserevaluatingindicator= BASE_URL + "/AddWorkUserEvaluatingIndicatorServlet";
+    public static String get_addworkuserevaluatingindicator = BASE_URL + "/AddWorkUserEvaluatingIndicatorServlet";
+    /**
+     * 查看工作人员评价指标
+     */
+    public static String get_showworkuserevaluatingindicator = BASE_URL + "/ShowWorkUserEvaluatingIndicatorServlet";
 }
