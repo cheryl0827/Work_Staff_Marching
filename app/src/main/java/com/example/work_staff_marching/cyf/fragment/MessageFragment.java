@@ -61,6 +61,7 @@ public class MessageFragment extends BaseFragment {
             mBanner.setIndicatorGravity(BannerConfig.CENTER);
             mBanner.setDelayTime(1000);//设置轮播时间3秒切换下一图
            mBanner.start();//开始进行banner渲染
+
         }
     }
 
