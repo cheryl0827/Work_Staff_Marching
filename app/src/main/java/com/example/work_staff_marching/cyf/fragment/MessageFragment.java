@@ -5,19 +5,31 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.work_staff_marching.R;
+import com.example.work_staff_marching.cyf.adapter.WorkuserInformationRecycleViewAdapter;
+import com.example.work_staff_marching.cyf.entity.TaskBean;
+import com.example.work_staff_marching.cyf.entity.WorkuserEvaluatingIndicatorBean;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
+import com.example.work_staff_marching.cyf.utils.Constant;
+import com.example.work_staff_marching.cyf.utils.CustomToast;
+import com.example.work_staff_marching.cyf.utils.OkCallback;
+import com.example.work_staff_marching.cyf.utils.OkHttp;
+import com.example.work_staff_marching.cyf.utils.Result;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -29,18 +41,29 @@ public class MessageFragment extends BaseFragment {
     RecyclerView recyclerview1;
     @BindView(R.id.swiperereshlayout)
     SwipeRefreshLayout swiperereshlayout;
+    private List<WorkuserEvaluatingIndicatorBean> mWorkuserEvaluatingIndicatorBeans = new ArrayList<>();
+    private WorkuserInformationRecycleViewAdapter mWorkuserInformationRecycleViewAdapter = null;
 
-    @Override
-    protected int initLayout() {
-        return R.layout.activity_recycleview_workuser;
-    }
+
 
     @Override
     protected void initView(View view) {
-        int[] imageResourceID = new int[]{R.mipmap.a, R.mipmap.b, R.mipmap.password, R.mipmap.photo};
+        mWorkuserInformationRecycleViewAdapter = new WorkuserInformationRecycleViewAdapter(getContext());
+        recyclerview1.setAdapter(mWorkuserInformationRecycleViewAdapter);
+        recyclerview1.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        recyclerview1.setItemAnimator(new DefaultItemAnimator());
+        swiperereshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadData();
+                swiperereshlayout.setRefreshing(false);
+            }
+        });
+        loadData();
+        int[] imageResourceID = new int[]{R.mipmap.as, R.mipmap.as1, R.mipmap.as2};
         List<Integer> imgeList = new ArrayList<>();
         //轮播标题
-        String[] mtitle = new String[]{"图片1", "图片2", "图片3", "图片4"};
+        String[] mtitle = new String[]{"图片1", "图片2", "图片3"};
         List<String> titleList = new ArrayList<>();
         for (int i = 0; i < imageResourceID.length; i++) {
             imgeList.add(imageResourceID[i]);//把图片资源循环放入list里面
@@ -61,14 +84,32 @@ public class MessageFragment extends BaseFragment {
             mBanner.setIndicatorGravity(BannerConfig.CENTER);
             mBanner.setDelayTime(1000);//设置轮播时间3秒切换下一图
            mBanner.start();//开始进行banner渲染
-
         }
+
+    }
+
+    /**
+     * 加载工作人员的指标列表
+     */
+    private void loadData() {
+        OkHttp.get(getContext(), Constant.get_showallworkuserevaluatingindicator, null,
+                new OkCallback<Result<List<WorkuserEvaluatingIndicatorBean>>>() {
+                    @Override
+                    public void onResponse(Result<List<WorkuserEvaluatingIndicatorBean>> response) {
+                        mWorkuserInformationRecycleViewAdapter.setNewData(response.getData());
+                    }
+                    @Override
+                    public void onFailure(String state, String msg) {
+                        CustomToast.showToast(getContext(), msg);
+                    }
+                });
     }
 
     @Override
     public void onStart() {
         super.onStart();
         mBanner.startAutoPlay();//开始轮播
+       // loadData();
     }
 
     @Override
@@ -76,7 +117,10 @@ public class MessageFragment extends BaseFragment {
         super.onStop();
         mBanner.stopAutoPlay();//结束轮播
     }
-
+    @Override
+    protected int initLayout() {
+        return R.layout.activity_recycleview_workuser;
+    }
 
     protected void initData(Context mContext) {
 

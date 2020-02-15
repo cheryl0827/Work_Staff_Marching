@@ -21,8 +21,10 @@ import com.example.work_staff_marching.cyf.adapter.BaseRecyclerViewAdapter;
 import com.example.work_staff_marching.cyf.adapter.PeopleAuditRecycleViewAdapter;
 import com.example.work_staff_marching.cyf.adapter.TaskRecycleViewAdapter;
 import com.example.work_staff_marching.cyf.entity.UserBean;
+import com.example.work_staff_marching.cyf.entity.WorkuserEvaluatingIndicatorBean;
 import com.example.work_staff_marching.cyf.inteface.OnItemChildClickListener;
 import com.example.work_staff_marching.cyf.ui.WorkuserAddEvaluatingIndicatorActivity;
+import com.example.work_staff_marching.cyf.ui.WorkuserUpdateEvaluatingIndicatorActivity;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
 import com.example.work_staff_marching.cyf.utils.CommonDialog;
 import com.example.work_staff_marching.cyf.utils.Constant;
@@ -59,6 +61,7 @@ public class PersonAuditFragment extends BaseFragment {
     private PeopleAuditRecycleViewAdapter mPeopleAuditRecycleViewAdapter = null;
     String registerStatus="1";
     String roleName="工作用户";
+
 
     @Override
     protected int initLayout() {
@@ -178,35 +181,85 @@ public class PersonAuditFragment extends BaseFragment {
                         }).show();
                         break;
                     case R.id.addworkEvaluatingIndicator:
-                        Intent intent1 = new Intent();
-                        intent1.putExtra("userID",mPeopleAuditRecycleViewAdapter.getItem(position).getUserID()+"");
-                        intent1.setClass(getContext(), WorkuserAddEvaluatingIndicatorActivity.class);
-                        startActivityForResult(intent1,1);
+                        Map<String, String> map5 = new HashMap<>();
+                        map5.put("userID",mPeopleAuditRecycleViewAdapter.getItem(position).getUserID()+"");
+                        OkHttp.get(getContext(), Constant.get_showworkuserevaluatingindicator, map5, new OkCallback<Result<WorkuserEvaluatingIndicatorBean>>() {
+                            @Override
+                            public void onResponse(Result<WorkuserEvaluatingIndicatorBean> response) {
+                                if(response.getData()!=null){
+                                    Toast.makeText(getContext(),"该人员已经有指标，不能进行添加操作",Toast.LENGTH_SHORT).show();
+                                }
+                                if(response.getData()==null){
+                                    Intent intent1 = new Intent();
+                                    intent1.putExtra("userID",mPeopleAuditRecycleViewAdapter.getItem(position).getUserID()+"");
+                                    intent1.setClass(getContext(), WorkuserAddEvaluatingIndicatorActivity.class);
+                                    startActivityForResult(intent1,1);
+                                }
+                            }
+                            @Override
+                            public void onFailure(String state, String msg) {
+
+                            }
+                        });
                         break;
                     case R.id.updateworkEvaluatingIndicator:
-
+                        Map<String, String> map6 = new HashMap<>();
+                        map6.put("userID",mPeopleAuditRecycleViewAdapter.getItem(position).getUserID()+"");
+                        OkHttp.post(getContext(), Constant.get_showworkuserevaluatingindicator,map6,new OkCallback<Result<WorkuserEvaluatingIndicatorBean>>() {
+                            @Override
+                            public void onResponse(Result response) {
+                                if(response.getData()!=null){
+                                Intent intent1 = new Intent();
+                                intent1.putExtra("userID",mPeopleAuditRecycleViewAdapter.getItem(position).getUserID()+"");
+                                intent1.setClass(getContext(), WorkuserUpdateEvaluatingIndicatorActivity.class);
+                                startActivityForResult(intent1,1);}
+                                if(response.getData()==null)
+                                    Toast.makeText(getContext(), "该人员不存在指标，不能进行修改操作", Toast.LENGTH_SHORT).show();
+                            }
+                            @Override
+                            public void onFailure(String state, String msg) {
+                            }
+                        });
                         break;
                     case R.id.deleteworkEvaluatingIndicator:
+                                CommonDialog commonDialog11 = new CommonDialog(getContext());
+                                Map<String, String> map = new HashMap<>();
+                                map.put("userID",mPeopleAuditRecycleViewAdapter.getItem(position).getUserID()+"");
+                                OkHttp.post(getContext(), Constant.get_deleteworkuserevaluatingindicator,map, new OkCallback<Result<String>>() {
+                                    @Override
+                                    public void onResponse(Result response) {
+                                        commonDialog11.isSingle = true;
+                                        commonDialog11.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("删除人员指标成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                                            @Override
+                                            public void onPositiveClick() {
+                                                commonDialog11.dismiss();
+                                            }
+
+                                            @Override
+                                            public void onNegtiveClick() {
+                                                commonDialog11.dismiss();
+                                            }
+                                        }).show();
+
+                                    }
+                                    @Override
+                                    public void onFailure(String state, String msg) {
+                                        Toast.makeText(getContext(), "该人员不存在指标，不能进行删除操作", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
 
                         break;
-
-
-
                 }
-
             }
         });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 roleName=spinner.getSelectedItem().toString();
                 loadData();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
         loadData();
@@ -214,7 +267,6 @@ public class PersonAuditFragment extends BaseFragment {
 
     @Override
     protected void initData(Context mContext) {
-
     }
 
     @OnClick({R.id.go, R.id.ed, R.id.no})

@@ -88,4 +88,20 @@ public class Constant {
      * 查看工作人员评价指标
      */
     public static String get_showworkuserevaluatingindicator = BASE_URL + "/ShowWorkUserEvaluatingIndicatorServlet";
+    /**
+     * 删除工作人员评价指标
+     */
+    public static String get_deleteworkuserevaluatingindicator = BASE_URL + "/DeleteWorkUserEvaluatingIndicatorServlet";
+    /**
+     * 修改工作人员评价指标
+     */
+    public static String get_updateworkuserevaluatingindicator = BASE_URL + "/UpdateWorkUserEvaluatingIndicatorServlet";
+    /**
+     * 查看所有工作人员评价指标
+     */
+    public static String get_showallworkuserevaluatingindicator = BASE_URL + "/ShowAllWorkUserEvaluatingIndicatorServlet";
+    /**
+     * 查看工作用户的基本信息
+     */
+    public static String get_showuserinformation= BASE_URL + "/ShowUserInformationServlet";
 }

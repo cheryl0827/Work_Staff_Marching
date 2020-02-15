@@ -87,6 +87,7 @@
             android:textColor="@color/black"
             android:textSize="18dp" />
 
+
     </LinearLayout>
     <LinearLayout
         android:id="@+id/user"
@@ -188,42 +189,45 @@
         android:id="@+id/workEvaluatingIndicator"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:visibility="visible"
         android:orientation="horizontal"
         >
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="人员指标操作"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
+            android:textSize="18dp"/>
+
+        <Button
+            android:id="@+id/addworkEvaluatingIndicator"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:text="增加"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="120dp"
+            android:background="@color/mediumpurple"/>
         <Button
             android:id="@+id/updateworkEvaluatingIndicator"
-            android:layout_width="90dp"
+            android:layout_width="40dp"
             android:layout_height="30dp"
-            android:text="修改人员指标"
-            android:layout_marginLeft="200dp"
+            android:text="修改"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:background="@color/powderblue"/>
         <Button
             android:id="@+id/deleteworkEvaluatingIndicator"
-            android:layout_width="90dp"
+            android:layout_width="40dp"
             android:layout_marginLeft="20dp"
             android:layout_height="30dp"
-            android:text="删除人员指标"
+            android:text="删除"
             android:layout_marginTop="5dp"
             android:background="@color/lightgreen"/>
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/addworkLinearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:visibility="visible"
-        android:orientation="horizontal"
-        >
-    <Button
-        android:id="@+id/addworkEvaluatingIndicator"
-        android:layout_width="90dp"
-        android:layout_height="30dp"
-        android:text="增加人员指标"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="310dp"
-        android:background="@color/mediumpurple"/>
-    </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

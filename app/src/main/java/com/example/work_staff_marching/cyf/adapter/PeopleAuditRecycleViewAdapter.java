@@ -8,21 +8,15 @@ import android.widget.TextView;
 
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.entity.UserBean;
-import com.example.work_staff_marching.cyf.entity.WorkuserEvaluatingIndicatorBean;
-import com.example.work_staff_marching.cyf.utils.Constant;
-import com.example.work_staff_marching.cyf.utils.OkCallback;
-import com.example.work_staff_marching.cyf.utils.OkHttp;
 import com.example.work_staff_marching.cyf.utils.RecyclerViewHolder;
-import com.example.work_staff_marching.cyf.utils.Result;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class PeopleAuditRecycleViewAdapter extends BaseRecyclerViewAdapter<UserBean, RecyclerViewHolder> {
     public TextView userName,phone,workuserNoText,workuserNo,sex,address,identification,sexuser;
     public Button audit,audit1,addworkEvaluatingIndicator,updateworkEvaluatingIndicator,deleteworkEvaluatingIndicator;
-    public LinearLayout addressLinearLayout,user,work,opetation,opetation1,addworkLinearLayout,workEvaluatingIndicator;
+    public LinearLayout addressLinearLayout,user,work,opetation,opetation1,workEvaluatingIndicator;
     private Context mContext;
+   // private String userID;
     public PeopleAuditRecycleViewAdapter(Context context) {
         super(context);
         mContext=context;
@@ -39,7 +33,6 @@ public class PeopleAuditRecycleViewAdapter extends BaseRecyclerViewAdapter<UserB
         workEvaluatingIndicator=(LinearLayout)holder.getView(R.id.workEvaluatingIndicator);
         opetation=(LinearLayout)holder.getView(R.id.opetation);
         opetation1=(LinearLayout)holder.getView(R.id.opetation1);
-        addworkLinearLayout=(LinearLayout)holder.getView(R.id.addworkLinearLayout);
         sex=(TextView)holder.getView(R.id.sex);
         address=(TextView)holder.getView(R.id.address);
         identification=(TextView)holder.getView(R.id.identification);
@@ -68,36 +61,18 @@ public class PeopleAuditRecycleViewAdapter extends BaseRecyclerViewAdapter<UserB
                 opetation.setVisibility(View.VISIBLE);
                 opetation1.setVisibility(View.GONE);
                 workEvaluatingIndicator.setVisibility(View.GONE);
-                addworkLinearLayout.setVisibility(View.GONE);
+
             }
             if(data.getRegisterStatus()==3){
                 opetation1.setVisibility(View.VISIBLE);
                 opetation.setVisibility(View.GONE);
                 workEvaluatingIndicator.setVisibility(View.GONE);
-                addworkLinearLayout.setVisibility(View.GONE);
+
             }
            if(data.getRegisterStatus()==2){
                opetation1.setVisibility(View.GONE);
                opetation.setVisibility(View.GONE);
-               Map<String, String> map = new HashMap<>();
-               map.put("userID",data.getUserID()+"");
-               OkHttp.get(mContext, Constant.get_showworkuserevaluatingindicator, map, new OkCallback<Result<WorkuserEvaluatingIndicatorBean>>() {
-                   @Override
-                   public void onResponse(Result<WorkuserEvaluatingIndicatorBean> response) {
-                       if(response.getData()!=null){
-                           addworkLinearLayout.setVisibility(View.GONE);
-                           workEvaluatingIndicator.setVisibility(View.VISIBLE);
-                       }
-                       else {
-                           addworkLinearLayout.setVisibility(View.VISIBLE);
-                           workEvaluatingIndicator.setVisibility(View.GONE);
-                       }
-                   }
-                   @Override
-                   public void onFailure(String state, String msg) {
-
-                   }
-               });
+               workEvaluatingIndicator.setVisibility(View.VISIBLE);
            }
         }
         if(data.getRoleName().equals("普通用户")) {
@@ -105,7 +80,6 @@ public class PeopleAuditRecycleViewAdapter extends BaseRecyclerViewAdapter<UserB
             user.setVisibility(View.VISIBLE);
             work.setVisibility(View.GONE);
             workEvaluatingIndicator.setVisibility(View.GONE);
-            addworkLinearLayout.setVisibility(View.GONE);
             if(data.getRegisterStatus()==1){
                 opetation.setVisibility(View.VISIBLE);
                 opetation1.setVisibility(View.GONE);

@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".cyf.ui.WorkuserAddEvaluatingIndicatorActivity"></activity>
+        <activity android:name=".cyf.ui.WorkuserUpdateEvaluatingIndicatorActivity"></activity>
+        <activity android:name=".cyf.ui.WorkuserAddEvaluatingIndicatorActivity" />
         <activity android:name=".cyf.fragment.PersonAuditFragment" />
         <activity android:name=".cyf.ui.AdminIndexActivity" />
         <activity android:name=".cyf.ui.TaskEstimateActivity" />
