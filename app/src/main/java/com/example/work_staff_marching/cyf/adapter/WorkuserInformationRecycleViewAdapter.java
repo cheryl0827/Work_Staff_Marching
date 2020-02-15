@@ -50,6 +50,7 @@ public class WorkuserInformationRecycleViewAdapter extends BaseRecyclerViewAdapt
         OkHttp.get(mContext, Constant.get_showuserinformation, map, new OkCallback<Result<UserBean>>() {
             @Override
             public void onResponse(Result<UserBean> response) {
+
                 userName.setText(response.getData().getUserName());
                 sex.setText(response.getData().getSex());
                 workuserNo.setText(response.getData().getWorkuserNo());

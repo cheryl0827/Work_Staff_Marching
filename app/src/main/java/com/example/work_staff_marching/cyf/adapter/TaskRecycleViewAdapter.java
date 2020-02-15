@@ -65,7 +65,7 @@ public class TaskRecycleViewAdapter extends BaseRecyclerViewAdapter<TaskBean,Rec
         holder.addOnClickListener(R.id.pingjiabutton);
         holder.addOnClickListener(R.id.detailEndButton);
 //显示工作人员的姓名
-        Map<String, String> map = new HashMap<>();
+         Map<String, String> map = new HashMap<>();
         map.put("workuserno",workuserno);
         OkHttp.get(mContext, Constant.get_username, map, new OkCallback<Result<String>>() {
             @Override
