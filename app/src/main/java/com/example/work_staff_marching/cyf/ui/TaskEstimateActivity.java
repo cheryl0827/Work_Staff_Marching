@@ -55,6 +55,8 @@ public class TaskEstimateActivity extends BaseActivity {
     TextView analyse1;
     @BindView(R.id.law1)
     TextView law1;
+    String taskStatus="3";
+
 
     @Override
     protected int getContentView() {
@@ -64,10 +66,108 @@ public class TaskEstimateActivity extends BaseActivity {
     @Override
     protected void init(Bundle saveInstanceState) {
         setTitle("诉求任务完成度评价");
+        community.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                String stringport = community.getText().toString().trim();
+                int port = Integer.parseInt(stringport);   //把port转换成int整形
+                if(port<0||port>100){
+                    Toast.makeText(TaskEstimateActivity.this,"输入的值只能在0-100之间",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        urgent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                int port = Integer.parseInt(s.toString());
+                if(port<0||port>100){
+                    Toast.makeText(TaskEstimateActivity.this,"输入的值只能在0-100之间",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        psychology.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                int port = Integer.parseInt(s.toString());
+                if(port<0||port>100){
+                    Toast.makeText(TaskEstimateActivity.this,"输入的值只能在0-100之间",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        organization.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                int port = Integer.parseInt(s.toString());
+                if(port<0||port>100){
+                    Toast.makeText(TaskEstimateActivity.this,"输入的值只能在0-100之间",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        analyse.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                int port = Integer.parseInt(s.toString());
+                if(port<0||port>100){
+                    Toast.makeText(TaskEstimateActivity.this,"输入的值只能在0-100之间",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        law.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                int port = Integer.parseInt(s.toString());
+                if(port<0||port>100){
+                    Toast.makeText(TaskEstimateActivity.this,"输入的值只能在0-100之间",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @OnClick({R.id.ok, R.id.cancel})
     public void onViewClicked(View view) {
+        int community1 = Integer.parseInt(community.getText().toString());
+        int urgent1 = Integer.parseInt(urgent.getText().toString());
+        int psychology1 = Integer.parseInt(psychology.getText().toString());
+        int organization1 = Integer.parseInt(organization.getText().toString());
+        int analyse1 = Integer.parseInt(analyse.getText().toString());
+        int law1 = Integer.parseInt(law.getText().toString());
+        int count=community1+urgent1+psychology1+organization1+analyse1+law1;
         CommonDialog commonDialog = new CommonDialog(this);
         switch (view.getId()) {
             case R.id.ok:
@@ -80,30 +180,35 @@ public class TaskEstimateActivity extends BaseActivity {
                 map.put("analyse",analyse.getText().toString());
                 map.put("law",law.getText().toString());
                 map.put("taskID",intent1.getStringExtra("taskID"));
-                OkHttp.post(TaskEstimateActivity.this, Constant.get_estimateadd, map, new OkCallback<Result<String>>() {
-                    @Override
-                    public void onResponse(Result<String> response) {
-                        commonDialog.isSingle=true;
-                        commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("诉求任务评价填写成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
-                            @Override
-                            public void onPositiveClick() {
-                                commonDialog.dismiss();
-                                setResult(RESULT_OK);
-                                finish();
-                            }
+                map.put("taskStatus",taskStatus);
+                if(count!=100)
+                    Toast.makeText(TaskEstimateActivity.this,"输入的总值只能是100，请重新输入",Toast.LENGTH_SHORT).show();
+                else {
+                    OkHttp.post(TaskEstimateActivity.this, Constant.get_estimateadd, map, new OkCallback<Result<String>>() {
+                        @Override
+                        public void onResponse(Result<String> response) {
+                            commonDialog.isSingle = true;
+                            commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("诉求任务评价填写成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                                @Override
+                                public void onPositiveClick() {
+                                    commonDialog.dismiss();
+                                    setResult(RESULT_OK);
+                                    finish();
+                                }
 
-                            @Override
-                            public void onNegtiveClick() {
-                                commonDialog.dismiss();
-                            }
-                        }).show();
-                    }
+                                @Override
+                                public void onNegtiveClick() {
+                                    commonDialog.dismiss();
+                                }
+                            }).show();
+                        }
 
-                    @Override
-                    public void onFailure(String state, String msg) {
-                        Toast.makeText(TaskEstimateActivity.this, msg, Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void onFailure(String state, String msg) {
+                            Toast.makeText(TaskEstimateActivity.this, msg, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
                 break;
             case R.id.cancel:
                 community.setText("");

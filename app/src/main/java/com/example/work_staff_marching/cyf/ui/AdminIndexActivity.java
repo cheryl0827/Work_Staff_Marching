@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.fragment.MessageFragment;
 import com.example.work_staff_marching.cyf.fragment.PersonAuditFragment;
+import com.example.work_staff_marching.cyf.fragment.TaskAuditFragment;
 import com.example.work_staff_marching.cyf.fragment.TaskFragment;
 import com.example.work_staff_marching.cyf.fragment.UserMeFragment;
 
@@ -74,8 +75,8 @@ public class AdminIndexActivity extends AppCompatActivity {
         /*3、数据的准备*/
         PersonAuditFragment personAuditFragment = new PersonAuditFragment();
         fragmentList.add(personAuditFragment);
-        MessageFragment messageFragment = new MessageFragment();
-        fragmentList.add(messageFragment);
+        TaskAuditFragment taskAuditFragment = new TaskAuditFragment();
+        fragmentList.add(taskAuditFragment);
         TaskFragment taskFragment = new TaskFragment();
         fragmentList.add(taskFragment);
         UserMeFragment userMeFragment = new UserMeFragment();

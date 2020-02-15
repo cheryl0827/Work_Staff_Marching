@@ -29,7 +29,7 @@ public class Constant {
      */
     public static String get_taskadd = BASE_URL + "/TaskAddServlet";
     /**
-     * 诉求任务权重表
+     * 增加诉求任务的权重信息
      */
     public static String get_taskproportion = BASE_URL + "/UserTaskProportionServlet";
     /**
@@ -64,6 +64,22 @@ public class Constant {
      * 诉求任务评价
      */
     public static String get_estimateadd = BASE_URL + "/EstimateAddServlet";
+    /**
+     * 特定诉求任务查看
+     */
+    public static String get_showtask = BASE_URL + "/ShowTaskServlet";
+    /**
+     * 诉求任务状态的修改，审核
+     */
+    public static String get_taskaudit = BASE_URL + "/UpdateTaskStatusServlet";
+    /**
+     * 诉求任务的查看
+     */
+    public static String get_admintaskproportion = BASE_URL + "/ShowTaskProportionServlet";
+    /**
+     * 修改诉求任务的权重
+     */
+    public static String get_adminupdatetaskproportion = BASE_URL + "/AdminTaskProportionServlet";
     /**
      * 查询工作用户的姓名
      */

@@ -33,6 +33,7 @@
             android:layout_weight="1"
             android:layout_marginLeft="20dp"
             android:textSize="22dp"
+            android:inputType="number"
             android:text=""/>
         <TextView
             android:id="@+id/community1"
@@ -62,6 +63,7 @@
         <EditText
             android:id="@+id/urgent"
             android:layout_width="30dp"
+            android:inputType="number"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textColor="#808080"
@@ -91,6 +93,7 @@
             android:id="@+id/textView8116"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:text="心理抗压能力:"
             android:textColor="#808080"
             android:textSize="22dp" />
@@ -98,6 +101,7 @@
             android:id="@+id/psychology"
             android:layout_width="30dp"
             android:layout_weight="1"
+            android:inputType="number"
             android:layout_marginLeft="20dp"
             android:layout_height="wrap_content"
             android:textColor="#808080"
@@ -135,6 +139,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textColor="#808080"
+            android:inputType="number"
             android:layout_marginLeft="20dp"
             android:textSize="22dp"
             android:text=""/>
@@ -167,6 +172,7 @@
             android:id="@+id/analyse"
             android:layout_width="30dp"
             android:layout_weight="1"
+            android:inputType="number"
             android:layout_height="wrap_content"
             android:textColor="#808080"
             android:layout_marginLeft="20dp"
@@ -202,6 +208,7 @@
             android:layout_width="30dp"
             android:layout_weight="1"
             android:layout_marginLeft="20dp"
+            android:inputType="number"
             android:layout_height="wrap_content"
             android:textColor="#808080"
             android:textSize="22dp"

@@ -102,7 +102,6 @@ public class TaskFragment extends BaseFragment {
     @Override
     protected void initData(Context mContext) {
 
-
     }
 
 
