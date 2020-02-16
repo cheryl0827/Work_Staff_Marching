@@ -25,11 +25,8 @@ import java.util.List;
 import java.util.Map;
 
 public class TaskRecycleViewAdapter extends BaseRecyclerViewAdapter<TaskBean,RecyclerViewHolder>{
-    public TextView task_catagery,task_content,task_time,address,detailaddress,username,workuserNo;
-    public Button updateButton,deleteButton,pingjiabutton,detailEndButton;
-    public LinearLayout pingjia,opetation,detailEndLinearLayout,adressLinearLayout,workuserLinearLayout;
+
     private Context mContext;
-    String workuserno;
 
     public TaskRecycleViewAdapter(Context context) {
         super(context);
@@ -37,6 +34,9 @@ public class TaskRecycleViewAdapter extends BaseRecyclerViewAdapter<TaskBean,Rec
     }
     @Override
     protected void convert(RecyclerViewHolder holder, TaskBean data, int position, int viewType) {
+        TextView task_catagery,task_content,task_time,address,detailaddress,username,workuserNo;
+        Button updateButton,deleteButton,pingjiabutton,detailEndButton;
+        LinearLayout pingjia,opetation,detailEndLinearLayout,adressLinearLayout,workuserLinearLayout;
         task_catagery=(TextView)holder.getView(R.id.task_catagery);
         task_content=(TextView)holder.getView(R.id.task_content);
         task_time=(TextView)holder.getView(R.id.task_time);
@@ -48,7 +48,6 @@ public class TaskRecycleViewAdapter extends BaseRecyclerViewAdapter<TaskBean,Rec
         task_content.setText(data.getTaskContent());
         task_time.setText(data.getTaskTime());
         address.setText(data.getTaskAdress());
-        workuserno=data.getTaskWorknumber();
         workuserNo.setText(data.getTaskWorknumber());
         detailaddress.setText(data.getTaskDetaiAdress());
         pingjia=(LinearLayout)holder.getView(R.id.pingjia);
@@ -65,8 +64,8 @@ public class TaskRecycleViewAdapter extends BaseRecyclerViewAdapter<TaskBean,Rec
         holder.addOnClickListener(R.id.pingjiabutton);
         holder.addOnClickListener(R.id.detailEndButton);
 //显示工作人员的姓名
-         Map<String, String> map = new HashMap<>();
-        map.put("workuserno",workuserno);
+        Map<String, String> map = new HashMap<>();
+        map.put("workuserno",data.getTaskWorknumber());
         OkHttp.get(mContext, Constant.get_username, map, new OkCallback<Result<String>>() {
             @Override
             public void onResponse(Result<String> response) {

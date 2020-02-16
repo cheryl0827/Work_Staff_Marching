@@ -18,8 +18,7 @@ import java.util.Map;
 public class WorkuserInformationRecycleViewAdapter extends BaseRecyclerViewAdapter<WorkuserEvaluatingIndicatorBean, RecyclerViewHolder> {
     private Context mContext;
     private UserBean userBean;
-    //String userID;
-    public TextView userName,sex,workuserNo,count,community,urgent,psychology,organization,analyse,law;
+
     public WorkuserInformationRecycleViewAdapter(Context context) {
         super(context);
         mContext=context;
@@ -27,7 +26,7 @@ public class WorkuserInformationRecycleViewAdapter extends BaseRecyclerViewAdapt
     @Override
     protected void convert(RecyclerViewHolder holder, WorkuserEvaluatingIndicatorBean data, int position, int viewType) {
        // userID=data.getUserID()+"";
-
+        TextView userName,sex,workuserNo,count,community,urgent,psychology,organization,analyse,law;
         userName=(TextView)holder.getView(R.id.userName);
         sex=(TextView)holder.getView(R.id.sex);
         workuserNo=(TextView)holder.getView(R.id.workuserNo);
@@ -53,7 +52,7 @@ public class WorkuserInformationRecycleViewAdapter extends BaseRecyclerViewAdapt
             @Override
             public void onResponse(Result<UserBean> response) {
               userBean=response.getData();
-              userName.setText(userBean.getUserName());
+                userName.setText(userBean.getUserName());
                 sex.setText(userBean.getSex());
                 workuserNo.setText(userBean.getWorkuserNo());
             }

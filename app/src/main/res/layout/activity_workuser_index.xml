@@ -28,28 +28,16 @@
         android:paddingTop="10dp">
 
         <RadioButton
-            android:id="@+id/radiobutton_person_audit"
+            android:id="@+id/radiobutton_task"
             style="@style/main_radiobutton_stype"
             android:checked="true"
-            android:drawableTop="@mipmap/people_audit"
-            android:text="人员审核" />
+            android:drawableTop="@mipmap/task2"
+            android:text="任务看板" />
 
         <RadioButton
-            android:id="@+id/radiobutton_task_audit"
+            android:id="@+id/radiobutton_me"
             style="@style/main_radiobutton_stype"
             android:drawableTop="@mipmap/task_audit"
-            android:text="诉求任务审核" />
-
-        <RadioButton
-            android:id="@+id/radiobutton_march_management"
-            style="@style/main_radiobutton_stype"
-            android:drawableTop="@mipmap/task1"
-            android:text="匹配管理" />
-
-        <RadioButton
-            android:id="@+id/radiobutton_march_result"
-            style="@style/main_radiobutton_stype"
-            android:drawableTop="@mipmap/march_result"
-            android:text="匹配结果" />
+            android:text="我" />
     </RadioGroup>
 </LinearLayout>

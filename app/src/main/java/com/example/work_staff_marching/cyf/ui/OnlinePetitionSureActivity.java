@@ -2,6 +2,7 @@ package com.example.work_staff_marching.cyf.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -85,8 +86,8 @@ public class OnlinePetitionSureActivity extends BaseActivity {
                 @Override
                 public void onResponse(Result<String> response) {
                     commonDialog.setPositive("下一步");
-                    commonDialog.setNegtive("完成注册");
-                    commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("诉求任务填写成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                    commonDialog.isSingle=true;
+                    commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("诉求任务填写成功,请完成下一步的！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                         @Override
                         public void onPositiveClick() {
                             Intent intent = new Intent();
@@ -101,8 +102,8 @@ public class OnlinePetitionSureActivity extends BaseActivity {
                         @Override
                         public void onNegtiveClick() {
                             commonDialog.dismiss();
-                            setResult(RESULT_OK);
-                            finish();
+//                            setResult(RESULT_OK);
+//                            finish();
                         }
                     }).show();
                 }

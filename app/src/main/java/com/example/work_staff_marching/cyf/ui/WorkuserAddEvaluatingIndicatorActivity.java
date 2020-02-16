@@ -61,10 +61,11 @@ public class WorkuserAddEvaluatingIndicatorActivity extends BaseActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                String stringport = community.getText().toString().trim();
-                int port = Integer.parseInt(stringport);   //把port转换成int整形
-                if(port<0||port>100){
-                    Toast.makeText(WorkuserAddEvaluatingIndicatorActivity.this,"输入的值只能在0-100之间",Toast.LENGTH_SHORT).show();
+                if (!s.toString().equals("")) {
+                    int port = Integer.parseInt(s.toString());   //把port转换成int整形
+                    if (port < 0 || port > 100) {
+                        Toast.makeText(WorkuserAddEvaluatingIndicatorActivity.this, "输入的值只能在0-100之间", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -77,9 +78,11 @@ public class WorkuserAddEvaluatingIndicatorActivity extends BaseActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                int port = Integer.parseInt(s.toString());
-                if(port<0||port>100){
-                    Toast.makeText(WorkuserAddEvaluatingIndicatorActivity.this,"输入的值只能在0-100之间",Toast.LENGTH_SHORT).show();
+                if (!s.toString().equals("")) {
+                    int port = Integer.parseInt(s.toString());   //把port转换成int整形
+                    if (port < 0 || port > 100) {
+                        Toast.makeText(WorkuserAddEvaluatingIndicatorActivity.this, "输入的值只能在0-100之间", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -92,9 +95,11 @@ public class WorkuserAddEvaluatingIndicatorActivity extends BaseActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                int port = Integer.parseInt(s.toString());
-                if(port<0||port>100){
-                    Toast.makeText(WorkuserAddEvaluatingIndicatorActivity.this,"输入的值只能在0-100之间",Toast.LENGTH_SHORT).show();
+                if (!s.toString().equals("")) {
+                    int port = Integer.parseInt(s.toString());   //把port转换成int整形
+                    if (port < 0 || port > 100) {
+                        Toast.makeText(WorkuserAddEvaluatingIndicatorActivity.this, "输入的值只能在0-100之间", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -107,9 +112,11 @@ public class WorkuserAddEvaluatingIndicatorActivity extends BaseActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                int port = Integer.parseInt(s.toString());
-                if(port<0||port>100){
-                    Toast.makeText(WorkuserAddEvaluatingIndicatorActivity.this,"输入的值只能在0-100之间",Toast.LENGTH_SHORT).show();
+                if (!s.toString().equals("")) {
+                    int port = Integer.parseInt(s.toString());   //把port转换成int整形
+                    if (port < 0 || port > 100) {
+                        Toast.makeText(WorkuserAddEvaluatingIndicatorActivity.this, "输入的值只能在0-100之间", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -122,9 +129,11 @@ public class WorkuserAddEvaluatingIndicatorActivity extends BaseActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                int port = Integer.parseInt(s.toString());
-                if(port<0||port>100){
-                    Toast.makeText(WorkuserAddEvaluatingIndicatorActivity.this,"输入的值只能在0-100之间",Toast.LENGTH_SHORT).show();
+                if (!s.toString().equals("")) {
+                    int port = Integer.parseInt(s.toString());   //把port转换成int整形
+                    if (port < 0 || port > 100) {
+                        Toast.makeText(WorkuserAddEvaluatingIndicatorActivity.this, "输入的值只能在0-100之间", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -137,9 +146,11 @@ public class WorkuserAddEvaluatingIndicatorActivity extends BaseActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                int port = Integer.parseInt(s.toString());
-                if(port<0||port>100){
-                    Toast.makeText(WorkuserAddEvaluatingIndicatorActivity.this,"输入的值只能在0-100之间",Toast.LENGTH_SHORT).show();
+                if (!s.toString().equals("")) {
+                    int port = Integer.parseInt(s.toString());   //把port转换成int整形
+                    if (port < 0 || port > 100) {
+                        Toast.makeText(WorkuserAddEvaluatingIndicatorActivity.this, "输入的值只能在0-100之间", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

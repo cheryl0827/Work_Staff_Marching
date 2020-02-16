@@ -92,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(new Intent(MainActivity.this,UserIndexActivity.class));
                         if(usertype.equals("管理员"))
                             startActivity(new Intent(MainActivity.this,AdminIndexActivity.class));
-                    }
+                        if(usertype.equals("工作用户"))
+                            startActivity(new Intent(MainActivity.this,WorkUserIndexActivity.class));}
 
                     @Override
                     public void onFailure(String state, String msg) {
