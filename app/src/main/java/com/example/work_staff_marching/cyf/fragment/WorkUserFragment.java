@@ -97,6 +97,7 @@ public class WorkUserFragment extends BaseFragment {
                     }
                     @Override
                     public void onNegtiveClick() {
+
                         commonDialog.dismiss();
                     }
                 }).show();
