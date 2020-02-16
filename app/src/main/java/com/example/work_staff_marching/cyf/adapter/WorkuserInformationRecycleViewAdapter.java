@@ -17,7 +17,8 @@ import java.util.Map;
 
 public class WorkuserInformationRecycleViewAdapter extends BaseRecyclerViewAdapter<WorkuserEvaluatingIndicatorBean, RecyclerViewHolder> {
     private Context mContext;
-    String userID;
+    private UserBean userBean;
+    //String userID;
     public TextView userName,sex,workuserNo,count,community,urgent,psychology,organization,analyse,law;
     public WorkuserInformationRecycleViewAdapter(Context context) {
         super(context);
@@ -25,7 +26,8 @@ public class WorkuserInformationRecycleViewAdapter extends BaseRecyclerViewAdapt
     }
     @Override
     protected void convert(RecyclerViewHolder holder, WorkuserEvaluatingIndicatorBean data, int position, int viewType) {
-        userID=data.getUserID()+"";
+       // userID=data.getUserID()+"";
+
         userName=(TextView)holder.getView(R.id.userName);
         sex=(TextView)holder.getView(R.id.sex);
         workuserNo=(TextView)holder.getView(R.id.workuserNo);
@@ -38,7 +40,7 @@ public class WorkuserInformationRecycleViewAdapter extends BaseRecyclerViewAdapt
         analyse=(TextView)holder.getView(R.id.analyse);
 
         law=(TextView)holder.getView(R.id.law);
-        //userName.setText(data.getUserID()+"");
+//        userName.setText("陈燕芳");
         community.setText(data.getCommunity()+"");
         urgent.setText(data.getUrgent()+"");
         psychology.setText(data.getPsychology()+"");
@@ -46,21 +48,23 @@ public class WorkuserInformationRecycleViewAdapter extends BaseRecyclerViewAdapt
         law.setText(data.getLaw()+"");
         analyse.setText(data.getAnalyse()+"");
         Map<String, String> map = new HashMap<>();
-        map.put("userID",userID);
+        map.put("userID",data.getUserID()+"");
         OkHttp.get(mContext, Constant.get_showuserinformation, map, new OkCallback<Result<UserBean>>() {
             @Override
             public void onResponse(Result<UserBean> response) {
-
-                userName.setText(response.getData().getUserName());
-                sex.setText(response.getData().getSex());
-                workuserNo.setText(response.getData().getWorkuserNo());
+              userBean=response.getData();
+              userName.setText(userBean.getUserName());
+                sex.setText(userBean.getSex());
+                workuserNo.setText(userBean.getWorkuserNo());
             }
 
             @Override
             public void onFailure(String state, String msg) {
 
             }
+
         });
+
 
     }
 
