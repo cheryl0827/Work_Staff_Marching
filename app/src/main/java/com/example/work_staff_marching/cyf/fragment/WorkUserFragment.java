@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.example.work_staff_marching.BuildConfig;
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.entity.UserBean;
+import com.example.work_staff_marching.cyf.ui.ChangePhoneActivity;
 import com.example.work_staff_marching.cyf.ui.ChangeUserPasswordActivity;
 import com.example.work_staff_marching.cyf.ui.MainActivity;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
@@ -63,6 +64,12 @@ public class WorkUserFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), ChangeUserPasswordActivity.class));
+            }
+        });
+        PeopleInformatinChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), ChangePhoneActivity.class));
             }
         });
     }

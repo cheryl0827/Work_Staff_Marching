@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".cyf.ui.WorkUserIndexActivity"></activity>
+        <activity android:name=".cyf.ui.ChangePhoneActivity"></activity>
+        <activity android:name=".cyf.ui.WorkUserIndexActivity" />
         <activity android:name=".cyf.ui.AdminAddTaskProportionActivity" />
         <activity android:name=".cyf.ui.AuditYesTaskDetailActivity" />
         <activity android:name=".cyf.ui.TaskDetailActivity" />

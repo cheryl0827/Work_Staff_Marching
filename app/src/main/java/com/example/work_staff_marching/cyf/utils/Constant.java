@@ -8,6 +8,7 @@ public class Constant {
      * 获取验证码,类似前后台交接的接口
      */
     public static String get_code = BASE_URL + "/AddIdentifyCodeServlet";
+    public static String get_code1 = BASE_URL + "/IndentifyCodeServlet";
     /**
      * 工作用户注册
      */
