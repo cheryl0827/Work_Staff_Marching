@@ -61,9 +61,6 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:layout_marginTop="3dp">
-
-
-
         <Button
             android:id="@+id/detail"
             android:layout_width="60dp"

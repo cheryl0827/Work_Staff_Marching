@@ -1,122 +1,101 @@
 package com.example.work_staff_marching.cyf.adapter;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.work_staff_marching.R;
-import com.example.work_staff_marching.cyf.entity.MyLiveList;
+import com.example.work_staff_marching.cyf.entity.TaskBean;
+import com.example.work_staff_marching.cyf.utils.RecyclerViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-public class MineRadioAdapter extends RecyclerView.Adapter<MineRadioAdapter.ViewHolder> {
+public class MineRadioAdapter extends  BaseRecyclerViewAdapter<TaskBean, RecyclerViewHolder>{
 
     private static final int MYLIVE_MODE_CHECK = 0;
     int mEditMode = MYLIVE_MODE_CHECK;
-
+    private Context mContext;
     private int secret = 0;
-    private String title = "";
-    private Context context;
-    private List<MyLiveList> mMyLiveList;
+    private List<TaskBean> mTaskBean= new ArrayList<>();
     private OnItemClickListener mOnItemClickListener;
-
+    public TextView task_catagery,task_time,task_content;
+    public ImageView mCheckBox;
+    public RelativeLayout mRootView;
     public MineRadioAdapter(Context context) {
-        this.context = context;
+        super(context);
+        mContext=context;
     }
-
-
-    public void notifyAdapter(List<MyLiveList> myLiveList, boolean isAdd) {
-        if (!isAdd) {
-            this.mMyLiveList = myLiveList;
-        } else {
-            this.mMyLiveList.addAll(myLiveList);
-        }
-        notifyDataSetChanged();
-    }
-
-    public List<MyLiveList> getMyLiveList() {
-        if (mMyLiveList == null) {
-            mMyLiveList = new ArrayList<>();
-        }
-        return mMyLiveList;
-    }
-
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_my_live, parent, false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
-    }
-
-    @Override
-    public int getItemCount() {
-        return mMyLiveList.size();
-    }
-
-    @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
-        final MyLiveList myLive = mMyLiveList.get(holder.getAdapterPosition());
-        holder.mTvTitle.setText(myLive.getTitle());
-        holder.mTvSource.setText(myLive.getSource());
+    protected void convert(RecyclerViewHolder holder, TaskBean data, int position, int viewType) {
+        task_catagery=(TextView)holder.getView(R.id.task_catagery);
+        task_time=(TextView)holder.getView(R.id.task_time);
+        task_content=(TextView)holder.getView(R.id.task_content);
+        task_catagery.setText(data.getTaskCatagery());
+        task_content.setText(data.getTaskContent());
+        task_time.setText(data.getTaskTime());
+        mCheckBox=(ImageView)holder.getView(R.id.check_box);
         if (mEditMode == MYLIVE_MODE_CHECK) {
-            holder.mCheckBox.setVisibility(View.GONE);
+          mCheckBox.setVisibility(View.GONE);
         } else {
-            holder.mCheckBox.setVisibility(View.VISIBLE);
-
-            if (myLive.isSelect()) {
-                holder.mCheckBox.setImageResource(R.mipmap.ic_checked);
+            mCheckBox.setVisibility(View.VISIBLE);
+            if (data.isSelect()) {
+                mCheckBox.setBackgroundResource(R.mipmap.ic_checked);
             } else {
-                holder.mCheckBox.setImageResource(R.mipmap.ic_uncheck);
+                mCheckBox.setBackgroundResource(R.mipmap.ic_uncheck);
             }
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOnItemClickListener.onItemClickListener(holder.getAdapterPosition(), mMyLiveList);
+                mOnItemClickListener.onItemClickListener(holder.getAdapterPosition(), mTaskBean);
             }
         });
     }
+    @Override
+    public int getItemCount() {
+        return mTaskBean.size();
+    }
+
+    @Override
+    protected int getItemLayoutId(int viewType) {
+        return R.layout.item_task_marching;
+    }
+
+    @Override
+    protected int getViewType(int position, TaskBean data) {
+        return 0;
+    }
+
+
+    public void notifyAdapter(List<TaskBean> mTaskBean, boolean isAdd) {
+        if (!isAdd) {
+            this.mTaskBean = mTaskBean;
+        } else {
+            this.mTaskBean.addAll(mTaskBean);
+        }
+        notifyDataSetChanged();
+    }
+
+    public List<TaskBean> getMyLiveList() {
+        if (mTaskBean == null) {
+            mTaskBean = new ArrayList<>();
+        }
+        return mTaskBean;
+    }
+
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.mOnItemClickListener = onItemClickListener;
     }
     public interface OnItemClickListener {
-        void onItemClickListener(int pos,List<MyLiveList> myLiveList);
+        void onItemClickListener(int pos,List<TaskBean> myLiveList);
     }
     public void setEditMode(int editMode) {
         mEditMode = editMode;
         notifyDataSetChanged();
     }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        @BindView(R.id.radio_img)
-        ImageView mRadioImg;
-        @BindView(R.id.tv_title)
-        TextView mTvTitle;
-        @BindView(R.id.tv_source)
-        TextView mTvSource;
-        @BindView(R.id.root_view)
-        RelativeLayout mRootView;
-        @BindView(R.id.check_box)
-        ImageView mCheckBox;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this,itemView);
-
-        }
-    }
-
-
 }

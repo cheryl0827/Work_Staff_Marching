@@ -14,11 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.adapter.MineRadioAdapter;
-import com.example.work_staff_marching.cyf.entity.MyLiveList;
+import com.example.work_staff_marching.cyf.entity.TaskBean;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
+import com.example.work_staff_marching.cyf.utils.Constant;
+import com.example.work_staff_marching.cyf.utils.CustomToast;
+import com.example.work_staff_marching.cyf.utils.OkCallback;
+import com.example.work_staff_marching.cyf.utils.OkHttp;
+import com.example.work_staff_marching.cyf.utils.Result;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -42,12 +49,11 @@ public class TaskMarching extends BaseFragment implements View.OnClickListener, 
     TextView mBtnEditor;
     private MineRadioAdapter mRadioAdapter = null;
     private LinearLayoutManager mLinearLayoutManager;
-    private List<MyLiveList> mList = new ArrayList<>();
+    private List<TaskBean> mList = new ArrayList<>();
     private int mEditMode = MYLIVE_MODE_CHECK;
     private boolean isSelectAll = false;
     private boolean editorStatus = false;
     private int index = 0;
-
     @Override
     protected int initLayout() {
         return R.layout.activity_task_marching;
@@ -68,19 +74,35 @@ public class TaskMarching extends BaseFragment implements View.OnClickListener, 
 
     private void initData1() {
         mRadioAdapter = new MineRadioAdapter(getContext());
+        mRecyclerview.setAdapter(mRadioAdapter);
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerview.setLayoutManager(mLinearLayoutManager);
         DividerItemDecoration itemDecorationHeader = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         itemDecorationHeader.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.divider_main_bg_height_1));
         mRecyclerview.addItemDecoration(itemDecorationHeader);
-        mRecyclerview.setAdapter(mRadioAdapter);
-        for (int i = 0; i < 30; i++) {
-            MyLiveList myLiveList = new MyLiveList();
-            myLiveList.setTitle("这是第" + i + "个条目");
-            myLiveList.setSource("来源" + i);
-            mList.add(myLiveList);
-            mRadioAdapter.notifyAdapter(mList, false);
-        }
+        loadData();
+    }
+
+    /**
+     * 加载诉求任务列表
+     */
+    private void loadData() {
+        String taskStatus="2";
+        Map<String, String> map = new HashMap<>();
+        map.put("taskStatus",taskStatus);
+        OkHttp.get(getContext(), Constant.get_taskreviewing, map,
+                new OkCallback<Result<List<TaskBean>>>() {
+                    @Override
+                    public void onResponse(Result<List<TaskBean>> response) {
+                       mRadioAdapter.setNewData(response.getData());
+                    }
+                    @Override
+                    public void onFailure(String state, String msg) {
+                        CustomToast.showToast(getContext(), msg);
+                    }
+                });
+
+
     }
 
     /**
@@ -144,20 +166,20 @@ public class TaskMarching extends BaseFragment implements View.OnClickListener, 
         setBtnBackground(0);
     }
     @Override
-    public void onItemClickListener(int pos, List<MyLiveList> myLiveList) {
+    public void onItemClickListener(int pos, List<TaskBean> mTaskBean) {
         if (editorStatus) {
-            MyLiveList myLive = myLiveList.get(pos);
-            boolean isSelect = myLive.isSelect();
+            TaskBean mtaskBean = mTaskBean.get(pos);
+            boolean isSelect = mtaskBean.isSelect();
             if (!isSelect) {
                 index++;
-                myLive.setSelect(true);
-                if (index == myLiveList.size()) {
+                mtaskBean.setSelect(true);
+                if (index == mTaskBean.size()) {
                     isSelectAll = true;
                     mSelectAll.setText("取消全选");
                 }
 
             } else {
-                myLive.setSelect(false);
+                mtaskBean.setSelect(false);
                 index--;
                 isSelectAll = false;
                 mSelectAll.setText("全选");
