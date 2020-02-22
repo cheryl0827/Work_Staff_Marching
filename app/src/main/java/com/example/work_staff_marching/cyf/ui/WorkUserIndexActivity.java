@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.RadioGroup;
 
 import com.example.work_staff_marching.R;
+import com.example.work_staff_marching.cyf.fragment.TaskMarching;
 import com.example.work_staff_marching.cyf.fragment.WorkTaskFragment;
 import com.example.work_staff_marching.cyf.fragment.WorkUserFragment;
 
@@ -62,8 +63,8 @@ public class WorkUserIndexActivity extends AppCompatActivity {
 
     private void initData() {
         /*3、数据的准备*/
-        WorkTaskFragment workTaskFragment=new WorkTaskFragment();
-        fragmentList.add(workTaskFragment);
+        TaskMarching taskMarching=new TaskMarching();
+        fragmentList.add(taskMarching);
         WorkUserFragment workUserFragment = new WorkUserFragment();
         fragmentList.add(workUserFragment);
 //        TaskAuditFragment taskAuditFragment = new TaskAuditFragment();
