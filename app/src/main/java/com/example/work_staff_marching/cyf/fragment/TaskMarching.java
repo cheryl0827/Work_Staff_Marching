@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,10 +30,9 @@ import java.util.Map;
 
 import butterknife.BindView;
 
-public class TaskMarching extends BaseFragment implements View.OnClickListener, MineRadioAdapter.OnItemClickListener {
+public class TaskMarching extends BaseFragment {
     private static final int MYLIVE_MODE_CHECK = 0;
     private static final int MYLIVE_MODE_EDIT = 1;
-
     @BindView(R.id.tv)
     TextView tv;
     @BindView(R.id.tv_select_num)
@@ -61,8 +61,12 @@ public class TaskMarching extends BaseFragment implements View.OnClickListener, 
 
     @Override
     protected void initView(View view) {
-        initData1();
-        initListener();
+        mRadioAdapter = new MineRadioAdapter(getContext());
+        mRecyclerview.setAdapter(mRadioAdapter);
+        mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        mRecyclerview.setItemAnimator(new DefaultItemAnimator());
+        loadData();
+        //initListener();
 
     }
 
@@ -70,19 +74,6 @@ public class TaskMarching extends BaseFragment implements View.OnClickListener, 
     protected void initData(Context mContext) {
 
     }
-
-
-    private void initData1() {
-        mRadioAdapter = new MineRadioAdapter(getContext());
-        mRecyclerview.setAdapter(mRadioAdapter);
-        mLinearLayoutManager = new LinearLayoutManager(getContext());
-        mRecyclerview.setLayoutManager(mLinearLayoutManager);
-        DividerItemDecoration itemDecorationHeader = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
-        itemDecorationHeader.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.divider_main_bg_height_1));
-        mRecyclerview.addItemDecoration(itemDecorationHeader);
-        loadData();
-    }
-
     /**
      * 加载诉求任务列表
      */
@@ -94,7 +85,16 @@ public class TaskMarching extends BaseFragment implements View.OnClickListener, 
                 new OkCallback<Result<List<TaskBean>>>() {
                     @Override
                     public void onResponse(Result<List<TaskBean>> response) {
-                       mRadioAdapter.setNewData(response.getData());
+                        mRadioAdapter.setNewData(response.getData());
+//                        for(int i=0;i<response.getData().size();i++){
+//                            TaskBean taskBean=new TaskBean();
+//                            taskBean.setTaskID(response.getData().get(i).getTaskID());
+//                            taskBean.setTaskTime(response.getData().get(i).getTaskTime());
+//                            taskBean.setTaskContent(response.getData().get(i).getTaskContent());
+//                            taskBean.setTaskCatagery(response.getData().get(i).getTaskCatagery());
+//                            mList.add(taskBean);
+//                        }
+//                        mRadioAdapter.notifyAdapter(mList,false);
                     }
                     @Override
                     public void onFailure(String state, String msg) {
@@ -109,7 +109,7 @@ public class TaskMarching extends BaseFragment implements View.OnClickListener, 
      * 根据选择的数量是否为0来判断按钮的是否可点击.
      *
      * @param size
-     */
+
     private void setBtnBackground(int size) {
         if (size != 0) {
             mBtnDelete.setBackgroundResource(R.drawable.button_shape);
@@ -192,7 +192,7 @@ public class TaskMarching extends BaseFragment implements View.OnClickListener, 
 
     /**
      * 全选和反选
-     */
+
     private void selectAllMain() {
         if (mRadioAdapter == null) return;
         if (!isSelectAll) {
@@ -215,6 +215,6 @@ public class TaskMarching extends BaseFragment implements View.OnClickListener, 
         mRadioAdapter.notifyDataSetChanged();
         setBtnBackground(index);
         mTvSelectNum.setText(String.valueOf(index));
-    }
+    }  */
 
 }

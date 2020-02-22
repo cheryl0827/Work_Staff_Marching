@@ -13,6 +13,7 @@ import com.example.work_staff_marching.cyf.fragment.MessageFragment;
 import com.example.work_staff_marching.cyf.fragment.PersonAuditFragment;
 import com.example.work_staff_marching.cyf.fragment.TaskAuditFragment;
 import com.example.work_staff_marching.cyf.fragment.TaskFragment;
+import com.example.work_staff_marching.cyf.fragment.TaskMarching;
 import com.example.work_staff_marching.cyf.fragment.UserMeFragment;
 
 import java.util.ArrayList;
@@ -77,8 +78,8 @@ public class AdminIndexActivity extends AppCompatActivity {
         fragmentList.add(personAuditFragment);
         TaskAuditFragment taskAuditFragment = new TaskAuditFragment();
         fragmentList.add(taskAuditFragment);
-        TaskFragment taskFragment = new TaskFragment();
-        fragmentList.add(taskFragment);
+        TaskMarching taskMarching=new TaskMarching();
+        fragmentList.add(taskMarching);
         UserMeFragment userMeFragment = new UserMeFragment();
         fragmentList.add(userMeFragment);
 //        //默认显示第1个也就是fragmentList.get(0)

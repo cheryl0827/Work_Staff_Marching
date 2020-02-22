@@ -15,22 +15,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MineRadioAdapter extends  BaseRecyclerViewAdapter<TaskBean, RecyclerViewHolder>{
-
     private static final int MYLIVE_MODE_CHECK = 0;
     int mEditMode = MYLIVE_MODE_CHECK;
     private Context mContext;
     private int secret = 0;
     private List<TaskBean> mTaskBean= new ArrayList<>();
-    private OnItemClickListener mOnItemClickListener;
-    public TextView task_catagery,task_time,task_content;
-    public ImageView mCheckBox;
-    public RelativeLayout mRootView;
+   // private OnItemClickListener mOnItemClickListener;
+
     public MineRadioAdapter(Context context) {
         super(context);
         mContext=context;
     }
     @Override
     protected void convert(RecyclerViewHolder holder, TaskBean data, int position, int viewType) {
+        TextView task_catagery,task_time,task_content;
+        ImageView mCheckBox;
+        RelativeLayout mRootView;
         task_catagery=(TextView)holder.getView(R.id.task_catagery);
         task_time=(TextView)holder.getView(R.id.task_time);
         task_content=(TextView)holder.getView(R.id.task_content);
@@ -38,16 +38,18 @@ public class MineRadioAdapter extends  BaseRecyclerViewAdapter<TaskBean, Recycle
         task_content.setText(data.getTaskContent());
         task_time.setText(data.getTaskTime());
         mCheckBox=(ImageView)holder.getView(R.id.check_box);
+     /*
         if (mEditMode == MYLIVE_MODE_CHECK) {
           mCheckBox.setVisibility(View.GONE);
-        } else {
+         }
+        else {
             mCheckBox.setVisibility(View.VISIBLE);
             if (data.isSelect()) {
-                mCheckBox.setBackgroundResource(R.mipmap.ic_checked);
-            } else {
-                mCheckBox.setBackgroundResource(R.mipmap.ic_uncheck);
-            }
-        }
+                mCheckBox.setImageResource(R.mipmap.ic_checked);
+              } else {
+                mCheckBox.setImageResource(R.mipmap.ic_uncheck);
+    }
+}
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,26 +61,14 @@ public class MineRadioAdapter extends  BaseRecyclerViewAdapter<TaskBean, Recycle
     public int getItemCount() {
         return mTaskBean.size();
     }
-
-    @Override
-    protected int getItemLayoutId(int viewType) {
-        return R.layout.item_task_marching;
-    }
-
-    @Override
-    protected int getViewType(int position, TaskBean data) {
-        return 0;
-    }
-
-
-    public void notifyAdapter(List<TaskBean> mTaskBean, boolean isAdd) {
-        if (!isAdd) {
-            this.mTaskBean = mTaskBean;
-        } else {
-            this.mTaskBean.addAll(mTaskBean);
-        }
-        notifyDataSetChanged();
-    }
+//    public void notifyAdapter(List<TaskBean> mTaskBean, boolean isAdd) {
+//        if (!isAdd) {
+//            this.mTaskBean = mTaskBean;
+//        } else {
+//            this.mTaskBean.addAll(mTaskBean);
+//        }
+//        notifyDataSetChanged();
+//    }
 
     public List<TaskBean> getMyLiveList() {
         if (mTaskBean == null) {
@@ -97,5 +87,17 @@ public class MineRadioAdapter extends  BaseRecyclerViewAdapter<TaskBean, Recycle
     public void setEditMode(int editMode) {
         mEditMode = editMode;
         notifyDataSetChanged();
+        */
     }
+
+    @Override
+    protected int getItemLayoutId(int viewType) {
+        return R.layout.item_task_marching;
+    }
+
+    @Override
+    protected int getViewType(int position, TaskBean data) {
+        return 0;
+    }
+
 }
