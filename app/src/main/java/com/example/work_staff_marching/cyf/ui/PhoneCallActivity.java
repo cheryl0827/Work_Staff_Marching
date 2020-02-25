@@ -53,6 +53,7 @@ public class PhoneCallActivity extends BaseActivity {
     Button btCall;
     private TextView tempText;
     private String all = "";
+    //public static  String phone="13164820880";
 
 
     @Override
@@ -63,8 +64,10 @@ public class PhoneCallActivity extends BaseActivity {
     @Override
     protected void init(Bundle saveInstanceState) {
         setTitle("拨打电话");
-        tvText2.setText("13164820880");
-        tvText1.setText("13164820880");
+        Intent intent1 = getIntent();
+        String phone=intent1.getStringExtra("phone");
+        tvText2.setText(phone);
+        tvText1.setText(phone);
         btZero.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {

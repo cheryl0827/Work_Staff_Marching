@@ -65,7 +65,7 @@ public class TaskAuditFragment extends BaseFragment {
         swiperereshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-               // loadData();
+                loadData();
                 swiperereshlayout.setRefreshing(false);
             }
         });

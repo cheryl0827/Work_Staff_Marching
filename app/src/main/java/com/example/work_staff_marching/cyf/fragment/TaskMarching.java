@@ -79,22 +79,15 @@ public class TaskMarching extends BaseFragment {
      */
     private void loadData() {
         String taskStatus="2";
+        String marchingStatus="1";
         Map<String, String> map = new HashMap<>();
         map.put("taskStatus",taskStatus);
-        OkHttp.get(getContext(), Constant.get_taskreviewing, map,
+        map.put("marchingStatus",marchingStatus);
+        OkHttp.get(getContext(), Constant.get_showmarchingtask, map,
                 new OkCallback<Result<List<TaskBean>>>() {
                     @Override
                     public void onResponse(Result<List<TaskBean>> response) {
                         mRadioAdapter.setNewData(response.getData());
-//                        for(int i=0;i<response.getData().size();i++){
-//                            TaskBean taskBean=new TaskBean();
-//                            taskBean.setTaskID(response.getData().get(i).getTaskID());
-//                            taskBean.setTaskTime(response.getData().get(i).getTaskTime());
-//                            taskBean.setTaskContent(response.getData().get(i).getTaskContent());
-//                            taskBean.setTaskCatagery(response.getData().get(i).getTaskCatagery());
-//                            mList.add(taskBean);
-//                        }
-//                        mRadioAdapter.notifyAdapter(mList,false);
                     }
                     @Override
                     public void onFailure(String state, String msg) {

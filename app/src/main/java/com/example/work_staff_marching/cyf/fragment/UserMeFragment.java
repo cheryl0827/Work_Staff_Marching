@@ -82,7 +82,10 @@ public class UserMeFragment extends BaseFragment {
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), PhoneCallActivity.class));
+                Intent intent1 = new Intent();
+                intent1.putExtra("phone","13164820880");
+                intent1.setClass(getContext(), PhoneCallActivity.class);
+                startActivity(intent1);
             }
         });
     }

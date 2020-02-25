@@ -3,7 +3,7 @@ package com.example.work_staff_marching.cyf.utils;
 //请求对应
 public class Constant {
     // 172.20.10.5 无线地址   Staff_Work_Marching服务器
-    public static String BASE_URL = "http://192.168.9.107:8080/Staff_Work_Marching";
+    public static String BASE_URL = "http://192.168.0.102:8080/Staff_Work_Marching";
     /**
      * 获取验证码,类似前后台交接的接口
      */
@@ -121,4 +121,16 @@ public class Constant {
      * 查看工作用户的基本信息
      */
     public static String get_showuserinformation= BASE_URL + "/ShowUserInformationServlet";
+    /**
+     * 显示未匹配的诉求任务
+     */
+    public static String get_showmarchingtask= BASE_URL + "/MarchingTaskShowServlet";
+    /**
+     * 显示诉求任务的匹配信息
+     */
+    public static String get_showmarching= BASE_URL + "/MarchigShowServlet";
+    /**
+     * 添加工作人员的办理记录
+     */
+    public static String get_addrecord= BASE_URL + "/AddRecordServlet";
 }

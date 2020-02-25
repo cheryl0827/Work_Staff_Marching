@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Work_Staff_Marching</string>
+    <string name="selectDate">下次回访日期:</string>
 </resources>

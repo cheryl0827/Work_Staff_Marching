@@ -210,7 +210,7 @@ public class RegisterActivity extends BaseActivity {
 
                 @Override
                 public void onFailure(String state, String msg) {
-                    Toast.makeText(RegisterActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "该用户已经存在，请重新输入！", Toast.LENGTH_SHORT).show();
                 }
             });
         }
