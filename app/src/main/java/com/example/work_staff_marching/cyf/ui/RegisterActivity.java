@@ -158,6 +158,7 @@ public class RegisterActivity extends BaseActivity {
 
     @OnClick({R.id.next, R.id.cancel})
     public void onViewClicked(View view) {
+
         if (userName1.getText().toString().equals("") && password1.getText().toString().equals("") && passwordSure1.getText().toString().equals("") && phone1.getText().toString().equals("")) {
             CommonDialog commonDialog = new CommonDialog(this);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
