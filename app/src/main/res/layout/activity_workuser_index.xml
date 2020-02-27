@@ -33,11 +33,17 @@
             android:checked="true"
             android:drawableTop="@mipmap/task2"
             android:text="任务看板" />
+        <RadioButton
+            android:id="@+id/radiobutton_taskend"
+            style="@style/main_radiobutton_stype"
+            android:checked="true"
+            android:drawableTop="@mipmap/task_audit"
+            android:text="办理结束" />
 
         <RadioButton
             android:id="@+id/radiobutton_me"
             style="@style/main_radiobutton_stype"
-            android:drawableTop="@mipmap/task_audit"
+            android:drawableTop="@mipmap/me1"
             android:text="我" />
     </RadioGroup>
 </LinearLayout>

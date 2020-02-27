@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.entity.MarchingBean;
 import com.example.work_staff_marching.cyf.entity.TaskBean;
-import com.example.work_staff_marching.cyf.fragment.WorkTaskMarchedFragment;
 import com.example.work_staff_marching.cyf.utils.Constant;
 import com.example.work_staff_marching.cyf.utils.OkCallback;
 import com.example.work_staff_marching.cyf.utils.OkHttp;
@@ -19,14 +18,14 @@ import com.example.work_staff_marching.cyf.utils.Result;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WorkTaskMarchedAdapter extends BaseRecyclerViewAdapter<MarchingBean, RecyclerViewHolder> {
+public class WorkTaskHandledAdapter extends BaseRecyclerViewAdapter<MarchingBean, RecyclerViewHolder> {
     private Context mContext;
     private TaskBean taskBean;
-
-    public WorkTaskMarchedAdapter(Context context) {
+    public WorkTaskHandledAdapter(Context context) {
         super(context);
         mContext=context;
     }
+
     @Override
     protected void convert(RecyclerViewHolder holder, MarchingBean data, int position, int viewType) {
         TextView task_catagery,task_content,task_time;
@@ -42,14 +41,15 @@ public class WorkTaskMarchedAdapter extends BaseRecyclerViewAdapter<MarchingBean
         holder.addOnClickListener(R.id.detail);
         Map<String, String> map = new HashMap<>();
         map.put("taskID",data.getTaskID()+"");
-        OkHttp.get(mContext, Constant.get_showtask, map, new OkCallback<Result<TaskBean>>() {
+        map.put("recordStatus","2");
+        OkHttp.get(mContext, Constant.get_showtaskl, map, new OkCallback<Result<TaskBean>>() {
             @Override
             public void onResponse(Result<TaskBean> response) {
                 taskBean=response.getData();
                 if(taskBean!=null){
-                task_catagery.setText(taskBean.getTaskCatagery());
-                task_content.setText(taskBean.getTaskContent());
-                task_time.setText(taskBean.getTaskTime());
+                    task_catagery.setText(taskBean.getTaskCatagery());
+                    task_content.setText(taskBean.getTaskContent());
+                    task_time.setText(taskBean.getTaskTime());
                 }
                 if(taskBean==null){
                     item.setVisibility(View.GONE);
@@ -61,12 +61,6 @@ public class WorkTaskMarchedAdapter extends BaseRecyclerViewAdapter<MarchingBean
 
             }
         });
-
-//        task_catagery.setText(data.getMarchingTime());
-//        task_content.setText(data.getTaskID()+"");
-//        task_time.setText(data.getWorkuserNo());
-
-
     }
 
     @Override

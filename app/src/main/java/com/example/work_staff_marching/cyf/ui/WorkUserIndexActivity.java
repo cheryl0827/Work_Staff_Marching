@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.fragment.TaskMarching;
+import com.example.work_staff_marching.cyf.fragment.WorkTaskHandledFragment;
 import com.example.work_staff_marching.cyf.fragment.WorkTaskMarchedFragment;
 import com.example.work_staff_marching.cyf.fragment.WorkUserFragment;
 
@@ -49,8 +50,11 @@ public class WorkUserIndexActivity extends AppCompatActivity {
                         setCurrentFragment(0);
                         break;
                     }
-                    case R.id.radiobutton_me: {
+                    case R.id.radiobutton_taskend:
                         setCurrentFragment(1);
+                        break;
+                    case R.id.radiobutton_me: {
+                        setCurrentFragment(2);
                         break;
                     }
                     default: {
@@ -65,14 +69,10 @@ public class WorkUserIndexActivity extends AppCompatActivity {
         /*3、数据的准备*/
         WorkTaskMarchedFragment workTaskMarchedFragment=new WorkTaskMarchedFragment();
         fragmentList.add(workTaskMarchedFragment);
+        WorkTaskHandledFragment workTaskHandledFragment=new WorkTaskHandledFragment();
+        fragmentList.add(workTaskHandledFragment);
         WorkUserFragment workUserFragment = new WorkUserFragment();
         fragmentList.add(workUserFragment);
-//        TaskAuditFragment taskAuditFragment = new TaskAuditFragment();
-//        fragmentList.add(taskAuditFragment);
-//        TaskFragment taskFragment = new TaskFragment();
-//        fragmentList.add(taskFragment);
-//        UserMeFragment userMeFragment = new UserMeFragment();
-//        fragmentList.add(userMeFragment);
 //        //默认显示第1个也就是fragmentList.get(0)
         setCurrentFragment(0);
 

@@ -17,7 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".cyf.ui.TransactionRecordActivity"></activity>
+        <activity android:name=".cyf.ui.TaskHandledDetailActivity"></activity>
+        <activity android:name=".cyf.ui.TransactionRecordShowActivity" />
+        <activity android:name=".cyf.ui.TransactionRecordActivity" />
         <activity android:name=".cyf.ui.MarchedTaskDetailActivity" />
         <activity android:name=".cyf.ui.ChangePhoneActivity" />
         <activity android:name=".cyf.ui.WorkUserIndexActivity" />

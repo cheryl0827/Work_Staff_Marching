@@ -4,7 +4,15 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="wrap_content"
-    android:background="#fff">
+    android:background="#fff"
+    android:id="@+id/it1em">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/item">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="农村农业-土地承包经营-土地流转"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="16dp" />
         <TextView
@@ -24,7 +32,7 @@
             android:layout_marginLeft="40dp"
             android:textColor="@color/black"
             android:textSize="14dp"
-            android:text="2020-02-03-20-05-38"
+            android:text=""
             />
     </LinearLayout>
 
@@ -45,7 +53,7 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:ellipsize="end"
-            android:text="放寒假的说法的数据粉红色代理费多少积分话都是就分手了开发的算法客户说代理费"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="16dp"
             android:layout_marginLeft="7dp" />
@@ -55,7 +63,7 @@
     <LinearLayout
         android:id="@+id/opetation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="3dp">
         <Button
@@ -87,4 +95,5 @@
         android:background="@color/gray"
         />
 
+</LinearLayout>
 </LinearLayout>
