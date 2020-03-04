@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.TextView;
 
 import com.example.work_staff_marching.R;
+import com.example.work_staff_marching.cyf.entity.TaskBean;
 import com.example.work_staff_marching.cyf.entity.UserBean;
 import com.example.work_staff_marching.cyf.entity.WorkuserEvaluatingIndicatorBean;
 import com.example.work_staff_marching.cyf.utils.Constant;
@@ -13,6 +14,7 @@ import com.example.work_staff_marching.cyf.utils.RecyclerViewHolder;
 import com.example.work_staff_marching.cyf.utils.Result;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class WorkuserInformationRecycleViewAdapter extends BaseRecyclerViewAdapter<WorkuserEvaluatingIndicatorBean, RecyclerViewHolder> {
@@ -37,9 +39,7 @@ public class WorkuserInformationRecycleViewAdapter extends BaseRecyclerViewAdapt
         psychology=(TextView)holder.getView(R.id.psychology);
         organization=(TextView)holder.getView(R.id.organization);
         analyse=(TextView)holder.getView(R.id.analyse);
-
         law=(TextView)holder.getView(R.id.law);
-//        userName.setText("陈燕芳");
         community.setText(data.getCommunity()+"");
         urgent.setText(data.getUrgent()+"");
         psychology.setText(data.getPsychology()+"");
@@ -47,21 +47,18 @@ public class WorkuserInformationRecycleViewAdapter extends BaseRecyclerViewAdapt
         law.setText(data.getLaw()+"");
         analyse.setText(data.getAnalyse()+"");
         Map<String, String> map = new HashMap<>();
-        map.put("userID",data.getUserID()+"");
+        map.put("workuserNo",data.getWorkuserNo());
         OkHttp.get(mContext, Constant.get_showuserinformation, map, new OkCallback<Result<UserBean>>() {
             @Override
             public void onResponse(Result<UserBean> response) {
-              userBean=response.getData();
+                userBean=response.getData();
                 userName.setText(userBean.getUserName());
                 sex.setText(userBean.getSex());
                 workuserNo.setText(userBean.getWorkuserNo());
             }
-
             @Override
             public void onFailure(String state, String msg) {
-
             }
-
         });
 
 

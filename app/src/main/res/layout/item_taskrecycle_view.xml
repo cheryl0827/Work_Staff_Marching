@@ -78,46 +78,15 @@
         android:id="@+id/task_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:ellipsize="end"
-        android:text="放寒假的说法的数据粉红色代理费多少积分话都是就分手了开发的算法客户说代理费"
+
+        android:text="放寒假的说法的数据粉红色代理费多少积分话都是就分手了开发的算法客户说代ahvsc好几十更深刻二分二佛寺理费"
         android:textColor="@color/black"
         android:textSize="16dp"
+            android:maxLength="1000"
             android:layout_marginLeft="7dp" />
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="2dp"
-        android:id="@+id/workuserLinearLayout">
 
-        <ImageView
-            android:id="@+id/imageView113"
-            android:layout_width="27dp"
-            android:layout_height="23dp"
-            android:src="@mipmap/a" />
-
-        <TextView
-            android:id="@+id/username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
-            android:text=""
-            android:textColor="@color/black"
-            android:textSize="16dp" />
-        <TextView
-            android:id="@+id/workuserNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:text="放寒假的说法的数"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            android:layout_marginLeft="30dp" />
-
-    </LinearLayout>
     <LinearLayout
         android:id="@+id/opetation"
         android:layout_width="match_parent"
@@ -147,15 +116,23 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:layout_marginTop="3dp">
-
+        <Button
+            android:id="@+id/marchig"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:text="匹配信息"
+            android:layout_marginLeft="260dp"
+            android:background="@color/lightgreen"/>
+        />
         <Button
             android:id="@+id/pingjiabutton"
             android:layout_width="60dp"
             android:layout_height="30dp"
             android:text="评价"
-            android:layout_marginLeft="320dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/setbutton"/>
         />
+
     </LinearLayout>
     <LinearLayout
         android:id="@+id/detailEndLinearLayout"
@@ -168,10 +145,11 @@
             android:id="@+id/detailEndButton"
             android:layout_width="60dp"
             android:layout_height="30dp"
-            android:text="详情"
-            android:layout_marginLeft="250dp"
+            android:text="评价详情"
+            android:layout_marginLeft="320dp"
             android:background="@drawable/setbutton"/>
         />
+
     </LinearLayout>
 
     <View

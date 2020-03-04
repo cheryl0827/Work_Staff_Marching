@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#E6E6FA">
+
+    <LinearLayout
+        android:paddingTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="75dp"
+        android:layout_marginLeft="25dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#808080"
+            android:textSize="22dp"
+            android:text="沟通亲和能力：" />
+
+        <TextView
+            android:id="@+id/community"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:inputType="number"
+            android:text="23"
+            android:textColor="@color/black"
+            android:textSize="22dp"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DCDCDC"/>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp">
+
+        <TextView
+            android:id="@+id/urgent1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="应急处置能力："
+            android:textColor="#808080"
+            android:textSize="22dp"
+            />
+
+        <TextView
+            android:id="@+id/urgent"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:inputType="number"
+            android:text="33"
+            android:textColor="@color/black"
+            android:textSize="22dp"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DCDCDC"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp">
+
+        <TextView
+            android:id="@+id/textView0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="心理抗压能力："
+            android:textColor="#808080"
+            android:textSize="22dp" />
+
+        <TextView
+            android:id="@+id/psychology"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:inputType="number"
+            android:text="33"
+            android:textColor="@color/black"
+            android:textSize="22dp"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DCDCDC"/>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp">
+
+        <TextView
+            android:id="@+id/textView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="组织协调能力："
+            android:textColor="#808080"
+            android:textSize="22dp" />
+
+        <TextView
+            android:id="@+id/organization"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:inputType="number"
+            android:text="33"
+            android:textColor="@color/black"
+            android:textSize="22dp"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DCDCDC"/>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp">
+
+        <TextView
+            android:id="@+id/textView011"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分析研判能力："
+            android:textColor="#808080"
+            android:textSize="22dp" />
+
+        <TextView
+            android:id="@+id/analyse"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:inputType="number"
+            android:text="33"
+            android:textColor="@color/black"
+            android:textSize="22dp"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DCDCDC"/>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp">
+
+        <TextView
+            android:id="@+id/textView1101"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="依法办事能力："
+            android:textColor="#808080"
+            android:textSize="22dp" />
+
+        <TextView
+            android:id="@+id/law"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:inputType="number"
+            android:text="33"
+            android:textColor="@color/black"
+            android:textSize="22dp"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DCDCDC"/>
+</LinearLayout>

@@ -1,87 +1,61 @@
 package com.example.work_staff_marching.cyf.entity;
 
-public class WorkuserEvaluatingIndicatorBean {
-	  private int workEvaluatingIndicatorID;
+public class EstimateBean {
+	  private int estimateID;
 	  private int community;
 	  private int urgent;
 	  private int psychology;
 	  private int organization;
 	  private int analyse;
 	  private int law;
-	  private String workuserNo;
-	  private int userID;
-	public String getWorkuserNo() {
-		return workuserNo;
+	  private int taskID;
+	  public int getEstimateID() {
+		return estimateID;
 	}
-	public void setWorkuserNo(String workuserNo) {
-		this.workuserNo = workuserNo;
+	public void setEstimateID(int estimateID) {
+		this.estimateID = estimateID;
 	}
-
-	public int getWorkEvaluatingIndicatorID() {
-		return workEvaluatingIndicatorID;
-	}
-
-	public void setWorkEvaluatingIndicatorID(int workEvaluatingIndicatorID) {
-		this.workEvaluatingIndicatorID = workEvaluatingIndicatorID;
-	}
-
 	public int getCommunity() {
 		return community;
 	}
-
 	public void setCommunity(int community) {
 		this.community = community;
 	}
-
 	public int getUrgent() {
 		return urgent;
 	}
-
 	public void setUrgent(int urgent) {
 		this.urgent = urgent;
 	}
-
 	public int getPsychology() {
 		return psychology;
 	}
-
 	public void setPsychology(int psychology) {
 		this.psychology = psychology;
 	}
-
 	public int getOrganization() {
 		return organization;
 	}
-
 	public void setOrganization(int organization) {
 		this.organization = organization;
 	}
-
 	public int getAnalyse() {
 		return analyse;
 	}
-
 	public void setAnalyse(int analyse) {
 		this.analyse = analyse;
 	}
-
 	public int getLaw() {
 		return law;
 	}
-
 	public void setLaw(int law) {
 		this.law = law;
 	}
-
-	public int getUserID() {
-		return userID;
+	public int getTaskID() {
+		return taskID;
 	}
-
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setTaskID(int taskID) {
+		this.taskID = taskID;
 	}
-
-
-
-	  
+	
 }

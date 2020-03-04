@@ -34,76 +34,60 @@ public class TaskRecycleViewAdapter extends BaseRecyclerViewAdapter<TaskBean,Rec
     }
     @Override
     protected void convert(RecyclerViewHolder holder, TaskBean data, int position, int viewType) {
-        TextView task_catagery,task_content,task_time,address,detailaddress,username,workuserNo;
-        Button updateButton,deleteButton,pingjiabutton,detailEndButton;
-        LinearLayout pingjia,opetation,detailEndLinearLayout,adressLinearLayout,workuserLinearLayout;
+        TextView task_catagery,task_content,task_time,address,detailaddress;
+        Button updateButton,deleteButton,pingjiabutton,detailEndButton,marchig;
+        LinearLayout pingjia,opetation,detailEndLinearLayout,adressLinearLayout;
+       // String workuserno=data.getTaskWorknumber();
         task_catagery=(TextView)holder.getView(R.id.task_catagery);
         task_content=(TextView)holder.getView(R.id.task_content);
         task_time=(TextView)holder.getView(R.id.task_time);
         detailaddress=(TextView)holder.getView(R.id.detailaddress);
         address=(TextView)holder.getView(R.id.address);
-        username=(TextView)holder.getView(R.id.username);
-        workuserNo=(TextView)holder.getView(R.id.workuserNo);
+        //username=(TextView)holder.getView(R.id.username);
+        //workuserNo=(TextView)holder.getView(R.id.workuserNo);
         task_catagery.setText(data.getTaskCatagery());
         task_content.setText(data.getTaskContent());
         task_time.setText(data.getTaskTime());
         address.setText(data.getTaskAdress());
-        workuserNo.setText(data.getTaskWorknumber());
+        //workuserNo.setText(data.getTaskWorknumber());
         detailaddress.setText(data.getTaskDetaiAdress());
         pingjia=(LinearLayout)holder.getView(R.id.pingjia);
         opetation=(LinearLayout)holder.getView(R.id.opetation);
         detailEndLinearLayout=(LinearLayout)holder.getView(R.id.detailEndLinearLayout);
         adressLinearLayout=(LinearLayout)holder.getView(R.id.adressLinearLayout);
-        workuserLinearLayout=(LinearLayout)holder.getView(R.id.workuserLinearLayout);
         updateButton=(Button)holder.getView(R.id.updateButton);
         deleteButton=(Button)holder.getView(R.id.deleteButton);
         pingjiabutton=(Button)holder.getView(R.id.pingjiabutton);
         detailEndButton=(Button)holder.getView(R.id.detailEndButton);
+        marchig=(Button)holder.getView(R.id.marchig);
         holder.addOnClickListener(R.id.deleteButton);
         holder.addOnClickListener(R.id.updateButton);
         holder.addOnClickListener(R.id.pingjiabutton);
         holder.addOnClickListener(R.id.detailEndButton);
-//显示工作人员的姓名
-        Map<String, String> map = new HashMap<>();
-        map.put("workuserno",data.getTaskWorknumber());
-        OkHttp.get(mContext, Constant.get_username, map, new OkCallback<Result<String>>() {
-            @Override
-            public void onResponse(Result<String> response) {
-                username.setText(response.getData() + "");
-            }
-            @Override
-            public void onFailure(String state, String msg) {
-
-            }
-        });
-
+        holder.addOnClickListener(R.id.marchig);
         switch(data.getTaskStatus()){
             case 1:
                 opetation.setVisibility(View.VISIBLE);
                 pingjia.setVisibility(View.GONE);
                 detailEndLinearLayout.setVisibility(View.GONE);
-                adressLinearLayout.setVisibility(View.GONE);
-                workuserLinearLayout.setVisibility(View.GONE);
                 break;
             case 2:
-                pingjia.setVisibility(View.VISIBLE);
-                workuserLinearLayout.setVisibility(View.VISIBLE);
                 opetation.setVisibility(View.GONE);
                 detailEndLinearLayout.setVisibility(View.GONE);
-                adressLinearLayout.setVisibility(View.GONE);
+                if(data.getMarchingStatus()==2&&data.getPingjiaStatus()==1)
+                {
+                pingjia.setVisibility(View.VISIBLE);
+                }
+                else pingjia.setVisibility(View.GONE);
                 break;
             case 3:
                 detailEndLinearLayout.setVisibility(View.VISIBLE);
-                workuserLinearLayout.setVisibility(View.VISIBLE);
-                adressLinearLayout.setVisibility(View.GONE);
                 pingjia.setVisibility(View.GONE);
                 opetation.setVisibility(View.GONE);
                 break;
             case 4:
-                adressLinearLayout.setVisibility(View.VISIBLE);
                 pingjia.setVisibility(View.GONE);
                 detailEndLinearLayout.setVisibility(View.GONE);
-                workuserLinearLayout.setVisibility(View.GONE);
                 opetation.setVisibility(View.GONE);
                 break;
         }

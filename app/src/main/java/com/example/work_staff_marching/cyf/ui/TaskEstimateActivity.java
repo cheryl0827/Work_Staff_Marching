@@ -56,7 +56,7 @@ public class TaskEstimateActivity extends BaseActivity {
     @BindView(R.id.law1)
     TextView law1;
     String taskStatus="3";
-
+    String pingjiaStatus="2";
 
     @Override
     protected int getContentView() {
@@ -181,6 +181,7 @@ public class TaskEstimateActivity extends BaseActivity {
                 map.put("law",law.getText().toString());
                 map.put("taskID",intent1.getStringExtra("taskID"));
                 map.put("taskStatus",taskStatus);
+                map.put("pingjiaStatus",pingjiaStatus);
                 if(count!=100)
                     Toast.makeText(TaskEstimateActivity.this,"输入的总值只能是100，请重新输入",Toast.LENGTH_SHORT).show();
                 else {

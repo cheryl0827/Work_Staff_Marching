@@ -35,8 +35,8 @@
             android:id="@+id/go"
             android:layout_width="51dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="28dp"
             android:layout_marginTop="15dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/set_button_color1"
             android:text="未审核"
@@ -45,32 +45,46 @@
 
         <Button
             android:id="@+id/ed"
-            android:layout_width="78dp"
+            android:layout_width="51dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/set_button_color2"
-            android:text="审核通过"
+            android:text="未匹配"
             android:textSize="16dp"
             android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/marching"
+            android:layout_width="78dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/set_button_color5"
+            android:text="匹配成功"
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
+
 
         <Button
             android:id="@+id/end"
             android:layout_width="78dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/set_button_color3"
+            android:background="@drawable/set_button_color33"
             android:text="办理结束"
             android:textSize="16dp"
             android:textColor="@color/black"/>
+
         <Button
             android:id="@+id/no"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/set_button_color4"
@@ -85,18 +99,19 @@
         android:layout_height="1dp"
         android:background="@color/gray"
         />
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swiperereshlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffff"
         android:orientation="vertical">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </androidx.recyclerview.widget.RecyclerView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

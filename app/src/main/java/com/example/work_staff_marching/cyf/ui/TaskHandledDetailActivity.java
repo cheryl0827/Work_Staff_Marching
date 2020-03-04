@@ -103,7 +103,7 @@ public class TaskHandledDetailActivity extends BaseActivity {
                 peopleInformation.setVisibility(View.VISIBLE);
                 Map<String, String> map1 = new HashMap<>();
                 map1.put("userID", userID);
-                OkHttp.get(TaskHandledDetailActivity.this, Constant.get_showuserinformation, map1, new OkCallback<Result<UserBean>>() {
+                OkHttp.get(TaskHandledDetailActivity.this, Constant.get_userinformationshow, map1, new OkCallback<Result<UserBean>>() {
                     @Override
                     public void onResponse(Result<UserBean> response) {
                         username.setText(response.getData().getUserName());

@@ -176,7 +176,7 @@ public class WorkuserAddEvaluatingIndicatorActivity extends BaseActivity {
                 map.put("organization",organization.getText().toString());
                 map.put("analyse",analyse.getText().toString());
                 map.put("law",law.getText().toString());
-                map.put("userID",intent1.getStringExtra("userID"));
+                map.put("workuserNo",intent1.getStringExtra("workuserNo"));
                 if(count!=100)
                     Toast.makeText(WorkuserAddEvaluatingIndicatorActivity.this,"输入的总值只能是100，请重新输入",Toast.LENGTH_SHORT).show();
                 else {

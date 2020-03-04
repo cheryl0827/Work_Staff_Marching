@@ -153,7 +153,7 @@ public class WorkuserUpdateEvaluatingIndicatorActivity extends BaseActivity {
         });
         Intent intent1=getIntent();
         Map<String, String> map1 = new HashMap<>();
-        map1.put("userID",intent1.getStringExtra("userID"));
+        map1.put("workuserNo",intent1.getStringExtra("workuserNo"));
         OkHttp.post(WorkuserUpdateEvaluatingIndicatorActivity.this, Constant.get_showworkuserevaluatingindicator,map1,new OkCallback<Result<WorkuserEvaluatingIndicatorBean>>() {
             @Override
             public void onResponse(Result<WorkuserEvaluatingIndicatorBean> response) {
@@ -193,7 +193,7 @@ public class WorkuserUpdateEvaluatingIndicatorActivity extends BaseActivity {
                 map.put("organization",organization.getText().toString());
                 map.put("analyse",analyse.getText().toString());
                 map.put("law",law.getText().toString());
-                map.put("userID",intent1.getStringExtra("userID"));
+                map.put("workuserNo",intent1.getStringExtra("workuserNo"));
                 if(count!=100)
                     Toast.makeText(WorkuserUpdateEvaluatingIndicatorActivity.this,"输入的总值只能是100，请重新输入",Toast.LENGTH_SHORT).show();
                 else {

@@ -39,16 +39,13 @@ public class UserMeFragment extends BaseFragment {
     private static final int REQUEST_CODE_CHOOSE = 1;//定义请求码常量
     @BindView(R.id.photochange)
     LinearLayout photochange;
-    @BindView(R.id.MyMessage)
-    LinearLayout MyMessage;
+
     @BindView(R.id.PeopleInformatinChange)
     LinearLayout PeopleInformatinChange;
     @BindView(R.id.PasswordChange)
     LinearLayout PasswordChange;
     @BindView(R.id.phone)
     LinearLayout phone;
-    @BindView(R.id.version)
-    LinearLayout version;
     @BindView(R.id.exit)
     Button exit;
     @BindView(R.id.username)

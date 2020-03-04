@@ -182,7 +182,7 @@ public class PersonAuditFragment extends BaseFragment {
                         break;
                     case R.id.addworkEvaluatingIndicator:
                         Map<String, String> map5 = new HashMap<>();
-                        map5.put("userID",mPeopleAuditRecycleViewAdapter.getItem(position).getUserID()+"");
+                        map5.put("workuserNo",mPeopleAuditRecycleViewAdapter.getItem(position).getWorkuserNo()+"");
                         OkHttp.get(getContext(), Constant.get_showworkuserevaluatingindicator, map5, new OkCallback<Result<WorkuserEvaluatingIndicatorBean>>() {
                             @Override
                             public void onResponse(Result<WorkuserEvaluatingIndicatorBean> response) {
@@ -191,7 +191,7 @@ public class PersonAuditFragment extends BaseFragment {
                                 }
                                 if(response.getData()==null){
                                     Intent intent1 = new Intent();
-                                    intent1.putExtra("userID",mPeopleAuditRecycleViewAdapter.getItem(position).getUserID()+"");
+                                    intent1.putExtra("workuserNo",mPeopleAuditRecycleViewAdapter.getItem(position).getWorkuserNo()+"");
                                     intent1.setClass(getContext(), WorkuserAddEvaluatingIndicatorActivity.class);
                                     startActivityForResult(intent1,1);
                                 }
@@ -204,13 +204,13 @@ public class PersonAuditFragment extends BaseFragment {
                         break;
                     case R.id.updateworkEvaluatingIndicator:
                         Map<String, String> map6 = new HashMap<>();
-                        map6.put("userID",mPeopleAuditRecycleViewAdapter.getItem(position).getUserID()+"");
+                        map6.put("workuserNo",mPeopleAuditRecycleViewAdapter.getItem(position).getWorkuserNo()+"");
                         OkHttp.post(getContext(), Constant.get_showworkuserevaluatingindicator,map6,new OkCallback<Result<WorkuserEvaluatingIndicatorBean>>() {
                             @Override
                             public void onResponse(Result response) {
                                 if(response.getData()!=null){
                                 Intent intent1 = new Intent();
-                                intent1.putExtra("userID",mPeopleAuditRecycleViewAdapter.getItem(position).getUserID()+"");
+                                intent1.putExtra("workuserNo",mPeopleAuditRecycleViewAdapter.getItem(position).getWorkuserNo()+"");
                                 intent1.setClass(getContext(), WorkuserUpdateEvaluatingIndicatorActivity.class);
                                 startActivityForResult(intent1,1);}
                                 if(response.getData()==null)
@@ -224,7 +224,7 @@ public class PersonAuditFragment extends BaseFragment {
                     case R.id.deleteworkEvaluatingIndicator:
                                 CommonDialog commonDialog11 = new CommonDialog(getContext());
                                 Map<String, String> map = new HashMap<>();
-                                map.put("userID",mPeopleAuditRecycleViewAdapter.getItem(position).getUserID()+"");
+                                map.put("workuserNo",mPeopleAuditRecycleViewAdapter.getItem(position).getWorkuserNo()+"");
                                 OkHttp.post(getContext(), Constant.get_deleteworkuserevaluatingindicator,map, new OkCallback<Result<String>>() {
                                     @Override
                                     public void onResponse(Result response) {

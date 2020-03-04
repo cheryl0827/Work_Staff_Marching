@@ -16,7 +16,34 @@ public class TaskBean {
     private int organization;
     private int analyse;
     private int law;
-    private int endStatus;
+    private int marchingStatus;
+    private int pingjiaStatus;
+    private int recordStatus;
+
+    public int getMarchingStatus() {
+        return marchingStatus;
+    }
+
+    public void setMarchingStatus(int marchingStatus) {
+        this.marchingStatus = marchingStatus;
+    }
+
+    public int getPingjiaStatus() {
+        return pingjiaStatus;
+    }
+
+    public void setPingjiaStatus(int pingjiaStatus) {
+        this.pingjiaStatus = pingjiaStatus;
+    }
+
+    public int getRecordStatus() {
+        return recordStatus;
+    }
+
+    public void setRecordStatus(int recordStatus) {
+        this.recordStatus = recordStatus;
+    }
+
     public boolean isSelect;
 
 
@@ -140,13 +167,7 @@ public class TaskBean {
         this.law = law;
     }
 
-    public int getEndStatus() {
-        return endStatus;
-    }
 
-    public void setEndStatus(int endStatus) {
-        this.endStatus = endStatus;
-    }
     public boolean isSelect() {
         return isSelect;
     }
