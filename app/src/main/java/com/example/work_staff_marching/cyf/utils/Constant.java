@@ -73,7 +73,7 @@ public class Constant {
     /**
      * 诉求任务状态的修改，审核
      */
-    public static String get_taskaudit = BASE_URL + "/UpdateTaskStatusServlet";
+    public static String get_taskaudit = BASE_URL + "/UpdateAduitTaskStatusServlet";
     /**
      * 诉求任务的查看
      */
@@ -158,5 +158,16 @@ public class Constant {
      * 上访人员信息的查看
      */
     public static String get_userinformationshow= BASE_URL + "/UserInformationShowServlet";
-
+    /**
+     * 工作人员处理的诉求任务数量
+     */
+    public static String get_calculatetasks= BASE_URL + "/CalculateTasksServlet";
+    /**
+     *查询匹配成功的诉求任务
+     */
+    public static String get_marchedshow= BASE_URL + "/MarchedShowServlet";
+    /**
+     *查询管理员的信息
+     */
+    public static String get_adminshow= BASE_URL + "/ShowAdminServlet";
 }

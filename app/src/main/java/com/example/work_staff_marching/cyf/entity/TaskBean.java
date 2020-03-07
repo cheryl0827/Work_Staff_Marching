@@ -19,6 +19,7 @@ public class TaskBean {
     private int marchingStatus;
     private int pingjiaStatus;
     private int recordStatus;
+    public boolean isSelect;
 
     public int getMarchingStatus() {
         return marchingStatus;
@@ -43,9 +44,6 @@ public class TaskBean {
     public void setRecordStatus(int recordStatus) {
         this.recordStatus = recordStatus;
     }
-
-    public boolean isSelect;
-
 
     public int getTaskID() {
         return taskID;
@@ -171,6 +169,7 @@ public class TaskBean {
     public boolean isSelect() {
         return isSelect;
     }
+
     public void setSelect(boolean isSelect) {
         this.isSelect = isSelect;
     }

@@ -39,7 +39,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="7dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/set_button_color1"
+            android:background="@drawable/set_button_color2"
             android:text="未审核"
             android:textSize="16dp"
             android:textColor="@color/black"/>
@@ -63,7 +63,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="7dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/set_button_color3"
+            android:background="@drawable/set_button_color2"
             android:text="审核不通过"
             android:textSize="16dp"
             android:textColor="@color/black"/>

@@ -71,7 +71,7 @@ public class WorkTaskMarchedAdapter extends BaseRecyclerViewAdapter<MarchingBean
 
     @Override
     protected int getItemLayoutId(int viewType) {
-        return R.layout.item_workuser_marchedtask;
+        return R.layout.item_workuser_marched__task;
     }
 
     @Override

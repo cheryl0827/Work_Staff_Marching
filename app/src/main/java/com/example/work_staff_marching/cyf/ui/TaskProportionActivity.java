@@ -181,7 +181,7 @@ public class TaskProportionActivity extends BaseActivity {
                 if(count!=100)
                     Toast.makeText(TaskProportionActivity.this,"输入的总值只能是100，请重新输入",Toast.LENGTH_SHORT).show();
                 else{
-                    OkHttp.post(TaskProportionActivity.this, Constant.get_taskproportion, map, new OkCallback<Result<String>>() {
+                    OkHttp.get(TaskProportionActivity.this, Constant.get_taskproportion, map, new OkCallback<Result<String>>() {
                         @Override
                         public void onResponse(Result<String> response) {
                             commonDialog.isSingle=true;

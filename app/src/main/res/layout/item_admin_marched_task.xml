@@ -5,13 +5,50 @@
     android:orientation="vertical"
     android:layout_height="wrap_content"
     android:background="#fff">
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp">
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="管理员"
+            android:layout_marginLeft="2dp"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:text="13489422282"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+        <TextView
+            android:id="@+id/marchin1g_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginLeft="30dp"
+            android:textSize="14dp"
+            android:text="匹配时间："
+            />
+        <TextView
+            android:id="@+id/marching_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:text="2020-02-03-20-05-38"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="2dp">
         <TextView
             android:id="@+id/task_catagery"
             android:layout_width="wrap_content"
@@ -72,91 +109,51 @@
             android:id="@+id/imageView3"
             android:layout_width="27dp"
             android:layout_height="23dp"
-           android:src="@mipmap/content" />
+            android:src="@mipmap/content" />
 
         <TextView
-        android:id="@+id/task_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            android:id="@+id/task_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        android:text="放寒假的说法的数据粉红色代理费多少积分话都是就分手了开发的算法客户说代ahvsc好几十更深刻二分二佛寺理费"
-        android:textColor="@color/black"
-        android:textSize="16dp"
+            android:text="放寒假的说法的数据粉红色代理费多少积分话都是就分手了开发的算法客户说代ahvsc好几十更深刻二分二佛寺理费"
+            android:textColor="@color/black"
+            android:textSize="16dp"
             android:maxLength="1000"
             android:layout_marginLeft="7dp" />
 
     </LinearLayout>
-
     <LinearLayout
-        android:id="@+id/opetation"
+        android:id="@+id/LinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="40dp"
         android:orientation="horizontal"
-        android:layout_marginTop="3dp">
+        >
 
         <Button
-            android:id="@+id/updateButton"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:text="修改"
-            android:layout_marginLeft="270dp"
-            android:background="@color/mediumpurple"/>
-
-        <Button
-            android:id="@+id/deleteButton"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:text="删除"
-            android:layout_marginLeft="15dp"
-            android:background="@color/lightgreen"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/pingjia"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginTop="3dp">
-        <Button
-            android:id="@+id/marchig"
+            android:id="@+id/machedbutton"
             android:layout_width="60dp"
             android:layout_height="30dp"
             android:text="匹配信息"
-            android:layout_marginLeft="260dp"
-            android:background="@color/lightgreen"/>
-        />
-        <Button
-            android:id="@+id/wanchengbutton"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:text="完成办理"
-            android:layout_marginLeft="15dp"
-            android:background="@drawable/setbutton"/>
-        />
-
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/detailEndLinearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginTop="3dp">
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="170dp"
+            android:background="@color/mediumpurple"/>
         <Button
             android:id="@+id/pingjiabutton"
             android:layout_width="60dp"
             android:layout_height="30dp"
-            android:text="评价"
-            android:layout_marginLeft="300dp"
-            android:background="@drawable/setbutton"/>
-        />
+            android:text="评价信息"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/powderblue"/>
         <Button
-            android:id="@+id/detailEndButton"
+            android:id="@+id/jilubutton"
             android:layout_width="60dp"
+            android:layout_marginLeft="20dp"
             android:layout_height="30dp"
-            android:text="评价详情"
-            android:layout_marginLeft="300dp"
-            android:background="@drawable/setbutton"/>
-        />
-
+            android:text="记录信息"
+            android:layout_marginTop="5dp"
+            android:background="@color/lightgreen"/>
     </LinearLayout>
 
     <View

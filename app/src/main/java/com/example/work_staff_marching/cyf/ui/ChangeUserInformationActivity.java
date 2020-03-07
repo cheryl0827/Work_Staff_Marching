@@ -84,7 +84,7 @@ public class ChangeUserInformationActivity extends BaseActivity {
             Toast.makeText(ChangeUserInformationActivity.this, "您输入的手机号码不正确，请重新输入！", Toast.LENGTH_LONG).show();
         }
         if(phonechangeText.getText().toString().equals("")&&detaiaddress.getText().toString().equals(""))
-            Toast.makeText(ChangeUserInformationActivity.this,"修改的个人信息不能为空",Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChangeUserInformationActivity.this,"修改的个人信息不能为空，请修改手机号码或者所在地区！",Toast.LENGTH_SHORT).show();
         if((isMobileNo(phonechangeText.getText().toString()))&&detaiaddress.getText().toString().equals("")&&!phonechangeText.getText().toString().equals("")) {
             Map<String, String> map1 = new HashMap<>();
             map1.put("userID",SharePrefrenceUtil.getObject(getApplicationContext(), UserBean.class).getUserID() + "");

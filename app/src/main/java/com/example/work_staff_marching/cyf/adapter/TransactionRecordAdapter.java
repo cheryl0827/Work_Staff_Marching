@@ -27,7 +27,6 @@ public class TransactionRecordAdapter extends BaseRecyclerViewAdapter<RecordBean
         recordContent.setText(data.getRecordContent());
         nextVisitTime.setText(data.getNextVisitTime());
         recordTime.setText(data.getRecordTime());
-
     }
 
     @Override

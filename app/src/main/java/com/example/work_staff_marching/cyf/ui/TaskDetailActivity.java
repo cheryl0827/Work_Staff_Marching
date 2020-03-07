@@ -78,7 +78,6 @@ public class TaskDetailActivity extends BaseActivity {
             public void onFailure(String state, String msg) {
             }
         });
-
         Map<String, String> map = new HashMap<>();
         taskID=intent1.getStringExtra("taskID");
         map.put("taskID",taskID );
@@ -117,9 +116,9 @@ public class TaskDetailActivity extends BaseActivity {
                 taskStatus="2";
                 CommonDialog commonDialog = new CommonDialog(this);
                 Map<String, String> map = new HashMap<>();
-                map.put("taskID",taskID );
-                map.put("taskStatus",taskStatus );
-                OkHttp.post(TaskDetailActivity.this, Constant.get_taskaudit, map, new OkCallback<Result<String>>() {
+                map.put("taskID",taskID);
+                map.put("taskStatus",taskStatus);
+                OkHttp.get(TaskDetailActivity.this, Constant.get_taskaudit, map, new OkCallback<Result<String>>() {
                     @Override
                     public void onResponse(Result<String> response) {
                         commonDialog.isSingle=true;

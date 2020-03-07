@@ -2,6 +2,7 @@ package com.example.work_staff_marching.cyf.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -92,13 +93,19 @@ public class TaskAuditFragment extends BaseFragment {
                         Intent intent1 = new Intent();
                         intent1.putExtra("taskID",mTaskAuditRecycleViewAdapter.getItem(position).getTaskID()+"");
                         intent1.putExtra("userID",mTaskAuditRecycleViewAdapter.getItem(position).getUserID()+"");
+                        Log.v("re",mTaskAuditRecycleViewAdapter.getItem(position).getTaskID()+"");
                         if(mTaskAuditRecycleViewAdapter.getItem(position).getTaskStatus()==2){
                             intent1.setClass(getContext(), AuditYesTaskDetailActivity.class);
                             startActivityForResult(intent1,1);
                         }
-                        else{
+                        if(mTaskAuditRecycleViewAdapter.getItem(position).getTaskStatus()==1){
                         intent1.setClass(getContext(), TaskDetailActivity.class);
-                        startActivityForResult(intent1,1);}
+                        startActivityForResult(intent1,1);
+                        }
+                        if(mTaskAuditRecycleViewAdapter.getItem(position).getTaskStatus()==4){
+                            intent1.setClass(getContext(), TaskDetailActivity.class);
+                            startActivityForResult(intent1,1);
+                        }
                         break;
                 }
             }

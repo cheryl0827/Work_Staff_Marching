@@ -67,7 +67,6 @@ public class WorkTaskMarchedFragment extends BaseFragment {
             @Override
             public void onRefresh() {
                 onloadData();
-                //recyclerview1.setAdapter(workTaskMarchedAdapter);
                 swiperereshlayout.setRefreshing(false);
             }
         });

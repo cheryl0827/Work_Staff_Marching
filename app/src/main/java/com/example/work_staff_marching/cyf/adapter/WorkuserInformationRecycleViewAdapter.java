@@ -27,13 +27,11 @@ public class WorkuserInformationRecycleViewAdapter extends BaseRecyclerViewAdapt
     }
     @Override
     protected void convert(RecyclerViewHolder holder, WorkuserEvaluatingIndicatorBean data, int position, int viewType) {
-       // userID=data.getUserID()+"";
         TextView userName,sex,workuserNo,count,community,urgent,psychology,organization,analyse,law;
         userName=(TextView)holder.getView(R.id.userName);
         sex=(TextView)holder.getView(R.id.sex);
         workuserNo=(TextView)holder.getView(R.id.workuserNo);
         count=(TextView)holder.getView(R.id.count);
-
         community=(TextView)holder.getView(R.id.community);
         urgent=(TextView)holder.getView(R.id.urgent);
         psychology=(TextView)holder.getView(R.id.psychology);
@@ -60,6 +58,16 @@ public class WorkuserInformationRecycleViewAdapter extends BaseRecyclerViewAdapt
             public void onFailure(String state, String msg) {
             }
         });
+        OkHttp.get(mContext, Constant.get_calculatetasks, map, new OkCallback<Result<String>>() {
+            @Override
+            public void onResponse(Result<String> response) {
+              count.setText(response.getData()+"件");
+            }
+            @Override
+            public void onFailure(String state, String msg) {
+            }
+        });
+
 
 
     }

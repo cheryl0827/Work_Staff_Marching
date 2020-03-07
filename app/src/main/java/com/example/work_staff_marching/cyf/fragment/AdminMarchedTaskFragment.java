@@ -11,19 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.work_staff_marching.R;
+import com.example.work_staff_marching.cyf.adapter.AdminMarchedTaskAdapter;
 import com.example.work_staff_marching.cyf.adapter.BaseRecyclerViewAdapter;
-import com.example.work_staff_marching.cyf.adapter.WorkTaskHandledAdapter;
 import com.example.work_staff_marching.cyf.adapter.WorkTaskMarchedAdapter;
 import com.example.work_staff_marching.cyf.entity.MarchingBean;
+import com.example.work_staff_marching.cyf.entity.RecordBean;
 import com.example.work_staff_marching.cyf.entity.UserBean;
 import com.example.work_staff_marching.cyf.entity.WorkuserEvaluatingIndicatorBean;
 import com.example.work_staff_marching.cyf.inteface.OnItemChildClickListener;
+import com.example.work_staff_marching.cyf.ui.ChooseActivity;
 import com.example.work_staff_marching.cyf.ui.EstimateActivity;
-import com.example.work_staff_marching.cyf.ui.MarchedTaskDetailActivity;
-import com.example.work_staff_marching.cyf.ui.TaskHandledDetailActivity;
-import com.example.work_staff_marching.cyf.ui.TransactionRecordActivity;
 import com.example.work_staff_marching.cyf.ui.TransactionRecordShowActivity;
-import com.example.work_staff_marching.cyf.ui.WorkuserUpdateEvaluatingIndicatorActivity;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
 import com.example.work_staff_marching.cyf.utils.Constant;
 import com.example.work_staff_marching.cyf.utils.CustomToast;
@@ -39,64 +37,56 @@ import java.util.Map;
 
 import butterknife.BindView;
 
-public class WorkTaskHandledFragment extends BaseFragment {
+public class AdminMarchedTaskFragment extends BaseFragment {
     @BindView(R.id.recyclerview1)
     RecyclerView recyclerview1;
     @BindView(R.id.swiperereshlayout)
     SwipeRefreshLayout swiperereshlayout;
-
     private List<MarchingBean> mMarchingBean = new ArrayList<>();
-    private WorkTaskHandledAdapter workTaskHandledAdapter = null;
+    private AdminMarchedTaskAdapter adminMarchedTaskAdapter = null;
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_worktask_handled;
+        return R.layout.activity_admin_marched_task;
     }
 
     @Override
     protected void initView(View view) {
-        workTaskHandledAdapter = new WorkTaskHandledAdapter(getContext());
-        recyclerview1.setAdapter(workTaskHandledAdapter);
+        adminMarchedTaskAdapter = new AdminMarchedTaskAdapter(getContext());
+        recyclerview1.setAdapter(adminMarchedTaskAdapter);
         recyclerview1.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         recyclerview1.setItemAnimator(new DefaultItemAnimator());
         swiperereshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 onloadData();
-                //recyclerview1.setAdapter(workTaskMarchedAdapter);
                 swiperereshlayout.setRefreshing(false);
             }
         });
-        workTaskHandledAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+        adminMarchedTaskAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
 
             @Override
             public void onItemChildClick(BaseRecyclerViewAdapter adapter, View view, int position) {
                 switch (view.getId()) {
-                    case R.id.detail:
+                    case R.id.machedbutton:
                         Intent intent1 = new Intent();
-                        intent1.putExtra("taskID", workTaskHandledAdapter.getItem(position).getTaskID()+"");
-                        intent1.setClass(getContext(), TaskHandledDetailActivity.class);
+                        intent1.putExtra("taskID", adminMarchedTaskAdapter.getItem(position).getTaskID()+"");
+                        intent1.putExtra("workuserNo", adminMarchedTaskAdapter.getItem(position).getWorkuserNo()+"");
+                        intent1.setClass(getContext(), ChooseActivity.class);
                         startActivity(intent1);
-
-                        break;
-                    case R.id.banlibutton:
-                        Intent intent = new Intent();
-                        intent.putExtra("taskID", workTaskHandledAdapter.getItem(position).getTaskID() + "");
-                        intent.setClass(getContext(), TransactionRecordShowActivity.class);
-                        startActivity(intent);
                         break;
                     case R.id.pingjiabutton:
                         Map<String, String> map1 = new HashMap<>();
-                        map1.put("taskID",workTaskHandledAdapter.getItem(position).getTaskID()+"");
+                        map1.put("taskID",adminMarchedTaskAdapter.getItem(position).getTaskID()+"");
                         OkHttp.post(getContext(), Constant.get_estimateshow,map1,new OkCallback<Result<WorkuserEvaluatingIndicatorBean>>() {
                             @Override
                             public void onResponse(Result response) {
                                 if(response.getData()!=null){
                                     Intent intent = new Intent();
-                                    intent.putExtra("taskID", workTaskHandledAdapter.getItem(position).getTaskID() + "");
+                                    intent.putExtra("taskID", adminMarchedTaskAdapter.getItem(position).getTaskID() + "");
                                     intent.setClass(getContext(), EstimateActivity.class);
                                     startActivity(intent);
-                                  }
+                                }
                                 if(response.getData()==null)
                                     Toast.makeText(getContext(), "该诉求任务未进行评价，请等待普通用户进行评价！", Toast.LENGTH_SHORT).show();
                             }
@@ -105,12 +95,16 @@ public class WorkTaskHandledFragment extends BaseFragment {
                             }
                         });
                         break;
-
+                    case R.id.jilubutton:
+                        Intent intent2 = new Intent();
+                        intent2.putExtra("taskID", adminMarchedTaskAdapter.getItem(position).getTaskID()+"");
+                        intent2.setClass(getContext(), TransactionRecordShowActivity.class);
+                        startActivity(intent2);
+                        break;
                 }
-            }
-        });
+                }
+                });
         onloadData();
-
     }
 
     @Override
@@ -118,14 +112,12 @@ public class WorkTaskHandledFragment extends BaseFragment {
 
     }
     public void onloadData() {
-        Map<String, String> map = new HashMap<>();
-        map.put("workuserNo", SharePrefrenceUtil.getObject(getContext(), UserBean.class).getWorkuserNo() + "");
-        OkHttp.get(getContext(), Constant.get_showmarching, map,
+        OkHttp.get(getContext(), Constant.get_marchedshow, null,
                 new OkCallback<Result<List<MarchingBean>>>() {
                     @Override
                     public void onResponse(Result<List<MarchingBean>> response) {
-                        workTaskHandledAdapter.setNewData(response.getData());
-                }
+                        adminMarchedTaskAdapter.setNewData(response.getData());
+                    }
                     @Override
                     public void onFailure(String state, String msg) {
                         CustomToast.showToast(getContext(), msg);

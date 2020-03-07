@@ -71,9 +71,18 @@
             android:layout_width="60dp"
             android:layout_height="30dp"
             android:text="办理记录"
-            android:layout_marginLeft="200dp"
+            android:layout_marginLeft="150dp"
             android:background="@drawable/setbutton"/>
         />
+        <Button
+            android:id="@+id/pingjiabutton"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:text="评价信息"
+            android:layout_marginLeft="15dp"
+            android:background="@color/wheat"/>
+        />
+
 
         <Button
         android:id="@+id/detail"

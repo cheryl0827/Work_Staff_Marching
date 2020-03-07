@@ -63,8 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="7dp"
-                    android:ellipsize="end"
-                    android:singleLine="true"
+                    android:maxLength="1000"
                     android:text="放寒假的说法的数据粉红色代理费多少积分话都是就分手了开发的算法客户说代理费"
                     android:textColor="@color/black"
                     android:textSize="16dp" />

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,9 +20,11 @@ import com.example.work_staff_marching.cyf.entity.UserBean;
 import com.example.work_staff_marching.cyf.inteface.OnItemChildClickListener;
 import com.example.work_staff_marching.cyf.ui.ChangeOnlinePetitionActivity;
 import com.example.work_staff_marching.cyf.ui.EstimateActivity;
+import com.example.work_staff_marching.cyf.ui.TaskDetailActivity;
 import com.example.work_staff_marching.cyf.ui.TaskEstimateActivity;
 import com.example.work_staff_marching.cyf.ui.WorkUserDetailActivity;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
+import com.example.work_staff_marching.cyf.utils.CommonDialog;
 import com.example.work_staff_marching.cyf.utils.Constant;
 import com.example.work_staff_marching.cyf.utils.CustomToast;
 import com.example.work_staff_marching.cyf.utils.OkCallback;
@@ -68,6 +71,7 @@ public class TaskFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
+        setEnable(go);
         mRecyclerViewFragmentAdapter = new TaskRecycleViewAdapter(getContext());
         mRecyclerview1.setAdapter(mRecyclerViewFragmentAdapter);
         mRecyclerview1.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
@@ -82,6 +86,7 @@ public class TaskFragment extends BaseFragment {
         mRecyclerViewFragmentAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseRecyclerViewAdapter adapter, View view, int position) {
+                CommonDialog commonDialog = new CommonDialog(getContext());
                 switch (view.getId()) {
                     case R.id.updateButton:
                         Intent intent = new Intent();
@@ -110,7 +115,33 @@ public class TaskFragment extends BaseFragment {
                         intent3.putExtra("taskWorknumber", mRecyclerViewFragmentAdapter.getItem(position).getTaskWorknumber());
                         intent3.setClass(getContext(), WorkUserDetailActivity.class);
                         startActivity(intent3);
+                        break;
+                    case R.id.wanchengbutton:
+                        taskStatus="3";
+                        Map<String, String> map1 = new HashMap<>();
+                        map1.put("taskID",mRecyclerViewFragmentAdapter.getItem(position).getTaskID() + "" );
+                        map1.put("taskStatus",taskStatus );
+                        OkHttp.post(getContext(), Constant.get_taskaudit, map1, new OkCallback<Result<String>>() {
+                            @Override
+                            public void onResponse(Result<String> response) {
+                                commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("完成办理成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                                    @Override
+                                    public void onPositiveClick() {
+                                        commonDialog.dismiss();
+                                        loadData();
+                                    }
 
+                                    @Override
+                                    public void onNegtiveClick() {
+                                        commonDialog.dismiss();
+                                    }
+                                }).show();
+                            }
+                            @Override
+                            public void onFailure(String state, String msg) {
+                                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         break;
                 }
             }

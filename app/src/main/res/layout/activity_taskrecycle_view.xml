@@ -38,7 +38,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/set_button_color1"
+            android:background="@drawable/set_button_color4"
             android:text="未审核"
             android:textColor="@color/black"
             android:textSize="16dp"/>
@@ -50,7 +50,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/set_button_color2"
+            android:background="@drawable/set_button_color4"
             android:text="未匹配"
             android:textSize="16dp"
             android:textColor="@color/black"/>
@@ -62,7 +62,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/set_button_color5"
+            android:background="@drawable/set_button_color4"
             android:text="匹配成功"
             android:textColor="@color/black"
             android:textSize="16dp"/>
@@ -75,8 +75,8 @@
             android:layout_marginLeft="12dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/set_button_color33"
-            android:text="办理结束"
+            android:background="@drawable/set_button_color4"
+            android:text="已完成"
             android:textSize="16dp"
             android:textColor="@color/black"/>
 

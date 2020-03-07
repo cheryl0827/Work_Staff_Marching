@@ -75,6 +75,7 @@ public class PersonAuditFragment extends BaseFragment {
         spinnerAdapter.setDropDownViewResource(R.layout.item_drop);
         spinner.setAdapter(spinnerAdapter);
 
+        setEnable(go);
         mPeopleAuditRecycleViewAdapter = new PeopleAuditRecycleViewAdapter(getContext());
         recyclerview1.setAdapter(mPeopleAuditRecycleViewAdapter);
         recyclerview1.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));

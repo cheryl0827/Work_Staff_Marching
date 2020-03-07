@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.RadioGroup;
 
 import com.example.work_staff_marching.R;
+import com.example.work_staff_marching.cyf.fragment.AdminMarchedTaskFragment;
 import com.example.work_staff_marching.cyf.fragment.MessageFragment;
 import com.example.work_staff_marching.cyf.fragment.PersonAuditFragment;
 import com.example.work_staff_marching.cyf.fragment.TaskAuditFragment;
@@ -74,14 +75,15 @@ public class AdminIndexActivity extends AppCompatActivity {
 
     private void initData() {
         /*3、数据的准备*/
+        /*3、数据的准备*/
         PersonAuditFragment personAuditFragment = new PersonAuditFragment();
         fragmentList.add(personAuditFragment);
         TaskAuditFragment taskAuditFragment = new TaskAuditFragment();
         fragmentList.add(taskAuditFragment);
         TaskMarching taskMarching=new TaskMarching();
         fragmentList.add(taskMarching);
-        UserMeFragment userMeFragment = new UserMeFragment();
-        fragmentList.add(userMeFragment);
+        AdminMarchedTaskFragment adminMarchedTaskFragment = new AdminMarchedTaskFragment();
+        fragmentList.add(adminMarchedTaskFragment);
 //        //默认显示第1个也就是fragmentList.get(0)
         setCurrentFragment(0);
 
