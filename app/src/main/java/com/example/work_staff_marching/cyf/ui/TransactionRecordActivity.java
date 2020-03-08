@@ -142,6 +142,8 @@ public class TransactionRecordActivity extends BaseActivity {
                                     etWord.setText("");
                                     commonDialog.dismiss();
                                     loadData();
+
+
                                 }
 
                                 @Override
