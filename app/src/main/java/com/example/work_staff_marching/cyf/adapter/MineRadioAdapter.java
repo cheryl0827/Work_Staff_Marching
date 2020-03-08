@@ -10,17 +10,23 @@ import android.widget.TextView;
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.entity.TaskBean;
 import com.example.work_staff_marching.cyf.utils.RecyclerViewHolder;
+import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MineRadioAdapter extends  BaseRecyclerViewAdapter<TaskBean, RecyclerViewHolder>{
-    private static final int MYLIVE_MODE_CHECK = 0;
-    int mEditMode = MYLIVE_MODE_CHECK;
     private Context mContext;
-    private int secret = 0;
     private List<TaskBean> mTaskBean= new ArrayList<>();
-   // private OnItemClickListener mOnItemClickListener;
+    private boolean select;
+
+    public boolean isSelect() {
+        return select;
+    }
+
+    public void setSelect(boolean select) {
+        this.select = select;
+    }
 
     public MineRadioAdapter(Context context) {
         super(context);
@@ -28,66 +34,30 @@ public class MineRadioAdapter extends  BaseRecyclerViewAdapter<TaskBean, Recycle
     }
     @Override
     protected void convert(RecyclerViewHolder holder, TaskBean data, int position, int viewType) {
-        TextView task_catagery,task_time,task_content;
-        ImageView mCheckBox;
+        TextView task_catagery,task_time,task_content,address,detailaddress;
         RelativeLayout mRootView;
+        QMUIRoundButton ivIsSelect = (QMUIRoundButton) holder.getView(R.id.iv_is_select);
         task_catagery=(TextView)holder.getView(R.id.task_catagery);
         task_time=(TextView)holder.getView(R.id.task_time);
+        address=(TextView)holder.getView(R.id.address);
+        detailaddress=(TextView)holder.getView(R.id.detailaddress);
         task_content=(TextView)holder.getView(R.id.task_content);
         task_catagery.setText(data.getTaskCatagery());
         task_content.setText(data.getTaskContent());
         task_time.setText(data.getTaskTime());
-        mCheckBox=(ImageView)holder.getView(R.id.check_box);
-     /*
-        if (mEditMode == MYLIVE_MODE_CHECK) {
-          mCheckBox.setVisibility(View.GONE);
-         }
-        else {
-            mCheckBox.setVisibility(View.VISIBLE);
-            if (data.isSelect()) {
-                mCheckBox.setImageResource(R.mipmap.ic_checked);
-              } else {
-                mCheckBox.setImageResource(R.mipmap.ic_uncheck);
-    }
-}
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mOnItemClickListener.onItemClickListener(holder.getAdapterPosition(), mTaskBean);
-            }
-        });
-    }
-    @Override
-    public int getItemCount() {
-        return mTaskBean.size();
-    }
-//    public void notifyAdapter(List<TaskBean> mTaskBean, boolean isAdd) {
-//        if (!isAdd) {
-//            this.mTaskBean = mTaskBean;
-//        } else {
-//            this.mTaskBean.addAll(mTaskBean);
-//        }
-//        notifyDataSetChanged();
-//    }
-
-    public List<TaskBean> getMyLiveList() {
-        if (mTaskBean == null) {
-            mTaskBean = new ArrayList<>();
+        detailaddress.setText(data.getTaskDetaiAdress());
+        address.setText(data.getTaskAdress());
+        if (isSelect()) {//判断复选框的出现
+            ivIsSelect.setVisibility(View.VISIBLE);
+        } else {
+            ivIsSelect.setVisibility(View.GONE);
         }
-        return mTaskBean;
-    }
+        if (data.isSelect()) {//判断数据是否选择
+            ivIsSelect.setBackgroundColor(mContext.getResources().getColor(R.color.firebrick));
+        } else {
+            ivIsSelect.setBackgroundColor(mContext.getResources().getColor(R.color.gray));
+        }
 
-
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.mOnItemClickListener = onItemClickListener;
-    }
-    public interface OnItemClickListener {
-        void onItemClickListener(int pos,List<TaskBean> myLiveList);
-    }
-    public void setEditMode(int editMode) {
-        mEditMode = editMode;
-        notifyDataSetChanged();
-        */
     }
 
     @Override

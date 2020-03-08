@@ -196,7 +196,7 @@ public class WorkuserUpdateEvaluatingIndicatorActivity extends BaseActivity {
                 map.put("workuserNo",intent1.getStringExtra("workuserNo"));
                 if(count!=100)
                     Toast.makeText(WorkuserUpdateEvaluatingIndicatorActivity.this,"输入的总值只能是100，请重新输入",Toast.LENGTH_SHORT).show();
-                else {
+                else  {
                     OkHttp.post(WorkuserUpdateEvaluatingIndicatorActivity.this, Constant.get_updateworkuserevaluatingindicator, map, new OkCallback<Result<String>>() {
                         @Override
                         public void onResponse(Result<String> response) {

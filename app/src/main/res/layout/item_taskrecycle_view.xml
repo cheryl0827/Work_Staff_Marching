@@ -141,19 +141,19 @@
         android:orientation="horizontal"
         android:layout_marginTop="3dp">
         <Button
-            android:id="@+id/pingjiabutton"
+            android:id="@+id/marched"
             android:layout_width="60dp"
             android:layout_height="30dp"
-            android:text="评价"
-            android:layout_marginLeft="300dp"
-            android:background="@drawable/setbutton"/>
+            android:text="匹配信息"
+            android:layout_marginLeft="260dp"
+            android:background="@color/lightgreen"/>
         />
         <Button
             android:id="@+id/detailEndButton"
             android:layout_width="60dp"
             android:layout_height="30dp"
             android:text="评价详情"
-            android:layout_marginLeft="300dp"
+            android:layout_marginLeft="15dp"
             android:background="@drawable/setbutton"/>
         />
 

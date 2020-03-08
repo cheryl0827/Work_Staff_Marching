@@ -170,4 +170,12 @@ public class Constant {
      *查询管理员的信息
      */
     public static String get_adminshow= BASE_URL + "/ShowAdminServlet";
+    /**
+     *查询匹配信息的上访人信息
+     */
+    public static String ShowMarchedUserInformationServlet= BASE_URL + "/ShowMarchedUserInformationServlet";
+    /**
+     *匹配诉求任务和工作人员
+     */
+    public static String CalculatePorprotionServlet= BASE_URL + "/CalculatePorprotionServlet";
 }

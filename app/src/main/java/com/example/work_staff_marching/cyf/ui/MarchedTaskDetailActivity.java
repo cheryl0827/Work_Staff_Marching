@@ -63,7 +63,7 @@ public class MarchedTaskDetailActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle saveInstanceState) {
-        setTitle("诉求任务详情");
+        setTitle("诉求任务匹配详情");
         Intent intent1 = getIntent();
         peopleInformation.setVisibility(View.GONE);
         Map<String, String> map = new HashMap<>();
@@ -106,7 +106,7 @@ public class MarchedTaskDetailActivity extends BaseActivity {
                     public void onResponse(Result<UserBean> response) {
                         username.setText(response.getData().getUserName());
                         sex.setText(response.getData().getSex());
-                        phone.setText(response.getData().getProvince());
+                        phone.setText(response.getData().getPhone());
                         useraddress.setText(response.getData().getProvince()+"-"+response.getData().getCity()+"-"+response.getData().getCountry());
                         useraddressdetail.setText(response.getData().getAddress());
                         phone1=response.getData().getPhone();

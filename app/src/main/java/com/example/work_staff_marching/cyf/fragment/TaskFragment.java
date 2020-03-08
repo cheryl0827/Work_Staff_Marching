@@ -98,11 +98,11 @@ public class TaskFragment extends BaseFragment {
                         intent.setClass(getContext(), ChangeOnlinePetitionActivity.class);
                         startActivityForResult(intent, 1);
                         break;
-                    case R.id.pingjiabutton:
-                        Intent intent1 = new Intent();
-                        intent1.putExtra("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID() + "");
-                        intent1.setClass(getContext(), TaskEstimateActivity.class);
-                        startActivityForResult(intent1, 1);
+                    case R.id.marched:
+                        Intent intent33 = new Intent();
+                        intent33.putExtra("taskWorknumber", mRecyclerViewFragmentAdapter.getItem(position).getTaskWorknumber());
+                        intent33.setClass(getContext(), WorkUserDetailActivity.class);
+                        startActivity(intent33);
                         break;
                     case R.id.detailEndButton:
                         Intent intent2 = new Intent();
@@ -124,11 +124,16 @@ public class TaskFragment extends BaseFragment {
                         OkHttp.post(getContext(), Constant.get_taskaudit, map1, new OkCallback<Result<String>>() {
                             @Override
                             public void onResponse(Result<String> response) {
-                                commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("完成办理成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                                commonDialog.isSingle=true;
+                                commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("完成办理成功,请完成对该诉求任务的评价！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                                     @Override
                                     public void onPositiveClick() {
                                         commonDialog.dismiss();
-                                        loadData();
+                                        Intent intent1 = new Intent();
+                                        intent1.putExtra("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID() + "");
+                                        intent1.setClass(getContext(), TaskEstimateActivity.class);
+                                        startActivityForResult(intent1, 2);
+                                       // finish();
                                     }
 
                                     @Override
@@ -220,6 +225,12 @@ public class TaskFragment extends BaseFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
+                loadData();
+            }
+            if(requestCode==2){
+                taskStatus="2";
+                pingjiaStatus="1";
+                marchingStatus="2";
                 loadData();
             }
         }

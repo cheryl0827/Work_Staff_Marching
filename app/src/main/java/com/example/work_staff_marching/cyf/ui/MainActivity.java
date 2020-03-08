@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 map.put("phone",pphone);
                 map.put("password",ppassword);
                 map.put("usertype",usertype);
-                OkHttp.post(MainActivity.this, Constant.get_userlogin, map, new OkCallback<Result<UserBean>>() {
+                OkHttp.get(MainActivity.this, Constant.get_userlogin, map, new OkCallback<Result<UserBean>>() {
                     @Override
                     public void onResponse(Result response){
                        SharePrefrenceUtil.saveObject(MainActivity.this,response.getData());

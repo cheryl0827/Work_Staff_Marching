@@ -21,6 +21,7 @@ import com.example.work_staff_marching.cyf.entity.WorkuserEvaluatingIndicatorBea
 import com.example.work_staff_marching.cyf.inteface.OnItemChildClickListener;
 import com.example.work_staff_marching.cyf.ui.ChooseActivity;
 import com.example.work_staff_marching.cyf.ui.EstimateActivity;
+import com.example.work_staff_marching.cyf.ui.MarchedDetailActivity;
 import com.example.work_staff_marching.cyf.ui.TransactionRecordShowActivity;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
 import com.example.work_staff_marching.cyf.utils.Constant;
@@ -72,13 +73,13 @@ public class AdminMarchedTaskFragment extends BaseFragment {
                         Intent intent1 = new Intent();
                         intent1.putExtra("taskID", adminMarchedTaskAdapter.getItem(position).getTaskID()+"");
                         intent1.putExtra("workuserNo", adminMarchedTaskAdapter.getItem(position).getWorkuserNo()+"");
-                        intent1.setClass(getContext(), ChooseActivity.class);
+                        intent1.setClass(getContext(), MarchedDetailActivity.class);
                         startActivity(intent1);
                         break;
                     case R.id.pingjiabutton:
                         Map<String, String> map1 = new HashMap<>();
                         map1.put("taskID",adminMarchedTaskAdapter.getItem(position).getTaskID()+"");
-                        OkHttp.post(getContext(), Constant.get_estimateshow,map1,new OkCallback<Result<WorkuserEvaluatingIndicatorBean>>() {
+                        OkHttp.get(getContext(), Constant.get_estimateshow,map1,new OkCallback<Result<WorkuserEvaluatingIndicatorBean>>() {
                             @Override
                             public void onResponse(Result response) {
                                 if(response.getData()!=null){

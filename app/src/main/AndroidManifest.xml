@@ -74,6 +74,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".cyf.ui.ChooseActivity" />
+        <activity android:name=".cyf.ui.MarchedDetailActivity" />
     </application>
 
 </manifest>

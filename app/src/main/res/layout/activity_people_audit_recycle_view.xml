@@ -10,19 +10,30 @@
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:orientation="horizontal"
-        android:gravity="center"
         android:background="@color/powderblue"
         >
 
         <TextView
             android:id="@+id/textView71"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
             android:layout_gravity="center"
             android:text="审核人员信息"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="1dp"
             android:textSize="28dp"
             android:textStyle="italic"/>
+
+        <TextView
+            android:id="@+id/exit"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"
+            android:textSize="18dp"
+            android:layout_marginTop="20dp"
+            android:text="退出系统" />
+
 
     </LinearLayout>
 
