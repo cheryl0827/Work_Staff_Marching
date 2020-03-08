@@ -130,6 +130,7 @@ public class TransactionRecordActivity extends BaseActivity {
                     OkHttp.post(TransactionRecordActivity.this, Constant.get_addrecord, map, new OkCallback<Result<String>>() {
                         @Override
                         public void onResponse(Result<String> response) {
+
                             commonDialog.isSingle = true;
                             commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("办理记录成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                                 @Override
