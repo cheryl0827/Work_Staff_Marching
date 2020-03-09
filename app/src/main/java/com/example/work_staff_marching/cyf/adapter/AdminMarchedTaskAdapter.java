@@ -18,7 +18,7 @@ import com.example.work_staff_marching.cyf.utils.Result;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AdminMarchedTaskAdapter extends  BaseRecyclerViewAdapter<MarchingBean, RecyclerViewHolder> {
+public class AdminMarchedTaskAdapter extends  BaseRecyclerViewAdapter<TaskBean, RecyclerViewHolder> {
     private Context mContext;
     private TaskBean taskBean;
     private UserBean userBean;
@@ -28,61 +28,25 @@ public class AdminMarchedTaskAdapter extends  BaseRecyclerViewAdapter<MarchingBe
     }
 
     @Override
-    protected void convert(RecyclerViewHolder holder, MarchingBean data, int position, int viewType) {
-        TextView task_catagery,task_content,task_time,address,detailaddress,username,phone,marching_time;
+    protected void convert(RecyclerViewHolder holder, TaskBean data, int position, int viewType) {
+        TextView task_catagery,task_content,task_time,address,detailaddress;
         Button machedbutton,pingjiabutton,jilubutton;
         task_catagery=(TextView)holder.getView(R.id.task_catagery);
         task_content=(TextView)holder.getView(R.id.task_content);
         task_time=(TextView)holder.getView(R.id.task_time);
         detailaddress=(TextView)holder.getView(R.id.detailaddress);
         address=(TextView)holder.getView(R.id.address);
-        username=(TextView)holder.getView(R.id.username);
-        phone=(TextView)holder.getView(R.id.phone);
-        marching_time=(TextView)holder.getView(R.id.marching_time);
-
         machedbutton=(Button) holder.getView(R.id.machedbutton);
         pingjiabutton=(Button) holder.getView(R.id.pingjiabutton);
         jilubutton=(Button) holder.getView(R.id.jilubutton);
         holder.addOnClickListener(R.id.machedbutton);
         holder.addOnClickListener(R.id.pingjiabutton);
         holder.addOnClickListener(R.id.jilubutton);
-
-        marching_time.setText(data.getMarchingTime());
-        Map<String, String> map = new HashMap<>();
-        map.put("taskID",data.getTaskID()+"");
-        OkHttp.get(mContext, Constant.get_showtask, map, new OkCallback<Result<TaskBean>>() {
-            @Override
-            public void onResponse(Result<TaskBean> response) {
-                taskBean=response.getData();
-                if(taskBean!=null){
-                    task_catagery.setText(taskBean.getTaskCatagery());
-                    task_content.setText(taskBean.getTaskContent());
-                    task_time.setText(taskBean.getTaskTime());
-                    address.setText(taskBean.getTaskAdress());
-                    detailaddress.setText(taskBean.getTaskDetaiAdress());
-                }
-            }
-            @Override
-            public void onFailure(String state, String msg) {
-
-            }
-        });
-        Map<String, String> map1 = new HashMap<>();
-        map1.put("adminID",data.getAdminID()+"");
-        OkHttp.get(mContext, Constant.get_adminshow, map1, new OkCallback<Result<UserBean>>() {
-            @Override
-            public void onResponse(Result<UserBean> response) {
-                userBean=response.getData();
-                if(userBean!=null){
-                   username.setText(userBean.getUserName());
-                   phone.setText(userBean.getPhone());
-                }
-            }
-            @Override
-            public void onFailure(String state, String msg) {
-
-            }
-        });
+                    task_catagery.setText(data.getTaskCatagery());
+                    task_content.setText(data.getTaskContent());
+                    task_time.setText(data.getTaskTime());
+                    address.setText(data.getTaskAdress());
+                    detailaddress.setText(data.getTaskDetaiAdress());
     }
 
     @Override
@@ -91,7 +55,7 @@ public class AdminMarchedTaskAdapter extends  BaseRecyclerViewAdapter<MarchingBe
     }
 
     @Override
-    protected int getViewType(int position, MarchingBean data) {
+    protected int getViewType(int position, TaskBean data) {
         return 0;
     }
 }

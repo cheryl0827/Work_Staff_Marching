@@ -124,6 +124,8 @@ public class TransactionRecordActivity extends BaseActivity {
                 map.put("nextVisitTime",date.getText().toString());
                 map.put("recordContent",etWord.getText().toString());
                 map.put("recordTime",time);
+                map.put("workuserNo",SharePrefrenceUtil.getObject(getApplicationContext(), UserBean.class).getWorkuserNo() + "");
+                map.put("userName",SharePrefrenceUtil.getObject(getApplicationContext(), UserBean.class).getUserName());
                 if(etWord.getText().toString().equals(""))
                     Toast.makeText(TransactionRecordActivity.this,"记录信息不能为空，请输入记录信息！" ,Toast.LENGTH_SHORT).show();
                 else {

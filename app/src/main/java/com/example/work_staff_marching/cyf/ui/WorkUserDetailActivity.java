@@ -3,20 +3,28 @@ package com.example.work_staff_marching.cyf.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Switch;
-import android.widget.TextView;
+
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.work_staff_marching.R;
-import com.example.work_staff_marching.cyf.entity.EstimateBean;
+import com.example.work_staff_marching.cyf.adapter.BaseRecyclerViewAdapter;
+import com.example.work_staff_marching.cyf.adapter.TaskRecycleViewAdapter;
+import com.example.work_staff_marching.cyf.adapter.TaskWorkUserInformationAdapter;
+import com.example.work_staff_marching.cyf.entity.TaskBean;
 import com.example.work_staff_marching.cyf.entity.UserBean;
+import com.example.work_staff_marching.cyf.inteface.OnItemChildClickListener;
 import com.example.work_staff_marching.cyf.utils.BaseActivity;
 import com.example.work_staff_marching.cyf.utils.Constant;
 import com.example.work_staff_marching.cyf.utils.OkCallback;
 import com.example.work_staff_marching.cyf.utils.OkHttp;
 import com.example.work_staff_marching.cyf.utils.Result;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -24,57 +32,66 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class WorkUserDetailActivity extends BaseActivity {
-
-
-    @BindView(R.id.username)
-    TextView username;
-    @BindView(R.id.sex)
-    TextView sex;
-    @BindView(R.id.phone)
-    TextView phone;
-    @BindView(R.id.useraddress)
-    TextView useraddress;
-
-    @BindView(R.id.dailphone)
-    Button dailphone;
-    String phone1;
+    @BindView(R.id.recyclerview1)
+    RecyclerView mRecyclerview1;
+    @BindView(R.id.swiperereshlayout)
+    SwipeRefreshLayout swiperereshlayout;
+    private List<UserBean> mTaskBeans = new ArrayList<>();
+    private TaskWorkUserInformationAdapter taskWorkUserInformationAdapter=null;
+    String taskID;
 
     @Override
     protected int getContentView() {
-        return R.layout.activity_work_user_detail;
+        return R.layout.activity_task_workuser_information;
     }
 
     @Override
     protected void init(Bundle saveInstanceState) {
-        setTitle("匹配工作人员的基本信息");
         Intent intent1 = getIntent();
-        Map<String, String> map = new HashMap<>();
-        map.put("workuserNo", intent1.getStringExtra("taskWorknumber"));
-        OkHttp.get(WorkUserDetailActivity.this, Constant.get_workuserinformationshow, map, new OkCallback<Result<UserBean>>() {
+        taskID=intent1.getStringExtra("taskID");
+        setTitle("匹配工作人员的基本信息");
+        taskWorkUserInformationAdapter = new TaskWorkUserInformationAdapter(WorkUserDetailActivity.this);
+        mRecyclerview1.setAdapter(taskWorkUserInformationAdapter);
+        mRecyclerview1.setLayoutManager(new LinearLayoutManager(WorkUserDetailActivity.this, RecyclerView.VERTICAL, false));
+        mRecyclerview1.setItemAnimator(new DefaultItemAnimator());
+        onlodata();
+        swiperereshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onResponse(Result<UserBean> response) {
-                username.setText(response.getData().getUserName());
-                sex.setText(response.getData().getSex());
-                phone.setText(response.getData().getPhone());
-                useraddress.setText(response.getData().getWorkuserNo());
-
-                phone1=response.getData().getPhone();
+            public void onRefresh() {
+                onlodata();
+                swiperereshlayout.setRefreshing(false);
             }
+        });
 
+        taskWorkUserInformationAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseRecyclerViewAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.dailphone:
+                        Intent intent1 = new Intent();
+                        intent1.putExtra("phone", taskWorkUserInformationAdapter.getItem(position).getPhone());
+                        intent1.setClass(WorkUserDetailActivity.this, PhoneCallActivity.class);
+                        startActivity(intent1);
+                        break;
+                }
+            }
+        });
+
+
+    }
+
+    public void onlodata() {
+        Map<String, String> map = new HashMap<>();
+        map.put("taskID",taskID);
+        OkHttp.get(WorkUserDetailActivity.this, Constant.ShowTaskWorkUserServlet, map, new OkCallback<Result<List<UserBean>>>() {
+            @Override
+            public void onResponse(Result<List<UserBean>> response) {
+                taskWorkUserInformationAdapter.setNewData(response.getData());
+            }
             @Override
             public void onFailure(String state, String msg) {
             }
         });
     }
-    @OnClick(R.id.dailphone)
-    public void onViewClicked(View view) {
-        switch(view.getId()) {
-            case R.id.dailphone:
-            Intent intent1 = new Intent();
-            intent1.putExtra("phone", phone1);
-            intent1.setClass(WorkUserDetailActivity.this, PhoneCallActivity.class);
-            startActivity(intent1);
-            break;
-        }
-    }
+
 }

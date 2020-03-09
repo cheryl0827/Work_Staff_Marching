@@ -97,24 +97,12 @@ public class MarchedDetailActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.button:
-                peopleInformation.setVisibility(View.VISIBLE);
-            Map<String, String> map = new HashMap<>();
-            Intent intent1 = getIntent();
-            map.put("workuserNo", intent1.getStringExtra("workuserNo"));
-            OkHttp.get(MarchedDetailActivity.this, Constant.get_workuserinformationshow, map, new OkCallback<Result<UserBean>>() {
-                @Override
-                public void onResponse(Result<UserBean> response) {
-                    workusername.setText(response.getData().getUserName());
-                    workusersex.setText(response.getData().getSex());
-                    workuserphone.setText(response.getData().getPhone());
-                    workuserNo.setText(response.getData().getWorkuserNo());
-
-                }
-
-                @Override
-                public void onFailure(String state, String msg) {
-                }
-            });
+                peopleInformation.setVisibility(View.GONE);
+                Intent intent = getIntent();
+                Intent intent33 = new Intent();
+                intent33.putExtra("taskID", intent.getStringExtra("taskID"));
+                intent33.setClass(MarchedDetailActivity.this, WorkUserDetailActivity.class);
+                startActivity(intent33);
             break;
         }
     }

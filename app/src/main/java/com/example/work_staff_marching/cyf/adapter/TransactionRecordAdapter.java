@@ -20,13 +20,17 @@ public class TransactionRecordAdapter extends BaseRecyclerViewAdapter<RecordBean
 
     @Override
     protected void convert(RecyclerViewHolder holder, RecordBean data, int position, int viewType) {
-        TextView recordContent,nextVisitTime,recordTime;
+        TextView recordContent,nextVisitTime,recordTime,userName,workuserNo;
         recordContent=(TextView)holder.getView(R.id.recordContent);
         nextVisitTime=(TextView)holder.getView(R.id.nextVisitTime);
         recordTime=(TextView)holder.getView(R.id.recordTime);
+        workuserNo=(TextView)holder.getView(R.id.workuserNo);
+        userName=(TextView)holder.getView(R.id.userName);
         recordContent.setText(data.getRecordContent());
         nextVisitTime.setText(data.getNextVisitTime());
         recordTime.setText(data.getRecordTime());
+        userName.setText(data.getUserName());
+        workuserNo.setText(data.getWorkuserNo());
     }
 
     @Override

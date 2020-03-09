@@ -123,7 +123,7 @@ public class RegisterUserActivity extends BaseActivity {
             map.put("city",city.getSelectedItem().toString());
             map.put("country",country.getSelectedItem().toString());
             map.put("address",address.getText().toString());
-            OkHttp.post(RegisterUserActivity.this, Constant. get_userregister, map, new OkCallback<Result<String>>() {
+            OkHttp.get(RegisterUserActivity.this, Constant. get_userregister, map, new OkCallback<Result<String>>() {
                 @Override
                 public void onResponse(Result<String> response) {
                     if (view.getId() == R.id.register) {

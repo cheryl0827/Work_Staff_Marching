@@ -16,6 +16,7 @@ import com.example.work_staff_marching.cyf.adapter.BaseRecyclerViewAdapter;
 import com.example.work_staff_marching.cyf.adapter.WorkTaskMarchedAdapter;
 import com.example.work_staff_marching.cyf.entity.MarchingBean;
 import com.example.work_staff_marching.cyf.entity.RecordBean;
+import com.example.work_staff_marching.cyf.entity.TaskBean;
 import com.example.work_staff_marching.cyf.entity.UserBean;
 import com.example.work_staff_marching.cyf.entity.WorkuserEvaluatingIndicatorBean;
 import com.example.work_staff_marching.cyf.inteface.OnItemChildClickListener;
@@ -72,7 +73,7 @@ public class AdminMarchedTaskFragment extends BaseFragment {
                     case R.id.machedbutton:
                         Intent intent1 = new Intent();
                         intent1.putExtra("taskID", adminMarchedTaskAdapter.getItem(position).getTaskID()+"");
-                        intent1.putExtra("workuserNo", adminMarchedTaskAdapter.getItem(position).getWorkuserNo()+"");
+                        //intent1.putExtra("workuserNo", adminMarchedTaskAdapter.getItem(position).getWorkuserNo()+"");
                         intent1.setClass(getContext(), MarchedDetailActivity.class);
                         startActivity(intent1);
                         break;
@@ -113,16 +114,25 @@ public class AdminMarchedTaskFragment extends BaseFragment {
 
     }
     public void onloadData() {
-        OkHttp.get(getContext(), Constant.get_marchedshow, null,
-                new OkCallback<Result<List<MarchingBean>>>() {
-                    @Override
-                    public void onResponse(Result<List<MarchingBean>> response) {
-                        adminMarchedTaskAdapter.setNewData(response.getData());
-                    }
-                    @Override
-                    public void onFailure(String state, String msg) {
-                        CustomToast.showToast(getContext(), msg);
-                    }
-                });
+            String taskStatus = "2";
+            String marchingStatus = "2";
+            Map<String, String> map = new HashMap<>();
+            //map.put("taskStatus", taskStatus);
+            map.put("marchingStatus", marchingStatus);
+            OkHttp.get(getContext(), Constant.get_marchedshow, map,
+                    new OkCallback<Result<List<TaskBean>>>() {
+                        @Override
+                        public void onResponse(Result<List<TaskBean>> response) {
+                            adminMarchedTaskAdapter.setNewData(response.getData());
+                        }
+
+                        @Override
+                        public void onFailure(String state, String msg) {
+                            CustomToast.showToast(getContext(), msg);
+                        }
+                    });
+
+
+
     }
 }

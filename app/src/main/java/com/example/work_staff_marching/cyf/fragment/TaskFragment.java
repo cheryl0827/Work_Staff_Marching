@@ -100,7 +100,7 @@ public class TaskFragment extends BaseFragment {
                         break;
                     case R.id.marched:
                         Intent intent33 = new Intent();
-                        intent33.putExtra("taskWorknumber", mRecyclerViewFragmentAdapter.getItem(position).getTaskWorknumber());
+                        intent33.putExtra("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID()+"");
                         intent33.setClass(getContext(), WorkUserDetailActivity.class);
                         startActivity(intent33);
                         break;
@@ -112,7 +112,7 @@ public class TaskFragment extends BaseFragment {
                         break;
                     case R.id.marchig:
                         Intent intent3 = new Intent();
-                        intent3.putExtra("taskWorknumber", mRecyclerViewFragmentAdapter.getItem(position).getTaskWorknumber());
+                        intent3.putExtra("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID()+"");
                         intent3.setClass(getContext(), WorkUserDetailActivity.class);
                         startActivity(intent3);
                         break;

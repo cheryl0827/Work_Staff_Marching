@@ -263,6 +263,14 @@ public class PersonAuditFragment extends BaseFragment {
                         });
 
                         break;
+                    case R.id.update:
+                        Map<String, String> map1 = new HashMap<>();
+                        map1.put("workuserNo", mPeopleAuditRecycleViewAdapter.getItem(position).getWorkuserNo() + "");
+                        break;
+                    case R.id.add:
+                        Map<String, String> map2 = new HashMap<>();
+                        map2.put("workuserNo", mPeopleAuditRecycleViewAdapter.getItem(position).getWorkuserNo() + "");
+                        break;
                 }
             }
         });
