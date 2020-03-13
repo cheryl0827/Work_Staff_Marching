@@ -2,6 +2,9 @@ package com.example.work_staff_marching.cyf.fragment;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -12,6 +15,7 @@ import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.adapter.MineRadioAdapter;
 import com.example.work_staff_marching.cyf.entity.ChooseBean;
 import com.example.work_staff_marching.cyf.entity.TaskBean;
+import com.example.work_staff_marching.cyf.entity.UserBean;
 import com.example.work_staff_marching.cyf.inteface.OnItemClickListener;
 import com.example.work_staff_marching.cyf.ui.ChooseActivity;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
@@ -22,7 +26,9 @@ import com.example.work_staff_marching.cyf.utils.OkCallback;
 import com.example.work_staff_marching.cyf.utils.OkHttp;
 import com.example.work_staff_marching.cyf.utils.RecyclerViewHolder;
 import com.example.work_staff_marching.cyf.utils.Result;
+import com.example.work_staff_marching.cyf.utils.SharePrefrenceUtil;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,7 +50,10 @@ public class TaskMarching extends BaseFragment {
     TextView mTvQuitChoose;
     @BindView(R.id.tv_quit_all_choose)
     TextView mTvQuitAllChoose;
-
+    @BindView(R.id.spinner)
+    Spinner spinner;
+    String Number="1";
+    String[] spinnerItems = {"1", "2","3","4","5","6","7","8","9","10","11","12"};
 
     private MineRadioAdapter mRadioAdapter = null;
     List<TaskBean> mList = new ArrayList<>();
@@ -59,6 +68,11 @@ public class TaskMarching extends BaseFragment {
 
     @Override
     protected void initView(View view) {
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getContext(),
+                R.layout.item_select, spinnerItems);
+        spinnerAdapter.setDropDownViewResource(R.layout.item_drop);
+        spinner.setAdapter(spinnerAdapter);
+
         mRadioAdapter = new MineRadioAdapter(getContext());
         mRecyclerview.setAdapter(mRadioAdapter);
         mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
@@ -81,6 +95,16 @@ public class TaskMarching extends BaseFragment {
             }
         });
         loadData();
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Number = spinner.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
         //initListener();
 
     }
@@ -144,6 +168,8 @@ public class TaskMarching extends BaseFragment {
                 mRadioAdapter.notifyDataSetChanged();
                 break;
             case R.id.tv_commit:
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+                String time=sdf.format(new java.util.Date());
                 if (select.size() == 0) {
                     CustomToast.showToast(getContext(), "请选择");
                     return;
@@ -157,6 +183,9 @@ public class TaskMarching extends BaseFragment {
                         public void onPositiveClick() {
                             commonDialog.dismiss();
                             mMap.put("all_id", mTotalId);
+                            mMap.put("Number",Number);
+                            mMap.put("adminID", SharePrefrenceUtil.getObject(getContext(), UserBean.class).getUserID() + "");
+                            mMap.put("marchingTime",time);
                             OkHttp.post(getContext(), Constant. CalculatePorprotionServlet, mMap, new OkCallback<Result<String>>() {
                                 @Override
                                 public void onResponse(Result<String> response) {

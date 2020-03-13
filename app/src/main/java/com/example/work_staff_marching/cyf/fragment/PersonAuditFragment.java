@@ -1,8 +1,12 @@
 package com.example.work_staff_marching.cyf.fragment;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,6 +25,7 @@ import com.example.work_staff_marching.cyf.adapter.PeopleAuditRecycleViewAdapter
 import com.example.work_staff_marching.cyf.entity.UserBean;
 import com.example.work_staff_marching.cyf.entity.WorkuserEvaluatingIndicatorBean;
 import com.example.work_staff_marching.cyf.inteface.OnItemChildClickListener;
+import com.example.work_staff_marching.cyf.ui.AddTaskNumberActivity;
 import com.example.work_staff_marching.cyf.ui.MainActivity;
 import com.example.work_staff_marching.cyf.ui.WorkuserAddEvaluatingIndicatorActivity;
 import com.example.work_staff_marching.cyf.ui.WorkuserUpdateEvaluatingIndicatorActivity;
@@ -41,8 +46,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class PersonAuditFragment extends BaseFragment {
-
-
     @BindView(R.id.go)
     Button go;
     @BindView(R.id.ed)
@@ -263,13 +266,12 @@ public class PersonAuditFragment extends BaseFragment {
                         });
 
                         break;
-                    case R.id.update:
-                        Map<String, String> map1 = new HashMap<>();
-                        map1.put("workuserNo", mPeopleAuditRecycleViewAdapter.getItem(position).getWorkuserNo() + "");
-                        break;
                     case R.id.add:
-                        Map<String, String> map2 = new HashMap<>();
-                        map2.put("workuserNo", mPeopleAuditRecycleViewAdapter.getItem(position).getWorkuserNo() + "");
+                        Intent intent11 = new Intent();
+                        intent11.putExtra("workuserNo", mPeopleAuditRecycleViewAdapter.getItem(position).getWorkuserNo() + "");
+                        intent11.setClass(getContext(), AddTaskNumberActivity.class);
+                        startActivity(intent11);
+
                         break;
                 }
             }
@@ -291,6 +293,7 @@ public class PersonAuditFragment extends BaseFragment {
     @Override
     protected void initData(Context mContext) {
     }
+
 
     @OnClick({R.id.go, R.id.ed, R.id.no,R.id.exit})
     public void onViewClicked(View view) {
