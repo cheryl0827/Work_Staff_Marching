@@ -77,7 +77,7 @@ public class PersonAuditFragment extends BaseFragment {
     @Override
     protected void initView(View view) {
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getContext(),
-                R.layout.item_select, spinnerItems);
+                R.layout.item_selecta, spinnerItems);
         spinnerAdapter.setDropDownViewResource(R.layout.item_drop);
         spinner.setAdapter(spinnerAdapter);
 
@@ -194,13 +194,14 @@ public class PersonAuditFragment extends BaseFragment {
                         }).show();
                         break;
                     case R.id.addworkEvaluatingIndicator:
+                        //setEnable1(mPeopleAuditRecycleViewAdapter.addworkEvaluatingIndicator);
                         Map<String, String> map5 = new HashMap<>();
                         map5.put("workuserNo", mPeopleAuditRecycleViewAdapter.getItem(position).getWorkuserNo() + "");
                         OkHttp.get(getContext(), Constant.get_showworkuserevaluatingindicator, map5, new OkCallback<Result<WorkuserEvaluatingIndicatorBean>>() {
                             @Override
                             public void onResponse(Result<WorkuserEvaluatingIndicatorBean> response) {
                                 if (response.getData() != null) {
-                                    Toast.makeText(getContext(), "该人员已经有指标，不能进行添加操作", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "该人员已经有评价指标信息，不能进行添加操作", Toast.LENGTH_SHORT).show();
                                 }
                                 if (response.getData() == null) {
                                     Intent intent1 = new Intent();
@@ -217,6 +218,7 @@ public class PersonAuditFragment extends BaseFragment {
                         });
                         break;
                     case R.id.updateworkEvaluatingIndicator:
+                        //setEnable1(mPeopleAuditRecycleViewAdapter.updateworkEvaluatingIndicator);
                         Map<String, String> map6 = new HashMap<>();
                         map6.put("workuserNo", mPeopleAuditRecycleViewAdapter.getItem(position).getWorkuserNo() + "");
                         OkHttp.post(getContext(), Constant.get_showworkuserevaluatingindicator, map6, new OkCallback<Result<WorkuserEvaluatingIndicatorBean>>() {
@@ -229,7 +231,7 @@ public class PersonAuditFragment extends BaseFragment {
                                     startActivityForResult(intent1, 1);
                                 }
                                 if (response.getData() == null)
-                                    Toast.makeText(getContext(), "该人员不存在指标，不能进行修改操作", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "该人员不存在评价指标信息，不能进行修改操作", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
@@ -238,6 +240,7 @@ public class PersonAuditFragment extends BaseFragment {
                         });
                         break;
                     case R.id.deleteworkEvaluatingIndicator:
+                        //setEnable1(mPeopleAuditRecycleViewAdapter.deleteworkEvaluatingIndicator);
                         CommonDialog commonDialog11 = new CommonDialog(getContext());
                         Map<String, String> map = new HashMap<>();
                         map.put("workuserNo", mPeopleAuditRecycleViewAdapter.getItem(position).getWorkuserNo() + "");
@@ -261,12 +264,13 @@ public class PersonAuditFragment extends BaseFragment {
 
                             @Override
                             public void onFailure(String state, String msg) {
-                                Toast.makeText(getContext(), "该人员不存在指标，不能进行删除操作", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "该人员不存在评价指标信息，不能进行删除操作", Toast.LENGTH_SHORT).show();
                             }
                         });
 
                         break;
                     case R.id.add:
+                       //setEnable1(mPeopleAuditRecycleViewAdapter.add);
                         Intent intent11 = new Intent();
                         intent11.putExtra("workuserNo", mPeopleAuditRecycleViewAdapter.getItem(position).getWorkuserNo() + "");
                         intent11.setClass(getContext(), AddTaskNumberActivity.class);

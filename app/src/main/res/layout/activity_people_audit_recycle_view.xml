@@ -6,6 +6,8 @@
     android:orientation="vertical"
     >
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="65dp"
@@ -27,19 +29,30 @@
         <TextView
             android:id="@+id/exit"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="60dp"
             android:layout_height="wrap_content"
             android:textColor="@color/gray"
-            android:textSize="18dp"
+            android:textSize="24dp"
             android:layout_marginTop="20dp"
             android:text="退出系统" />
 
 
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#fff">
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginLeft="20dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:background="#fff">
 
@@ -48,8 +61,7 @@
             android:layout_width="68dp"
             android:layout_height="30dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="2dp"
             android:background="@drawable/set_button_color2"
             android:text="未审核"
             android:textSize="16dp"
@@ -60,8 +72,7 @@
             android:layout_width="78dp"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="2dp"
             android:background="@drawable/set_button_color2"
             android:text="审核通过"
             android:textSize="16dp"
@@ -72,24 +83,11 @@
             android:layout_width="83dp"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="2dp"
             android:background="@drawable/set_button_color2"
             android:text="审核不通过"
             android:textSize="16dp"
             android:textColor="@color/black"/>
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="5dp"
-
-             />
-
-
     </LinearLayout>
     <View
         android:layout_width="match_parent"

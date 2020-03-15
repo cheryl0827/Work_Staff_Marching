@@ -197,7 +197,7 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="人员指标操作"
+            android:text="人员评价指标信息操作"
             android:layout_marginTop="5dp"
             android:textColor="@color/gray"
             android:textStyle="bold"
@@ -209,8 +209,8 @@
             android:layout_height="30dp"
             android:text="增加"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="90dp"
-            android:background="@color/mediumpurple"/>
+            android:layout_marginLeft="20dp"
+            android:background="@color/powderblue"/>
         <Button
             android:id="@+id/updateworkEvaluatingIndicator"
             android:layout_width="30dp"
@@ -226,7 +226,7 @@
             android:layout_height="30dp"
             android:text="删除"
             android:layout_marginTop="5dp"
-            android:background="@color/lightgreen"/>
+            android:background="@color/powderblue"/>
         <Button
             android:id="@+id/add"
             android:layout_width="80dp"

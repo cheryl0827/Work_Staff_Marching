@@ -32,13 +32,13 @@
             style="@style/main_radiobutton_stype"
             android:checked="true"
             android:drawableTop="@mipmap/task2"
-            android:text="任务看板" />
+            android:text="待办理任务" />
         <RadioButton
             android:id="@+id/radiobutton_taskend"
             style="@style/main_radiobutton_stype"
             android:checked="true"
             android:drawableTop="@mipmap/task_audit"
-            android:text="办理结束" />
+            android:text="办理结束任务" />
 
         <RadioButton
             android:id="@+id/radiobutton_me"

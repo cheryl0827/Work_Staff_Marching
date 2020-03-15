@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -42,12 +43,16 @@ public class TaskAuditFragment extends BaseFragment {
     @BindView(R.id.recyclerview1)
     RecyclerView mRecyclerview1;
     @BindView(R.id.swiperereshlayout)
+
     SwipeRefreshLayout swiperereshlayout;
-    String[] spinnerItems = {"未审核","审核通过","审核失败"};
+    String[] spinnerItems = {"未审核", "审核通过", "审核失败"};
+    @BindView(R.id.textView71)
+    TextView textView71;
     private List<TaskBean> mTaskBean = new ArrayList<>();
     private TaskAuditRecycleViewAdapter mTaskAuditRecycleViewAdapter = null;
-    String taskStatus="1";
-    String spinnercontent="未审核";
+    String taskStatus = "1";
+    String spinnercontent = "未审核";
+
     @Override
     protected int initLayout() {
         return R.layout.activity_task_audit_recycleview;
@@ -73,13 +78,14 @@ public class TaskAuditFragment extends BaseFragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                spinnercontent=spinner.getSelectedItem().toString();
-                if(spinnercontent.equals("未审核")) taskStatus="1";
-                if(spinnercontent.equals("审核通过")) taskStatus="2";
-                if(spinnercontent.equals("审核失败")) taskStatus="4";
+                spinnercontent = spinner.getSelectedItem().toString();
+                if (spinnercontent.equals("未审核")) taskStatus = "1";
+                if (spinnercontent.equals("审核通过")) taskStatus = "2";
+                if (spinnercontent.equals("审核失败")) taskStatus = "4";
 
                 loadData();
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -88,23 +94,23 @@ public class TaskAuditFragment extends BaseFragment {
 
             @Override
             public void onItemChildClick(BaseRecyclerViewAdapter adapter, View view, int position) {
-                switch (view.getId()){
+                switch (view.getId()) {
                     case R.id.detail:
                         Intent intent1 = new Intent();
-                        intent1.putExtra("taskID",mTaskAuditRecycleViewAdapter.getItem(position).getTaskID()+"");
-                        intent1.putExtra("userID",mTaskAuditRecycleViewAdapter.getItem(position).getUserID()+"");
-                        Log.v("re",mTaskAuditRecycleViewAdapter.getItem(position).getTaskID()+"");
-                        if(mTaskAuditRecycleViewAdapter.getItem(position).getTaskStatus()==2){
+                        intent1.putExtra("taskID", mTaskAuditRecycleViewAdapter.getItem(position).getTaskID() + "");
+                        intent1.putExtra("userID", mTaskAuditRecycleViewAdapter.getItem(position).getUserID() + "");
+                        Log.v("re", mTaskAuditRecycleViewAdapter.getItem(position).getTaskID() + "");
+                        if (mTaskAuditRecycleViewAdapter.getItem(position).getTaskStatus() == 2) {
                             intent1.setClass(getContext(), AuditYesTaskDetailActivity.class);
-                            startActivityForResult(intent1,1);
+                            startActivityForResult(intent1, 1);
                         }
-                        if(mTaskAuditRecycleViewAdapter.getItem(position).getTaskStatus()==1){
-                        intent1.setClass(getContext(), TaskDetailActivity.class);
-                        startActivityForResult(intent1,1);
-                        }
-                        if(mTaskAuditRecycleViewAdapter.getItem(position).getTaskStatus()==4){
+                        if (mTaskAuditRecycleViewAdapter.getItem(position).getTaskStatus() == 1) {
                             intent1.setClass(getContext(), TaskDetailActivity.class);
-                            startActivityForResult(intent1,1);
+                            startActivityForResult(intent1, 1);
+                        }
+                        if (mTaskAuditRecycleViewAdapter.getItem(position).getTaskStatus() == 4) {
+                            intent1.setClass(getContext(), TaskDetailActivity.class);
+                            startActivityForResult(intent1, 1);
                         }
                         break;
                 }
@@ -112,28 +118,32 @@ public class TaskAuditFragment extends BaseFragment {
         });
         loadData();
     }
+
     /**
      * 加载诉求任务列表
      */
     private void loadData() {
         Map<String, String> map = new HashMap<>();
-        map.put("taskStatus",taskStatus);
+        map.put("taskStatus", taskStatus);
         OkHttp.get(getContext(), Constant.get_taskreviewing, map,
                 new OkCallback<Result<List<TaskBean>>>() {
                     @Override
                     public void onResponse(Result<List<TaskBean>> response) {
                         mTaskAuditRecycleViewAdapter.setNewData(response.getData());
                     }
+
                     @Override
                     public void onFailure(String state, String msg) {
                         CustomToast.showToast(getContext(), msg);
                     }
                 });
     }
+
     @Override
     protected void initData(Context mContext) {
 
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {

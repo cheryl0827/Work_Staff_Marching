@@ -107,7 +107,7 @@
             android:id="@+id/phonechange"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:text="改手机号码："
+            android:text="新手机号码："
             android:textColor="#808080"
             android:textSize="22dp"/>
 

@@ -48,7 +48,7 @@ public class WorkuserUpdateEvaluatingIndicatorActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle saveInstanceState) {
-        setTitle("工作人员指标修改");
+        setTitle("工作人员评价指标信息修改");
         community.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

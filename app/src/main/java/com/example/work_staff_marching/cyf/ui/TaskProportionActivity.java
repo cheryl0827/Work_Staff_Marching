@@ -51,7 +51,7 @@ public class TaskProportionActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle saveInstanceState) {
-        setTitle("诉求任务权重表填写");
+        setTitle("诉求任务权重值填写");
         community.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

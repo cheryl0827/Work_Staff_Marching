@@ -55,6 +55,7 @@ public class PeopleAuditRecycleViewAdapter extends BaseRecyclerViewAdapter<UserB
         holder.addOnClickListener(R.id.updateworkEvaluatingIndicator);
         holder.addOnClickListener(R.id.deleteworkEvaluatingIndicator);
         holder.addOnClickListener(R.id.add);
+       //switch ()
        if(data.getRoleName().equals("工作用户")) {
             addressLinearLayout.setVisibility(View.GONE);
             user.setVisibility(View.GONE);

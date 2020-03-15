@@ -118,10 +118,10 @@
         android:layout_marginTop="3dp">
         <Button
             android:id="@+id/marchig"
-            android:layout_width="60dp"
+            android:layout_width="90dp"
             android:layout_height="30dp"
-            android:text="匹配信息"
-            android:layout_marginLeft="260dp"
+            android:text="工作人员信息"
+            android:layout_marginLeft="230dp"
             android:background="@color/lightgreen"/>
         />
         <Button
@@ -142,10 +142,10 @@
         android:layout_marginTop="3dp">
         <Button
             android:id="@+id/marched"
-            android:layout_width="60dp"
+            android:layout_width="90dp"
             android:layout_height="30dp"
-            android:text="匹配信息"
-            android:layout_marginLeft="260dp"
+            android:text="工作人员信息"
+            android:layout_marginLeft="230dp"
             android:background="@color/lightgreen"/>
         />
         <Button

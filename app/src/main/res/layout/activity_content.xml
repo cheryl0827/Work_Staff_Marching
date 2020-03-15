@@ -13,7 +13,7 @@
         <EditText
             android:id="@+id/et_word"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="400dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/content"
             android:maxLength="1000"
@@ -51,7 +51,7 @@
         android:id="@+id/button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/setbutton"
         android:text="完成"
         android:textColor="#808080"

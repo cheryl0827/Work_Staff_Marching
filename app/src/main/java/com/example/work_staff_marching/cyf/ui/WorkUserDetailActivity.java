@@ -49,7 +49,7 @@ public class WorkUserDetailActivity extends BaseActivity {
     protected void init(Bundle saveInstanceState) {
         Intent intent1 = getIntent();
         taskID=intent1.getStringExtra("taskID");
-        setTitle("匹配工作人员的基本信息");
+        setTitle("工作人员的基本信息");
         taskWorkUserInformationAdapter = new TaskWorkUserInformationAdapter(WorkUserDetailActivity.this);
         mRecyclerview1.setAdapter(taskWorkUserInformationAdapter);
         mRecyclerview1.setLayoutManager(new LinearLayoutManager(WorkUserDetailActivity.this, RecyclerView.VERTICAL, false));
