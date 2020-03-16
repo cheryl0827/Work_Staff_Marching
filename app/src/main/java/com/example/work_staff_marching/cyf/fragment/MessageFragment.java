@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.adapter.WorkuserInformationRecycleViewAdapter;
 import com.example.work_staff_marching.cyf.entity.TaskBean;
+import com.example.work_staff_marching.cyf.entity.UserBean;
 import com.example.work_staff_marching.cyf.entity.WorkuserEvaluatingIndicatorBean;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
 import com.example.work_staff_marching.cyf.utils.Constant;
@@ -87,23 +88,42 @@ public class MessageFragment extends BaseFragment {
         }
 
     }
-
-    /**
-     * 加载工作人员的指标列表
-     */
     private void loadData() {
-        OkHttp.get(getContext(), Constant.get_showallworkuserevaluatingindicator, null,
-                new OkCallback<Result<List<WorkuserEvaluatingIndicatorBean>>>() {
+        String registerStatus="2";
+        String roleName="工作用户";
+        Map<String, String> map = new HashMap<>();
+        map.put("registerStatus", registerStatus);
+        map.put("roleName", roleName);
+        OkHttp.get(getContext(), Constant.get_user, map,
+                new OkCallback<Result<List<UserBean>>>() {
                     @Override
-                    public void onResponse(Result<List<WorkuserEvaluatingIndicatorBean>> response) {
+                    public void onResponse(Result<List<UserBean>> response) {
                         mWorkuserInformationRecycleViewAdapter.setNewData(response.getData());
                     }
+
                     @Override
                     public void onFailure(String state, String msg) {
                         CustomToast.showToast(getContext(), msg);
                     }
                 });
     }
+
+//    /**
+//     * 加载工作人员的指标列表
+//     */
+//    private void loadData() {
+//        OkHttp.get(getContext(), Constant.get_showallworkuserevaluatingindicator, null,
+//                new OkCallback<Result<List<WorkuserEvaluatingIndicatorBean>>>() {
+//                    @Override
+//                    public void onResponse(Result<List<WorkuserEvaluatingIndicatorBean>> response) {
+//                        mWorkuserInformationRecycleViewAdapter.setNewData(response.getData());
+//                    }
+//                    @Override
+//                    public void onFailure(String state, String msg) {
+//                        CustomToast.showToast(getContext(), msg);
+//                    }
+//                });
+//    }
 
     @Override
     public void onStart() {

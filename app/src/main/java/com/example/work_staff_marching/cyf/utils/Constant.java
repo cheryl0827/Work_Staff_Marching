@@ -186,4 +186,8 @@ public class Constant {
      *修改工作人员处理最大诉求任务数
      */
     public static String AddWorkUserTaskNtmberServlet= BASE_URL + "/AddWorkUserTaskNtmberServlet";
+    /**
+     *查询工作人员的评价信息平均值
+     */
+    public static String EstimateAvgServlet= BASE_URL + "/EstimateAvgServlet";
 }
