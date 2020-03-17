@@ -50,6 +50,11 @@
             android:id="@+id/radiobutton_march_result"
             style="@style/main_radiobutton_stype"
             android:drawableTop="@mipmap/march_result"
-            android:text="匹配结果" />
+            android:text="匹配显示" />
+        <RadioButton
+            android:id="@+id/radiobutton_message"
+            style="@style/main_radiobutton_stype"
+            android:drawableTop="@mipmap/a"
+            android:text="工作人员信息统计" />
     </RadioGroup>
 </LinearLayout>

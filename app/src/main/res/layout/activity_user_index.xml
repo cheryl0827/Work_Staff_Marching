@@ -27,11 +27,7 @@
         android:paddingBottom="10dp"
         android:paddingTop="10dp">
 
-        <RadioButton
-            android:id="@+id/radiobutton_message"
-            style="@style/main_radiobutton_stype"
-            android:drawableTop="@mipmap/a"
-            android:text="人员信息" />
+
 
         <RadioButton
             android:id="@+id/radiobutton_home"

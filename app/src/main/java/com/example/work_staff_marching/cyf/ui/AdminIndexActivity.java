@@ -65,6 +65,10 @@ public class AdminIndexActivity extends AppCompatActivity {
                         setCurrentFragment(3);
                         break;
                     }
+                    case R.id.radiobutton_message:{
+                        setCurrentFragment(4);
+                        break;
+                    }
                     default: {
                     }
                 }
@@ -84,6 +88,8 @@ public class AdminIndexActivity extends AppCompatActivity {
         fragmentList.add(taskMarching);
         AdminMarchedTaskFragment adminMarchedTaskFragment = new AdminMarchedTaskFragment();
         fragmentList.add(adminMarchedTaskFragment);
+        MessageFragment messageFragment = new MessageFragment();
+        fragmentList.add(messageFragment);
 //        //默认显示第1个也就是fragmentList.get(0)
         setCurrentFragment(0);
 
