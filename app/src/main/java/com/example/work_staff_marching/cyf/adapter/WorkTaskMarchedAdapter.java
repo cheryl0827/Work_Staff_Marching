@@ -62,9 +62,6 @@ public class WorkTaskMarchedAdapter extends BaseRecyclerViewAdapter<MarchingBean
             }
         });
 
-//        task_catagery.setText(data.getMarchingTime());
-//        task_content.setText(data.getTaskID()+"");
-//        task_time.setText(data.getWorkuserNo());
 
 
     }

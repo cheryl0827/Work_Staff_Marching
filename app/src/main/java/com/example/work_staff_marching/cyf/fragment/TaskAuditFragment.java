@@ -6,8 +6,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,20 +37,32 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 import static android.app.Activity.RESULT_OK;
 
 public class TaskAuditFragment extends BaseFragment {
-    @BindView(R.id.spinner)
-    Spinner spinner;
+
     @BindView(R.id.recyclerview1)
     RecyclerView mRecyclerview1;
     @BindView(R.id.swiperereshlayout)
 
     SwipeRefreshLayout swiperereshlayout;
-    String[] spinnerItems = {"未审核", "审核通过", "审核失败"};
+
     @BindView(R.id.textView71)
     TextView textView71;
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.edit_search_context)
+    EditText editSearchContext;
+    @BindView(R.id.iv_search)
+    ImageView ivSearch;
+    @BindView(R.id.ing)
+    TextView ing;
+    @BindView(R.id.end)
+    TextView end;
+    @BindView(R.id.no)
+    TextView no;
     private List<TaskBean> mTaskBean = new ArrayList<>();
     private TaskAuditRecycleViewAdapter mTaskAuditRecycleViewAdapter = null;
     String taskStatus = "1";
@@ -60,10 +75,7 @@ public class TaskAuditFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getContext(),
-                R.layout.item_select, spinnerItems);
-        spinnerAdapter.setDropDownViewResource(R.layout.item_drop);
-        spinner.setAdapter(spinnerAdapter);
+        ing.setTextColor(getResources().getColor(R.color.red));
         mTaskAuditRecycleViewAdapter = new TaskAuditRecycleViewAdapter(getContext());
         mRecyclerview1.setAdapter(mTaskAuditRecycleViewAdapter);
         mRecyclerview1.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
@@ -75,21 +87,7 @@ public class TaskAuditFragment extends BaseFragment {
                 swiperereshlayout.setRefreshing(false);
             }
         });
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                spinnercontent = spinner.getSelectedItem().toString();
-                if (spinnercontent.equals("未审核")) taskStatus = "1";
-                if (spinnercontent.equals("审核通过")) taskStatus = "2";
-                if (spinnercontent.equals("审核失败")) taskStatus = "4";
 
-                loadData();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
         mTaskAuditRecycleViewAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
 
             @Override
@@ -150,6 +148,57 @@ public class TaskAuditFragment extends BaseFragment {
             if (requestCode == 1) {
                 loadData();
             }
+        }
+    }
+
+    @OnClick({R.id.back, R.id.iv_search, R.id.ing, R.id.end, R.id.no})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.back:
+                taskStatus = "1";
+                editSearchContext.setText("");
+                ing.setTextColor(getResources().getColor(R.color.red));
+                end.setTextColor(getResources().getColor(R.color.black));
+                no.setTextColor(getResources().getColor(R.color.black));
+                loadData();
+                break;
+            case R.id.iv_search:
+                Map<String, String> map = new HashMap<>();
+                map.put("catagery", editSearchContext.getText().toString());
+                OkHttp.get(getContext(), Constant.TaskAuditDimShowServlet, map,
+                        new OkCallback<Result<List<TaskBean>>>() {
+                            @Override
+                            public void onResponse(Result<List<TaskBean>> response) {
+                                mTaskAuditRecycleViewAdapter.setNewData(response.getData());
+                            }
+
+                            @Override
+                            public void onFailure(String state, String msg) {
+                                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                break;
+            case R.id.ing:
+                taskStatus = "1";
+                ing.setTextColor(getResources().getColor(R.color.red));
+                end.setTextColor(getResources().getColor(R.color.black));
+                no.setTextColor(getResources().getColor(R.color.black));
+                loadData();
+                break;
+            case R.id.end:
+                taskStatus = "2";
+                end.setTextColor(getResources().getColor(R.color.red));
+                no.setTextColor(getResources().getColor(R.color.black));
+                ing.setTextColor(getResources().getColor(R.color.black));
+                loadData();
+                break;
+            case R.id.no:
+                taskStatus = "4";
+                no.setTextColor(getResources().getColor(R.color.red));
+                end.setTextColor(getResources().getColor(R.color.black));
+                ing.setTextColor(getResources().getColor(R.color.black));
+                loadData();
+                break;
         }
     }
 }

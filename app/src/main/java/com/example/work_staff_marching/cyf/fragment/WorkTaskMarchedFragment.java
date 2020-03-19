@@ -3,7 +3,9 @@ package com.example.work_staff_marching.cyf.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +38,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -48,7 +51,12 @@ public class WorkTaskMarchedFragment extends BaseFragment {
     RecyclerView recyclerview1;
     @BindView(R.id.swiperereshlayout)
     SwipeRefreshLayout swiperereshlayout;
-
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.edit_search_context)
+    EditText editSearchContext;
+    @BindView(R.id.iv_search)
+    ImageView ivSearch;
     private List<MarchingBean> mMarchingBean = new ArrayList<>();
     private WorkTaskMarchedAdapter workTaskMarchedAdapter = null;
 
@@ -87,7 +95,7 @@ public class WorkTaskMarchedFragment extends BaseFragment {
                         Intent intent = new Intent();
                         intent.putExtra("taskID", workTaskMarchedAdapter.getItem(position).getTaskID() + "");
                         intent.setClass(getContext(), TransactionRecordActivity.class);
-                        startActivityForResult(intent,1);
+                        startActivityForResult(intent, 1);
                         break;
 
                 }
@@ -135,12 +143,15 @@ public class WorkTaskMarchedFragment extends BaseFragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode==RESULT_OK){
-            if (requestCode==1){
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 1) {
 //                onloadData();
 //                recyclerview1.setAdapter(workTaskMarchedAdapter);
                 initView(getView());
-            }}}
+            }
+        }
+    }
+
     @Override
     public void onStop() {
         super.onStop();
@@ -155,7 +166,8 @@ public class WorkTaskMarchedFragment extends BaseFragment {
                     @Override
                     public void onResponse(Result<List<MarchingBean>> response) {
                         workTaskMarchedAdapter.setNewData(response.getData());
-                }
+                    }
+
                     @Override
                     public void onFailure(String state, String msg) {
                         CustomToast.showToast(getContext(), msg);
@@ -163,4 +175,31 @@ public class WorkTaskMarchedFragment extends BaseFragment {
                 });
     }
 
+
+    @OnClick({R.id.back, R.id.iv_search})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.back:
+                editSearchContext.setText("");
+                onloadData();
+                break;
+            case R.id.iv_search:
+                Map<String, String> map = new HashMap<>();
+                map.put("workuserNo", SharePrefrenceUtil.getObject(getContext(), UserBean.class).getWorkuserNo() + "");
+                map.put("catagery",editSearchContext.getText().toString());
+                OkHttp.get(getContext(), Constant.MarchingTaskDimShowServlet, map,
+                        new OkCallback<Result<List<MarchingBean>>>() {
+                            @Override
+                            public void onResponse(Result<List<MarchingBean>> response) {
+                                workTaskMarchedAdapter.setNewData(response.getData());
+                            }
+
+                            @Override
+                            public void onFailure(String state, String msg) {
+                                CustomToast.showToast(getContext(), msg);
+                            }
+                        });
+                break;
+        }
+    }
 }

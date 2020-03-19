@@ -190,4 +190,24 @@ public class Constant {
      *查询工作人员的评价信息平均值
      */
     public static String EstimateAvgServlet= BASE_URL + "/EstimateAvgServlet";
+    /**
+     *工作人员的模糊查询
+     */
+    public static String UserShowDimServlet= BASE_URL + "/UserShowDimServlet";
+    /**
+     *诉求任务审核的模糊查询
+     */
+    public static String TaskAuditDimShowServlet= BASE_URL + "/TaskAuditDimShowServlet";
+    /**
+     *诉求任务匹配成功的模糊查询
+     */
+    public static String MmarchedDimShowServlet= BASE_URL + "/MmarchedDimShowServlet";
+    /**
+     *普通用户的诉求任务的模糊查询
+     */
+    public static String UserTaskDimShowServlet= BASE_URL + "/UserTaskDimShowServlet";
+    /**
+     *工作人员的诉求任务的模糊匹配信息查询(包括办理中，办理结束）
+     */
+    public static String MarchingTaskDimShowServlet= BASE_URL + "/MarchingTaskDimShowServlet";
 }

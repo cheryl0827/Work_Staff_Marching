@@ -16,9 +16,9 @@
             android:id="@+id/textView71"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="25dp"
             android:layout_gravity="center"
-            android:text="工作人员信息统计"
+            android:text="工作人员指标评价信息统计"
             android:layout_marginTop="1dp"
             android:textSize="28dp"
             android:textStyle="italic"/>
@@ -35,14 +35,23 @@
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="left|center_vertical"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/back" />
 
         <EditText
             android:id="@+id/edit_search_context"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
+            android:layout_marginLeft="30dp"
             android:gravity="center_vertical"
-            android:hint="请输入需要搜索工作人员姓名"
+            android:hint="请输入需要搜索的工作人员姓名"
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:lines="1"

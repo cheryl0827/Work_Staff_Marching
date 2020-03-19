@@ -2,18 +2,16 @@ package com.example.work_staff_marching.cyf.fragment;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.bumptech.glide.Glide;
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.adapter.WorkuserInformationRecycleViewAdapter;
-import com.example.work_staff_marching.cyf.entity.TaskBean;
 import com.example.work_staff_marching.cyf.entity.UserBean;
 import com.example.work_staff_marching.cyf.entity.WorkuserEvaluatingIndicatorBean;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
@@ -22,10 +20,6 @@ import com.example.work_staff_marching.cyf.utils.CustomToast;
 import com.example.work_staff_marching.cyf.utils.OkCallback;
 import com.example.work_staff_marching.cyf.utils.OkHttp;
 import com.example.work_staff_marching.cyf.utils.Result;
-import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
-import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,16 +27,22 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MessageFragment extends BaseFragment {
 
-       @BindView(R.id.recyclerview1)
+    @BindView(R.id.recyclerview1)
     RecyclerView recyclerview1;
     @BindView(R.id.swiperereshlayout)
     SwipeRefreshLayout swiperereshlayout;
+    @BindView(R.id.edit_search_context)
+    EditText editSearchContext;
+    @BindView(R.id.iv_search)
+    ImageView iv_search;
+    @BindView(R.id.back)
+    ImageView back;
     private List<WorkuserEvaluatingIndicatorBean> mWorkuserEvaluatingIndicatorBeans = new ArrayList<>();
     private WorkuserInformationRecycleViewAdapter mWorkuserInformationRecycleViewAdapter = null;
-
 
 
     @Override
@@ -59,10 +59,11 @@ public class MessageFragment extends BaseFragment {
             }
         });
         loadData();
-         }
+    }
+
     private void loadData() {
-        String registerStatus="2";
-        String roleName="工作用户";
+        String registerStatus = "2";
+        String roleName = "工作用户";
         Map<String, String> map = new HashMap<>();
         map.put("registerStatus", registerStatus);
         map.put("roleName", roleName);
@@ -81,9 +82,6 @@ public class MessageFragment extends BaseFragment {
     }
 
 
-
-
-
     @Override
     protected int initLayout() {
         return R.layout.activity_recycleview_workuser;
@@ -92,5 +90,37 @@ public class MessageFragment extends BaseFragment {
     protected void initData(Context mContext) {
 
     }
+
+    @OnClick({R.id.iv_search,R.id.back})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_search:
+                String registerStatus = "2";
+                String roleName = "工作用户";
+                Map<String, String> map = new HashMap<>();
+                map.put("registerStatus", registerStatus);
+                map.put("roleName", roleName);
+                map.put("name", editSearchContext.getText().toString());
+                OkHttp.get(getContext(), Constant.UserShowDimServlet, map,
+                        new OkCallback<Result<List<UserBean>>>() {
+                            @Override
+                            public void onResponse(Result<List<UserBean>> response) {
+                                mWorkuserInformationRecycleViewAdapter.setNewData(response.getData());
+                            }
+
+                            @Override
+                            public void onFailure(String state, String msg) {
+                                CustomToast.showToast(getContext(), msg);
+                            }
+                        });
+                break;
+            case R.id.back:
+                loadData();
+                editSearchContext.setText("");
+                break;
+
+        }
+    }
+
 }
 

@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -20,7 +23,6 @@ import com.example.work_staff_marching.cyf.entity.UserBean;
 import com.example.work_staff_marching.cyf.inteface.OnItemChildClickListener;
 import com.example.work_staff_marching.cyf.ui.ChangeOnlinePetitionActivity;
 import com.example.work_staff_marching.cyf.ui.EstimateActivity;
-import com.example.work_staff_marching.cyf.ui.TaskDetailActivity;
 import com.example.work_staff_marching.cyf.ui.TaskEstimateActivity;
 import com.example.work_staff_marching.cyf.ui.WorkUserDetailActivity;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
@@ -47,19 +49,25 @@ public class TaskFragment extends BaseFragment {
     RecyclerView mRecyclerview1;
     @BindView(R.id.swiperereshlayout)
     SwipeRefreshLayout swiperereshlayout;
-    @BindView(R.id.go)
-    Button go;
-    @BindView(R.id.ed)
-    Button ed;
-    @BindView(R.id.no)
-    Button no;
-    @BindView(R.id.end)
-    Button end;
-    @BindView(R.id.marching)
-    Button marching;
     String taskStatus = "1";
-    String pingjiaStatus="1";
-    String marchingStatus="1";
+    String pingjiaStatus = "1";
+    String marchingStatus = "1";
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.edit_search_context)
+    EditText editSearchContext;
+    @BindView(R.id.iv_search)
+    ImageView ivSearch;
+    @BindView(R.id.go)
+    TextView go;
+    @BindView(R.id.ed)
+    TextView ed;
+    @BindView(R.id.marching)
+    TextView marching;
+    @BindView(R.id.end)
+    TextView end;
+    @BindView(R.id.no)
+    TextView no;
 
     private List<TaskBean> mTaskBeans = new ArrayList<>();
     private TaskRecycleViewAdapter mRecyclerViewFragmentAdapter = null;
@@ -71,7 +79,7 @@ public class TaskFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        setEnable(go);
+        go.setTextColor(getResources().getColor(R.color.red));
         mRecyclerViewFragmentAdapter = new TaskRecycleViewAdapter(getContext());
         mRecyclerview1.setAdapter(mRecyclerViewFragmentAdapter);
         mRecyclerview1.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
@@ -100,7 +108,7 @@ public class TaskFragment extends BaseFragment {
                         break;
                     case R.id.marched:
                         Intent intent33 = new Intent();
-                        intent33.putExtra("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID()+"");
+                        intent33.putExtra("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID() + "");
                         intent33.setClass(getContext(), WorkUserDetailActivity.class);
                         startActivity(intent33);
                         break;
@@ -112,19 +120,19 @@ public class TaskFragment extends BaseFragment {
                         break;
                     case R.id.marchig:
                         Intent intent3 = new Intent();
-                        intent3.putExtra("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID()+"");
+                        intent3.putExtra("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID() + "");
                         intent3.setClass(getContext(), WorkUserDetailActivity.class);
                         startActivity(intent3);
                         break;
                     case R.id.wanchengbutton:
-                        taskStatus="3";
+                        taskStatus = "3";
                         Map<String, String> map1 = new HashMap<>();
-                        map1.put("taskID",mRecyclerViewFragmentAdapter.getItem(position).getTaskID() + "" );
-                        map1.put("taskStatus",taskStatus );
+                        map1.put("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID() + "");
+                        map1.put("taskStatus", taskStatus);
                         OkHttp.post(getContext(), Constant.get_taskaudit, map1, new OkCallback<Result<String>>() {
                             @Override
                             public void onResponse(Result<String> response) {
-                                commonDialog.isSingle=true;
+                                commonDialog.isSingle = true;
                                 commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("完成办理成功,请完成对该诉求任务的评价！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                                     @Override
                                     public void onPositiveClick() {
@@ -133,7 +141,7 @@ public class TaskFragment extends BaseFragment {
                                         intent1.putExtra("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID() + "");
                                         intent1.setClass(getContext(), TaskEstimateActivity.class);
                                         startActivityForResult(intent1, 2);
-                                       // finish();
+                                        // finish();
                                     }
 
                                     @Override
@@ -142,6 +150,7 @@ public class TaskFragment extends BaseFragment {
                                     }
                                 }).show();
                             }
+
                             @Override
                             public void onFailure(String state, String msg) {
                                 Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
@@ -159,46 +168,6 @@ public class TaskFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.go, R.id.ed, R.id.no, R.id.end,R.id.marching})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.go://未审核
-                taskStatus = "1";
-                pingjiaStatus="1";
-                marchingStatus="1";
-                loadData();
-                setEnable(go);
-                break;
-            case R.id.ed://未匹配
-                taskStatus="2";
-                pingjiaStatus="1";
-                marchingStatus="1";
-                loadData();
-                setEnable(ed);
-                break;
-            case R.id.end://办理结束
-                taskStatus="3";
-                pingjiaStatus="2";
-                marchingStatus="2";
-                loadData();
-                setEnable(end);
-                break;
-            case R.id.marching://匹配成功
-                taskStatus="2";
-                pingjiaStatus="1";
-                marchingStatus="2";
-                loadData();
-                setEnable(marching);
-                break;
-            case R.id.no://审核失败
-                taskStatus = "4";
-                pingjiaStatus="1";
-                marchingStatus="1";
-                loadData();
-                setEnable(no);
-                break;
-        }
-    }
     /**
      * 加载诉求任务列表
      */
@@ -207,7 +176,7 @@ public class TaskFragment extends BaseFragment {
         map.put("taskStatus", taskStatus);
         map.put("marchingStatus", marchingStatus);
         map.put("pingjiaStatus", pingjiaStatus);
-        map.put("userID", SharePrefrenceUtil.getObject(getContext(), UserBean.class).getUserID()+"");
+        map.put("userID", SharePrefrenceUtil.getObject(getContext(), UserBean.class).getUserID() + "");
         OkHttp.get(getContext(), Constant.get_usertaskshow, map,
                 new OkCallback<Result<List<TaskBean>>>() {
                     @Override
@@ -221,34 +190,101 @@ public class TaskFragment extends BaseFragment {
                     }
                 });
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
                 loadData();
             }
-            if(requestCode==2){
-                taskStatus="2";
-                pingjiaStatus="1";
-                marchingStatus="2";
+            if (requestCode == 2) {
+                taskStatus = "2";
+                pingjiaStatus = "1";
+                marchingStatus = "2";
                 loadData();
             }
         }
     }
-    private void setEnable(Button btn) {
-        List<Button> buttonList = new ArrayList<>();
-        if (buttonList.size() == 0) {
-            buttonList.add(go);
-            buttonList.add(ed);
-            buttonList.add(marching);
-            buttonList.add(end);
-            buttonList.add(no);
+
+    @OnClick({R.id.back, R.id.iv_search, R.id.go, R.id.ed, R.id.marching, R.id.end, R.id.no})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.back:
+                editSearchContext.setText("");
+                loadData();
+                break;
+            case R.id.iv_search:
+                Map<String, String> map = new HashMap<>();
+                map.put("userID", SharePrefrenceUtil.getObject(getContext(), UserBean.class).getUserID() + "");
+                map.put("catagery",editSearchContext.getText().toString());
+                OkHttp.get(getContext(), Constant.UserTaskDimShowServlet, map,
+                        new OkCallback<Result<List<TaskBean>>>() {
+                            @Override
+                            public void onResponse(Result<List<TaskBean>> response) {
+                                mRecyclerViewFragmentAdapter.setNewData(response.getData());
+                            }
+
+                            @Override
+                            public void onFailure(String state, String msg) {
+                                CustomToast.showToast(getContext(), msg);
+                            }
+                        });
+                break;
+            case R.id.go://未审核
+                go.setTextColor(getResources().getColor(R.color.red));
+                end.setTextColor(getResources().getColor(R.color.black));
+                ed.setTextColor(getResources().getColor(R.color.black));
+                no.setTextColor(getResources().getColor(R.color.black));
+                marching.setTextColor(getResources().getColor(R.color.black));
+                taskStatus = "1";
+                pingjiaStatus = "1";
+                marchingStatus = "1";
+                loadData();
+                break;
+            case R.id.ed://未匹配
+                ed.setTextColor(getResources().getColor(R.color.red));
+                end.setTextColor(getResources().getColor(R.color.black));
+                go.setTextColor(getResources().getColor(R.color.black));
+                no.setTextColor(getResources().getColor(R.color.black));
+                marching.setTextColor(getResources().getColor(R.color.black));
+                taskStatus = "2";
+                pingjiaStatus = "1";
+                marchingStatus = "1";
+                loadData();
+                break;
+            case R.id.end://办理结束
+                end.setTextColor(getResources().getColor(R.color.red));
+                go.setTextColor(getResources().getColor(R.color.black));
+                ed.setTextColor(getResources().getColor(R.color.black));
+                no.setTextColor(getResources().getColor(R.color.black));
+                marching.setTextColor(getResources().getColor(R.color.black));
+                taskStatus = "3";
+                pingjiaStatus = "2";
+                marchingStatus = "2";
+                loadData();
+                break;
+            case R.id.marching://匹配成功
+                marching.setTextColor(getResources().getColor(R.color.red));
+                go.setTextColor(getResources().getColor(R.color.black));
+                ed.setTextColor(getResources().getColor(R.color.black));
+                no.setTextColor(getResources().getColor(R.color.black));
+                end.setTextColor(getResources().getColor(R.color.black));
+                taskStatus = "2";
+                pingjiaStatus = "1";
+                marchingStatus = "2";
+                loadData();
+                break;
+            case R.id.no://审核失败
+                no.setTextColor(getResources().getColor(R.color.red));
+                go.setTextColor(getResources().getColor(R.color.black));
+                ed.setTextColor(getResources().getColor(R.color.black));
+                marching.setTextColor(getResources().getColor(R.color.black));
+                end.setTextColor(getResources().getColor(R.color.black));
+                taskStatus = "4";
+                pingjiaStatus = "1";
+                marchingStatus = "1";
+                loadData();
+                break;
         }
-        for (int i = 0; i < buttonList.size(); i++) {
-            buttonList.get(i).setEnabled(true);
-        }
-        btn.setEnabled(false);
     }
-
-
 }

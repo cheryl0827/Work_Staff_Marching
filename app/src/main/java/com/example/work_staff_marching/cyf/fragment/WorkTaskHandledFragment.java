@@ -3,6 +3,8 @@ package com.example.work_staff_marching.cyf.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -13,17 +15,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.adapter.BaseRecyclerViewAdapter;
 import com.example.work_staff_marching.cyf.adapter.WorkTaskHandledAdapter;
-import com.example.work_staff_marching.cyf.adapter.WorkTaskMarchedAdapter;
 import com.example.work_staff_marching.cyf.entity.MarchingBean;
 import com.example.work_staff_marching.cyf.entity.UserBean;
 import com.example.work_staff_marching.cyf.entity.WorkuserEvaluatingIndicatorBean;
 import com.example.work_staff_marching.cyf.inteface.OnItemChildClickListener;
 import com.example.work_staff_marching.cyf.ui.EstimateActivity;
-import com.example.work_staff_marching.cyf.ui.MarchedTaskDetailActivity;
 import com.example.work_staff_marching.cyf.ui.TaskHandledDetailActivity;
-import com.example.work_staff_marching.cyf.ui.TransactionRecordActivity;
 import com.example.work_staff_marching.cyf.ui.TransactionRecordShowActivity;
-import com.example.work_staff_marching.cyf.ui.WorkuserUpdateEvaluatingIndicatorActivity;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
 import com.example.work_staff_marching.cyf.utils.Constant;
 import com.example.work_staff_marching.cyf.utils.CustomToast;
@@ -38,12 +36,19 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class WorkTaskHandledFragment extends BaseFragment {
     @BindView(R.id.recyclerview1)
     RecyclerView recyclerview1;
     @BindView(R.id.swiperereshlayout)
     SwipeRefreshLayout swiperereshlayout;
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.edit_search_context)
+    EditText editSearchContext;
+    @BindView(R.id.iv_search)
+    ImageView ivSearch;
 
     private List<MarchingBean> mMarchingBean = new ArrayList<>();
     private WorkTaskHandledAdapter workTaskHandledAdapter = null;
@@ -74,7 +79,7 @@ public class WorkTaskHandledFragment extends BaseFragment {
                 switch (view.getId()) {
                     case R.id.detail:
                         Intent intent1 = new Intent();
-                        intent1.putExtra("taskID", workTaskHandledAdapter.getItem(position).getTaskID()+"");
+                        intent1.putExtra("taskID", workTaskHandledAdapter.getItem(position).getTaskID() + "");
                         intent1.setClass(getContext(), TaskHandledDetailActivity.class);
                         startActivity(intent1);
 
@@ -87,19 +92,20 @@ public class WorkTaskHandledFragment extends BaseFragment {
                         break;
                     case R.id.pingjiabutton:
                         Map<String, String> map1 = new HashMap<>();
-                        map1.put("taskID",workTaskHandledAdapter.getItem(position).getTaskID()+"");
-                        OkHttp.post(getContext(), Constant.get_estimateshow,map1,new OkCallback<Result<WorkuserEvaluatingIndicatorBean>>() {
+                        map1.put("taskID", workTaskHandledAdapter.getItem(position).getTaskID() + "");
+                        OkHttp.post(getContext(), Constant.get_estimateshow, map1, new OkCallback<Result<WorkuserEvaluatingIndicatorBean>>() {
                             @Override
                             public void onResponse(Result response) {
-                                if(response.getData()!=null){
+                                if (response.getData() != null) {
                                     Intent intent = new Intent();
                                     intent.putExtra("taskID", workTaskHandledAdapter.getItem(position).getTaskID() + "");
                                     intent.setClass(getContext(), EstimateActivity.class);
                                     startActivity(intent);
-                                  }
-                                if(response.getData()==null)
+                                }
+                                if (response.getData() == null)
                                     Toast.makeText(getContext(), "该诉求任务未进行评价，请等待普通用户进行评价！", Toast.LENGTH_SHORT).show();
                             }
+
                             @Override
                             public void onFailure(String state, String msg) {
                             }
@@ -117,6 +123,7 @@ public class WorkTaskHandledFragment extends BaseFragment {
     protected void initData(Context mContext) {
 
     }
+
     public void onloadData() {
         Map<String, String> map = new HashMap<>();
         map.put("workuserNo", SharePrefrenceUtil.getObject(getContext(), UserBean.class).getWorkuserNo() + "");
@@ -125,11 +132,39 @@ public class WorkTaskHandledFragment extends BaseFragment {
                     @Override
                     public void onResponse(Result<List<MarchingBean>> response) {
                         workTaskHandledAdapter.setNewData(response.getData());
-                }
+                    }
+
                     @Override
                     public void onFailure(String state, String msg) {
                         CustomToast.showToast(getContext(), msg);
                     }
                 });
+    }
+
+    @OnClick({R.id.back, R.id.iv_search})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.back:
+                editSearchContext.setText("");
+                onloadData();
+                break;
+            case R.id.iv_search:
+                Map<String, String> map = new HashMap<>();
+                map.put("workuserNo", SharePrefrenceUtil.getObject(getContext(), UserBean.class).getWorkuserNo() + "");
+                map.put("catagery",editSearchContext.getText().toString());
+                OkHttp.get(getContext(), Constant.MarchingTaskDimShowServlet, map,
+                        new OkCallback<Result<List<MarchingBean>>>() {
+                            @Override
+                            public void onResponse(Result<List<MarchingBean>> response) {
+                                workTaskHandledAdapter.setNewData(response.getData());
+                            }
+
+                            @Override
+                            public void onFailure(String state, String msg) {
+                                CustomToast.showToast(getContext(), msg);
+                            }
+                        });
+                break;
+        }
     }
 }
