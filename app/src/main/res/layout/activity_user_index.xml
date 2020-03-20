@@ -21,31 +21,46 @@
 
     <RadioGroup
         android:id="@+id/radiogroup"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp">
+      >
 
 
 
         <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
             android:id="@+id/radiobutton_home"
             style="@style/main_radiobutton_stype"
             android:checked="true"
             android:drawableTop="@mipmap/letter"
-            android:text="网上上访" />
+            android:text="网上上访"
+            android:textSize="18dp"/>
 
         <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:id="@+id/radiobutton_post"
             style="@style/main_radiobutton_stype"
             android:drawableTop="@mipmap/b"
-            android:text="诉求任务" />
+            android:text="诉求任务"
+            android:textColor="@color/black"
+            android:textSize="18dp"/>
 
         <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:id="@+id/radiobutton_profile"
             style="@style/main_radiobutton_stype"
             android:drawableTop="@mipmap/me1"
-            android:text="我" />
+            android:text="我"
+            android:textColor="@color/black"
+            android:textSize="18dp"/>
     </RadioGroup>
 </LinearLayout>

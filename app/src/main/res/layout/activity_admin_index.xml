@@ -21,39 +21,59 @@
 
     <RadioGroup
         android:id="@+id/radiogroup"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp">
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/radiobutton_person_audit"
             style="@style/main_radiobutton_stype"
             android:checked="true"
             android:drawableTop="@mipmap/people_audit"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
             android:text="人员审核" />
 
         <RadioButton
             android:id="@+id/radiobutton_task_audit"
             style="@style/main_radiobutton_stype"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
             android:drawableTop="@mipmap/task_audit"
             android:text="诉求任务审核" />
 
         <RadioButton
             android:id="@+id/radiobutton_march_management"
             style="@style/main_radiobutton_stype"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
             android:drawableTop="@mipmap/task1"
             android:text="匹配管理" />
 
         <RadioButton
             android:id="@+id/radiobutton_march_result"
             style="@style/main_radiobutton_stype"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
             android:drawableTop="@mipmap/march_result"
             android:text="匹配显示" />
         <RadioButton
             android:id="@+id/radiobutton_message"
             style="@style/main_radiobutton_stype"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+
             android:drawableTop="@mipmap/a"
             android:text="工作人员信息统计" />
     </RadioGroup>

@@ -164,7 +164,7 @@ public class AdminMarchedTaskFragment extends BaseFragment {
 
                             @Override
                             public void onFailure(String state, String msg) {
-                                CustomToast.showToast(getContext(), msg);
+                                Toast.makeText(getContext(), "查询诉求任务的匹配失败,没有相关的诉求任务", Toast.LENGTH_SHORT).show();
                             }
                         });
                 break;

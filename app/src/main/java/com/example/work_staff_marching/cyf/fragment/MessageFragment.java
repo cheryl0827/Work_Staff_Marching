@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -110,7 +111,7 @@ public class MessageFragment extends BaseFragment {
 
                             @Override
                             public void onFailure(String state, String msg) {
-                                CustomToast.showToast(getContext(), msg);
+                                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
                             }
                         });
                 break;

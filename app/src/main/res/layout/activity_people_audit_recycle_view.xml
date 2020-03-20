@@ -40,15 +40,35 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
+
         android:background="#fff">
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_marginLeft="20dp"
-            />
+        <RadioGroup
+            android:id="@+id/radio"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <RadioButton
+                android:id="@+id/workuser"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="工作用户"
+                android:checked="true"
+                android:textColor="#515151"
+                android:layout_marginBottom="5dp"
+                android:textSize="17dp"/>
+            <RadioButton
+                android:id="@+id/user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="普通用户"
+                android:textColor="#515151"
+                android:textSize="17dp"/>
+
+        </RadioGroup>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,7 +80,7 @@
             android:id="@+id/go"
             android:layout_width="68dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginBottom="2dp"
             android:background="@drawable/set_button_color2"
             android:text="未审核"

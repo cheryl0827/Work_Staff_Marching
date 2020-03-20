@@ -28,19 +28,9 @@ public class WorkTaskHandledAdapter extends BaseRecyclerViewAdapter<MarchingBean
 
     @Override
     protected void convert(RecyclerViewHolder holder, MarchingBean data, int position, int viewType) {
-        TextView task_catagery,task_content,task_time;
-        Button banlibutton,detail,pingjiabutton;
         LinearLayout item;
-        task_catagery=(TextView)holder.getView(R.id.task_catagery);
-        task_content=(TextView)holder.getView(R.id.task_content);
-        task_time=(TextView)holder.getView(R.id.task_time);
-        banlibutton=(Button)holder.getView(R.id.banlibutton);
         item=(LinearLayout)holder.getView(R.id.item);
-        holder.addOnClickListener(R.id.banlibutton);
-        detail=(Button)holder.getView(R.id.detail);
-        holder.addOnClickListener(R.id.detail);
-        pingjiabutton=(Button)holder.getView(R.id.pingjiabutton);
-        holder.addOnClickListener(R.id.pingjiabutton);
+
         Map<String, String> map = new HashMap<>();
         map.put("taskID",data.getTaskID()+"");
         map.put("recordStatus","2");
@@ -49,9 +39,24 @@ public class WorkTaskHandledAdapter extends BaseRecyclerViewAdapter<MarchingBean
             public void onResponse(Result<TaskBean> response) {
                 taskBean=response.getData();
                 if(taskBean!=null){
+                    item.setVisibility(View.VISIBLE);
+
+                    TextView task_catagery,task_content,task_time;
+                    Button banlibutton,detail,pingjiabutton;
+                    banlibutton=(Button)holder.getView(R.id.banlibutton);
+
+                    holder.addOnClickListener(R.id.banlibutton);
+                    detail=(Button)holder.getView(R.id.detail);
+                    holder.addOnClickListener(R.id.detail);
+                    pingjiabutton=(Button)holder.getView(R.id.pingjiabutton);
+                    holder.addOnClickListener(R.id.pingjiabutton);
+                    task_catagery=(TextView)holder.getView(R.id.task_catagery);
+                    task_content=(TextView)holder.getView(R.id.task_content);
+                    task_time=(TextView)holder.getView(R.id.task_time);
                     task_catagery.setText(taskBean.getTaskCatagery());
                     task_content.setText(taskBean.getTaskContent());
                     task_time.setText(taskBean.getTaskTime());
+
                 }
                 if(taskBean==null){
                     item.setVisibility(View.GONE);

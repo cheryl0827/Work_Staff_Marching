@@ -19,7 +19,12 @@ import com.example.work_staff_marching.cyf.ui.PhoneCallActivity;
 import com.example.work_staff_marching.cyf.ui.RegisterActivity;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
 import com.example.work_staff_marching.cyf.utils.CommonDialog;
+import com.example.work_staff_marching.cyf.utils.Constant;
+import com.example.work_staff_marching.cyf.utils.CustomToast;
 import com.example.work_staff_marching.cyf.utils.MyGlideEngine;
+import com.example.work_staff_marching.cyf.utils.OkCallback;
+import com.example.work_staff_marching.cyf.utils.OkHttp;
+import com.example.work_staff_marching.cyf.utils.Result;
 import com.example.work_staff_marching.cyf.utils.SharePrefrenceUtil;
 import com.qmuiteam.qmui.widget.QMUIRadiusImageView;
 import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton;
@@ -28,7 +33,9 @@ import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -63,6 +70,7 @@ public class UserMeFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
+        Glide.with(ivUploadImage.getContext()).load(SharePrefrenceUtil.getObject(getContext(),UserBean.class).getUserPicture()).into(ivUploadImage);
         username.setText(SharePrefrenceUtil.getObject(getContext(), UserBean.class).getUserName() + "");
         PasswordChange.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,11 +136,29 @@ public class UserMeFragment extends BaseFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
+            mSelected.clear();
             mSelected.addAll(Matisse.obtainPathResult(data));
-            Glide.with(ivUploadImage.getContext()).load(mSelected.get(0)).into(ivUploadImage);
+
 
         }
-    }
+        Map<String, String> map = new HashMap<>();
+        map.put("userID",SharePrefrenceUtil.getObject(getContext(), UserBean.class).getUserID() + "");
+
+        OkHttp.upload(getContext(), Constant.UploadImageServlet, map, mSelected, new OkCallback<Result<String>>() {
+
+            @Override
+            public void onResponse(Result<String> response) {
+                CustomToast.showToast(getContext(),response.getMessage());
+                Glide.with(ivUploadImage.getContext()).load(mSelected.get(0)).into(ivUploadImage);
+            }
+
+            @Override
+            public void onFailure(String state, String msg) {
+
+            }
+        });
+        }
+
 
 
 }

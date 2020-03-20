@@ -1,16 +1,13 @@
 package com.example.work_staff_marching.cyf.fragment;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,17 +49,20 @@ public class PersonAuditFragment extends BaseFragment {
     Button ed;
     @BindView(R.id.no)
     Button no;
-    @BindView(R.id.spinner)
-    Spinner spinner;
     @BindView(R.id.recyclerview1)
     RecyclerView recyclerview1;
     @BindView(R.id.swiperereshlayout)
     SwipeRefreshLayout swiperereshlayout;
-    String[] spinnerItems = {"工作用户", "普通用户"};
     @BindView(R.id.exit)
     TextView exit;
     @BindView(R.id.textView71)
     TextView textView71;
+    @BindView(R.id.workuser)
+    RadioButton workuser;
+    @BindView(R.id.user)
+    RadioButton user;
+    @BindView(R.id.radio)
+    RadioGroup radio;
     private List<UserBean> mUserBeans = new ArrayList<>();
     private PeopleAuditRecycleViewAdapter mPeopleAuditRecycleViewAdapter = null;
     String registerStatus = "1";
@@ -76,11 +76,14 @@ public class PersonAuditFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getContext(),
-                R.layout.item_selecta, spinnerItems);
-        spinnerAdapter.setDropDownViewResource(R.layout.item_drop);
-        spinner.setAdapter(spinnerAdapter);
-
+        radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton rb = (RadioButton) getView().findViewById(radio.getCheckedRadioButtonId());
+                roleName = rb.getText().toString();
+                loadData();
+            }
+        });
         setEnable(go);
         mPeopleAuditRecycleViewAdapter = new PeopleAuditRecycleViewAdapter(getContext());
         recyclerview1.setAdapter(mPeopleAuditRecycleViewAdapter);
@@ -270,7 +273,7 @@ public class PersonAuditFragment extends BaseFragment {
 
                         break;
                     case R.id.add:
-                       //setEnable1(mPeopleAuditRecycleViewAdapter.add);
+                        //setEnable1(mPeopleAuditRecycleViewAdapter.add);
                         Intent intent11 = new Intent();
                         intent11.putExtra("workuserNo", mPeopleAuditRecycleViewAdapter.getItem(position).getWorkuserNo() + "");
                         intent11.setClass(getContext(), AddTaskNumberActivity.class);
@@ -278,17 +281,6 @@ public class PersonAuditFragment extends BaseFragment {
 
                         break;
                 }
-            }
-        });
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                roleName = spinner.getSelectedItem().toString();
-                loadData();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
         loadData();
@@ -299,7 +291,7 @@ public class PersonAuditFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.go, R.id.ed, R.id.no,R.id.exit})
+    @OnClick({R.id.go, R.id.ed, R.id.no, R.id.exit})
     public void onViewClicked(View view) {
         CommonDialog commonDialog = new CommonDialog(getContext());
         switch (view.getId()) {
@@ -325,6 +317,7 @@ public class PersonAuditFragment extends BaseFragment {
                         startActivity(new Intent(getContext(), MainActivity.class));
                         commonDialog.dismiss();
                     }
+
                     @Override
                     public void onNegtiveClick() {
 

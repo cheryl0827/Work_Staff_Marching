@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -196,7 +197,7 @@ public class WorkTaskMarchedFragment extends BaseFragment {
 
                             @Override
                             public void onFailure(String state, String msg) {
-                                CustomToast.showToast(getContext(), msg);
+                                Toast.makeText(getContext(), "查询诉求任务的匹配失败,没有相关的诉求任务", Toast.LENGTH_SHORT).show();
                             }
                         });
                 break;

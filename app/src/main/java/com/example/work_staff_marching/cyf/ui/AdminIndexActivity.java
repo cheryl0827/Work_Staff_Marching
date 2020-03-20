@@ -1,37 +1,57 @@
 package com.example.work_staff_marching.cyf.ui;
 
+import android.os.Bundle;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.os.Bundle;
-import android.widget.RadioGroup;
 
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.fragment.AdminMarchedTaskFragment;
 import com.example.work_staff_marching.cyf.fragment.MessageFragment;
 import com.example.work_staff_marching.cyf.fragment.PersonAuditFragment;
 import com.example.work_staff_marching.cyf.fragment.TaskAuditFragment;
-import com.example.work_staff_marching.cyf.fragment.TaskFragment;
 import com.example.work_staff_marching.cyf.fragment.TaskMarching;
-import com.example.work_staff_marching.cyf.fragment.UserMeFragment;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class AdminIndexActivity extends AppCompatActivity {
     private static final String TAG = "AdminIndexActivity";
+    @BindView(R.id.radiobutton_person_audit)
+    RadioButton radiobuttonPersonAudit;
+    @BindView(R.id.radiobutton_task_audit)
+    RadioButton radiobuttonTaskAudit;
+    @BindView(R.id.radiobutton_march_management)
+    RadioButton radiobuttonMarchManagement;
+    @BindView(R.id.radiobutton_march_result)
+    RadioButton radiobuttonMarchResult;
+    @BindView(R.id.radiobutton_message)
+    RadioButton radiobuttonMessage;
     private ArrayList<Fragment> fragmentList = new ArrayList<>();
     private RadioGroup radioGroup;
     private FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_index);
+        ButterKnife.bind(this);
         initViews();
         initEvent();
         initData();
+        radiobuttonPersonAudit.setBackgroundColor(getResources().getColor(R.color.gainsboro));;
+        radiobuttonMarchManagement.setBackgroundColor(getResources().getColor(R.color.white));
+        radiobuttonMessage.setBackgroundColor(getResources().getColor(R.color.white));
+        radiobuttonTaskAudit.setBackgroundColor(getResources().getColor(R.color.white));
+        radiobuttonMarchResult.setBackgroundColor(getResources().getColor(R.color.white));
     }
+
     private void initViews() {
         //1、获取main_activity中的控件的实例化对象
         radioGroup = (RadioGroup) findViewById(R.id.radiogroup);
@@ -51,21 +71,46 @@ public class AdminIndexActivity extends AppCompatActivity {
                 switch (checkedId) {
                     case R.id.radiobutton_person_audit: {
                         setCurrentFragment(0);
+                        radiobuttonPersonAudit.setBackgroundColor(getResources().getColor(R.color.gainsboro));;
+                        radiobuttonMarchManagement.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonMessage.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonTaskAudit.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonMarchResult.setBackgroundColor(getResources().getColor(R.color.white));
                         break;
                     }
                     case R.id.radiobutton_task_audit: {
+                        radiobuttonTaskAudit.setBackgroundColor(getResources().getColor(R.color.gainsboro));;
+                        radiobuttonMarchManagement.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonMessage.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonPersonAudit.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonMarchResult.setBackgroundColor(getResources().getColor(R.color.white));
                         setCurrentFragment(1);
                         break;
                     }
-                    case R.id.radiobutton_march_management:{
+                    case R.id.radiobutton_march_management: {
+                        radiobuttonMarchManagement.setBackgroundColor(getResources().getColor(R.color.gainsboro));;
+                        radiobuttonTaskAudit.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonMessage.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonPersonAudit.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonMarchResult.setBackgroundColor(getResources().getColor(R.color.white));
                         setCurrentFragment(2);
                         break;
                     }
                     case R.id.radiobutton_march_result: {
+                        radiobuttonMarchResult.setBackgroundColor(getResources().getColor(R.color.gainsboro));;
+                        radiobuttonMarchManagement.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonMessage.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonPersonAudit.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonTaskAudit.setBackgroundColor(getResources().getColor(R.color.white));
                         setCurrentFragment(3);
                         break;
                     }
-                    case R.id.radiobutton_message:{
+                    case R.id.radiobutton_message: {
+                        radiobuttonMessage.setBackgroundColor(getResources().getColor(R.color.gainsboro));;
+                        radiobuttonMarchManagement.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonTaskAudit.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonPersonAudit.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonMarchResult.setBackgroundColor(getResources().getColor(R.color.white));
                         setCurrentFragment(4);
                         break;
                     }
@@ -84,7 +129,7 @@ public class AdminIndexActivity extends AppCompatActivity {
         fragmentList.add(personAuditFragment);
         TaskAuditFragment taskAuditFragment = new TaskAuditFragment();
         fragmentList.add(taskAuditFragment);
-        TaskMarching taskMarching=new TaskMarching();
+        TaskMarching taskMarching = new TaskMarching();
         fragmentList.add(taskMarching);
         AdminMarchedTaskFragment adminMarchedTaskFragment = new AdminMarchedTaskFragment();
         fragmentList.add(adminMarchedTaskFragment);
@@ -97,9 +142,10 @@ public class AdminIndexActivity extends AppCompatActivity {
 
     /**
      * 显示fragment
+     *
      * @param index
      */
-    private void setCurrentFragment(int index){
+    private void setCurrentFragment(int index) {
         //3 通过fragmentmanager获取fragment的事务管理对象
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         //4获取要显示的fragment

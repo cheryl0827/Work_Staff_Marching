@@ -210,7 +210,8 @@
             android:text="增加"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
-            android:background="@color/powderblue"/>
+            android:textColor="@color/black"
+            android:background="@color/gainsboro"/>
         <Button
             android:id="@+id/updateworkEvaluatingIndicator"
             android:layout_width="30dp"
@@ -218,7 +219,8 @@
             android:text="修改"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:background="@color/powderblue"/>
+            android:textColor="@color/black"
+            android:background="@color/gainsboro"/>
         <Button
             android:id="@+id/deleteworkEvaluatingIndicator"
             android:layout_width="30dp"
@@ -226,7 +228,8 @@
             android:layout_height="30dp"
             android:text="删除"
             android:layout_marginTop="5dp"
-            android:background="@color/powderblue"/>
+            android:textColor="@color/black"
+            android:background="@color/gainsboro"/>
         <Button
             android:id="@+id/add"
             android:layout_width="80dp"
@@ -234,7 +237,8 @@
             android:text="任务数操作"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
-            android:background="@color/powderblue"/>
+            android:textColor="@color/black"
+            android:background="@color/gainsboro"/>
     </LinearLayout>
 
 

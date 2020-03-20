@@ -29,30 +29,34 @@ public class WorkTaskMarchedAdapter extends BaseRecyclerViewAdapter<MarchingBean
     }
     @Override
     protected void convert(RecyclerViewHolder holder, MarchingBean data, int position, int viewType) {
-        TextView task_catagery,task_content,task_time;
-        Button banlibutton,detail;
         LinearLayout item;
-        task_catagery=(TextView)holder.getView(R.id.task_catagery);
-        task_content=(TextView)holder.getView(R.id.task_content);
-        task_time=(TextView)holder.getView(R.id.task_time);
-        banlibutton=(Button)holder.getView(R.id.banlibutton);
         item=(LinearLayout)holder.getView(R.id.item);
-        holder.addOnClickListener(R.id.banlibutton);
-        detail=(Button)holder.getView(R.id.detail);
-        holder.addOnClickListener(R.id.detail);
         Map<String, String> map = new HashMap<>();
         map.put("taskID",data.getTaskID()+"");
-        OkHttp.get(mContext, Constant.get_showtask, map, new OkCallback<Result<TaskBean>>() {
+        map.put("recordStatus","1");
+        OkHttp.get(mContext, Constant.get_showtaskl, map, new OkCallback<Result<TaskBean>>() {
             @Override
             public void onResponse(Result<TaskBean> response) {
                 taskBean=response.getData();
                 if(taskBean!=null){
-                task_catagery.setText(taskBean.getTaskCatagery());
-                task_content.setText(taskBean.getTaskContent());
-                task_time.setText(taskBean.getTaskTime());
+                   item.setVisibility(View.VISIBLE);
+                    TextView task_catagery,task_content,task_time;
+                    Button banlibutton,detail;
+
+                    task_catagery=(TextView)holder.getView(R.id.task_catagery);
+                    task_content=(TextView)holder.getView(R.id.task_content);
+                    task_time=(TextView)holder.getView(R.id.task_time);
+                    banlibutton=(Button)holder.getView(R.id.banlibutton);
+
+                    holder.addOnClickListener(R.id.banlibutton);
+                    detail=(Button)holder.getView(R.id.detail);
+                    holder.addOnClickListener(R.id.detail);
+                    task_catagery.setText(taskBean.getTaskCatagery());
+                    task_content.setText(taskBean.getTaskContent());
+                    task_time.setText(taskBean.getTaskTime());
                 }
                 if(taskBean==null){
-                    item.setVisibility(View.GONE);
+                   item.setVisibility(View.GONE);
                 }
             }
 

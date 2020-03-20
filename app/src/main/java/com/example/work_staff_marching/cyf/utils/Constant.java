@@ -210,4 +210,9 @@ public class Constant {
      *工作人员的诉求任务的模糊匹配信息查询(包括办理中，办理结束）
      */
     public static String MarchingTaskDimShowServlet= BASE_URL + "/MarchingTaskDimShowServlet";
+    /**
+     *上传照片
+     */
+    public static String UploadImageServlet= BASE_URL + "/UploadImageServlet";
+
 }

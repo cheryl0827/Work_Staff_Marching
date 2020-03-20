@@ -21,29 +21,46 @@
 
     <RadioGroup
         android:id="@+id/radiogroup"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp">
+      >
 
         <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:id="@+id/radiobutton_task"
             style="@style/main_radiobutton_stype"
             android:checked="true"
             android:drawableTop="@mipmap/task2"
-            android:text="待办理任务" />
+            android:text="待办理任务"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
         <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:id="@+id/radiobutton_taskend"
             style="@style/main_radiobutton_stype"
+            android:background="@color/white"
+
             android:checked="true"
             android:drawableTop="@mipmap/task_audit"
-            android:text="办理结束任务" />
+            android:textColor="@color/black"
+            android:text="办理结束任务"
+            android:textSize="16dp"/>
 
         <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:id="@+id/radiobutton_me"
             style="@style/main_radiobutton_stype"
             android:drawableTop="@mipmap/me1"
-            android:text="我" />
+            android:textColor="@color/black"
+            android:text="我"
+            android:textSize="16dp"/>
     </RadioGroup>
 </LinearLayout>
