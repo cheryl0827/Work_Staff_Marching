@@ -2,10 +2,10 @@ package com.example.work_staff_marching.cyf.fragment;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,11 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.adapter.MineRadioAdapter;
-import com.example.work_staff_marching.cyf.entity.ChooseBean;
 import com.example.work_staff_marching.cyf.entity.TaskBean;
 import com.example.work_staff_marching.cyf.entity.UserBean;
 import com.example.work_staff_marching.cyf.inteface.OnItemClickListener;
-import com.example.work_staff_marching.cyf.ui.ChooseActivity;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
 import com.example.work_staff_marching.cyf.utils.CommonDialog;
 import com.example.work_staff_marching.cyf.utils.Constant;
@@ -30,6 +28,7 @@ import com.example.work_staff_marching.cyf.utils.SharePrefrenceUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,10 +49,9 @@ public class TaskMarching extends BaseFragment {
     TextView mTvQuitChoose;
     @BindView(R.id.tv_quit_all_choose)
     TextView mTvQuitAllChoose;
-    @BindView(R.id.spinner)
-    Spinner spinner;
-    String Number="1";
-    String[] spinnerItems = {"1", "2","3","4","5","6","7","8","9","10","11","12"};
+
+    @BindView(R.id.num)
+    TextView num;
 
     private MineRadioAdapter mRadioAdapter = null;
     List<TaskBean> mList = new ArrayList<>();
@@ -68,10 +66,7 @@ public class TaskMarching extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getContext(),
-                R.layout.item_select, spinnerItems);
-        spinnerAdapter.setDropDownViewResource(R.layout.item_drop);
-        spinner.setAdapter(spinnerAdapter);
+
 
         mRadioAdapter = new MineRadioAdapter(getContext());
         mRecyclerview.setAdapter(mRadioAdapter);
@@ -95,16 +90,7 @@ public class TaskMarching extends BaseFragment {
             }
         });
         loadData();
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Number = spinner.getSelectedItem().toString();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
         //initListener();
 
     }
@@ -164,16 +150,21 @@ public class TaskMarching extends BaseFragment {
                     taskBean.setSelect(false);//针对数据被选择与否
                 }
                 mRadioAdapter.setNewData(mList);
-                mRadioAdapter.setSelect(true);//z针对复选框的出现与否
+                mRadioAdapter.setSelect(true);//针对复选框的出现与否
                 mRadioAdapter.notifyDataSetChanged();
                 break;
             case R.id.tv_commit:
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-                String time=sdf.format(new java.util.Date());
-                if (select.size() == 0) {
-                    CustomToast.showToast(getContext(), "请选择");
-                    return;
-                } else {
+                String time = sdf.format(new Date());
+
+                if (num.getText().toString().equals("")){
+                    CustomToast.showToast(getContext(), "请选择输入诉求任务所需要的工作人员数量！");
+                }
+                else if (select.size() == 0) {
+                CustomToast.showToast(getContext(), "请选择诉求任务！");
+                return;
+            }
+                    else {
                     mTotalId = "";
                     for (TaskBean taskBean : select) {
                         mTotalId = mTotalId + taskBean.getTaskID() + ",";
@@ -183,21 +174,39 @@ public class TaskMarching extends BaseFragment {
                         public void onPositiveClick() {
                             commonDialog.dismiss();
                             mMap.put("all_id", mTotalId);
-                            mMap.put("Number",Number);
+                            mMap.put("Number", num.getText().toString());
                             mMap.put("adminID", SharePrefrenceUtil.getObject(getContext(), UserBean.class).getUserID() + "");
-                            mMap.put("marchingTime",time);
-                            OkHttp.post(getContext(), Constant. CalculatePorprotionServlet, mMap, new OkCallback<Result<String>>() {
+                            mMap.put("marchingTime", time);
+                            OkHttp.post(getContext(), Constant.CalculatePorprotionServlet, mMap, new OkCallback<Result<String>>() {
                                 @Override
                                 public void onResponse(Result<String> response) {
+                                    commonDialog.isSingle = true;
+                                    commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("完成诉求任务的匹配，匹配结果请前往匹配结果显示中查看！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                                        @Override
+                                        public void onPositiveClick() {
+                                            commonDialog.dismiss();
+                                            loadData();
+                                            num.setText("");
+                                            select.clear();
+
+                                        }
+
+                                        @Override
+                                        public void onNegtiveClick() {
+                                            commonDialog.dismiss();
+                                        }
+                                    }).show();
 
                                 }
+
                                 @Override
                                 public void onFailure(String state, String msg) {
+                                    Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
 
                                 }
                             });
-                           // CustomToast.showToast(getContext(), mMap.get("all_id").toString());
                         }
+
                         @Override
                         public void onNegtiveClick() {
 

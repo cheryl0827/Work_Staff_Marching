@@ -87,7 +87,7 @@ public class OnlinePetitionSureActivity extends BaseActivity {
                 public void onResponse(Result<String> response) {
                     commonDialog.setPositive("下一步");
                     commonDialog.isSingle=true;
-                    commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("诉求任务填写成功,请完成下一步的！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                    commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("诉求任务填写成功,请完成下一步操作！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                         @Override
                         public void onPositiveClick() {
                             Intent intent = new Intent();

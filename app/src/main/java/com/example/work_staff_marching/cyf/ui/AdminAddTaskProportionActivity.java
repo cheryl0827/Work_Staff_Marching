@@ -50,7 +50,7 @@ public class AdminAddTaskProportionActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle saveInstanceState) {
-        setTitle("诉求任务权重表填写");
+        setTitle("诉求任务权重信息审核");
         community.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -203,7 +203,7 @@ public class AdminAddTaskProportionActivity extends BaseActivity {
                     @Override
                     public void onResponse(Result<String> response) {
                         commonDialog.isSingle=true;
-                        commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("诉求任务权重填写成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                        commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("诉求任务权重信息审核成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                             @Override
                             public void onPositiveClick() {
                                 commonDialog.dismiss();

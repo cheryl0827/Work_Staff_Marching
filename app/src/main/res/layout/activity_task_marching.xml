@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#fff">
+    android:background="#E6E6FA">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="65dp"
@@ -45,16 +45,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="35dp"
-            android:text="请选择诉求任务需要的工作人员数量："
+            android:text="请输入诉求任务需要的工作人员数量："
             android:textSize="16dp"
             android:textColor="@color/black"/>
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/num"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:ems="10"
+            android:focusable="true"
+            android:inputType="textPersonName"
+            android:text=""
+            android:textColor="@color/black" />
 
-            />
+
+
     </LinearLayout>
     <View
         android:layout_width="wrap_content"

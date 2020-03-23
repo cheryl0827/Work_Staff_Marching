@@ -122,7 +122,7 @@ public class TaskDetailActivity extends BaseActivity {
                     @Override
                     public void onResponse(Result<String> response) {
                         commonDialog.isSingle=true;
-                        commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("诉求任务审核成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                        commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("诉求任务审核成功，请完成该诉求任务权重信息审核！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                             @Override
                             public void onPositiveClick() {
                                     Intent intent = new Intent();
