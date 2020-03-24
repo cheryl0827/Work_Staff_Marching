@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         >
 
         <LinearLayout
@@ -139,21 +139,41 @@
                 android:textColor="#808080"
                 android:textSize="22dp" />
         </LinearLayout>
+
+
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#DCDCDC"/>
-    </LinearLayout>
-
+        <LinearLayout
+            android:id="@+id/phone1LinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+        <Button
+            android:id="@+id/pingjia"
+            android:layout_width="70dp"
+            android:layout_marginLeft="90dp"
+            android:layout_height="wrap_content"
+            android:text="评价"
+            android:textStyle="italic"
+            android:background="@color/powderblue"
+            android:textColor="@color/white"
+            android:textSize="22dp"/>
 
         <Button
-            android:layout_width="fill_parent"
-            android:id="@+id/show"
+            android:id="@+id/update"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/setbutton"
-            android:layout_marginTop="18dp"
-            android:text="查看评价信息"
-            android:textSize="23dp"/>
+            android:text="查看"
+            android:layout_marginLeft="60dp"
+            android:background="@color/powderblue"
+            android:textColor="@color/white"
+            android:textSize="22dp"/>
+        </LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>

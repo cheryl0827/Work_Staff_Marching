@@ -55,8 +55,10 @@ public class TaskEstimateActivity extends BaseActivity {
     TextView analyse1;
     @BindView(R.id.law1)
     TextView law1;
-    String taskStatus="3";
-    String pingjiaStatus="2";
+    String taskStatus = "3";
+    String pingjiaStatus = "2";
+    @BindView(R.id.username)
+    TextView username;
 
     @Override
     protected int getContentView() {
@@ -65,14 +67,18 @@ public class TaskEstimateActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle saveInstanceState) {
-        setTitle("诉求任务完成度评价");
+        setTitle("工作人员能力评价");
+        Intent intent = getIntent();
+        username.setText(intent.getStringExtra("username"));
         community.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
             @Override
             public void afterTextChanged(Editable s) {
                 if (!s.toString().equals("")) {
@@ -87,9 +93,11 @@ public class TaskEstimateActivity extends BaseActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
             @Override
             public void afterTextChanged(Editable s) {
                 if (!s.toString().equals("")) {
@@ -104,9 +112,11 @@ public class TaskEstimateActivity extends BaseActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
             @Override
             public void afterTextChanged(Editable s) {
                 if (!s.toString().equals("")) {
@@ -121,9 +131,11 @@ public class TaskEstimateActivity extends BaseActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
             @Override
             public void afterTextChanged(Editable s) {
                 if (!s.toString().equals("")) {
@@ -138,9 +150,11 @@ public class TaskEstimateActivity extends BaseActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
             @Override
             public void afterTextChanged(Editable s) {
                 if (!s.toString().equals("")) {
@@ -155,9 +169,11 @@ public class TaskEstimateActivity extends BaseActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
             @Override
             public void afterTextChanged(Editable s) {
                 if (!s.toString().equals("")) {
@@ -178,29 +194,30 @@ public class TaskEstimateActivity extends BaseActivity {
         int organization1 = Integer.parseInt(organization.getText().toString());
         int analyse1 = Integer.parseInt(analyse.getText().toString());
         int law1 = Integer.parseInt(law.getText().toString());
-        int count=community1+urgent1+psychology1+organization1+analyse1+law1;
+        int count = community1 + urgent1 + psychology1 + organization1 + analyse1 + law1;
         CommonDialog commonDialog = new CommonDialog(this);
         switch (view.getId()) {
             case R.id.ok:
-                Intent intent1=getIntent();
+                Intent intent1 = getIntent();
                 Map<String, String> map = new HashMap<>();
-                map.put("community",community.getText().toString());
-                map.put("urgent",urgent.getText().toString());
-                map.put("psychology",psychology.getText().toString());
-                map.put("organization",organization.getText().toString());
-                map.put("analyse",analyse.getText().toString());
-                map.put("law",law.getText().toString());
-                map.put("taskID",intent1.getStringExtra("taskID"));
-                map.put("taskStatus",taskStatus);
-                map.put("pingjiaStatus",pingjiaStatus);
-                if(count!=100)
-                    Toast.makeText(TaskEstimateActivity.this,"输入的总值只能是100，请重新输入",Toast.LENGTH_SHORT).show();
+                map.put("community", community.getText().toString());
+                map.put("urgent", urgent.getText().toString());
+                map.put("psychology", psychology.getText().toString());
+                map.put("organization", organization.getText().toString());
+                map.put("analyse", analyse.getText().toString());
+                map.put("law", law.getText().toString());
+                map.put("workuserNo", intent1.getStringExtra("workuserNo"));
+                map.put("taskID", intent1.getStringExtra("taskID"));
+                map.put("taskStatus", taskStatus);
+                map.put("pingjiaStatus", pingjiaStatus);
+                if (count != 100)
+                    Toast.makeText(TaskEstimateActivity.this, "输入的总值只能是100，请重新输入", Toast.LENGTH_SHORT).show();
                 else {
                     OkHttp.post(TaskEstimateActivity.this, Constant.get_estimateadd, map, new OkCallback<Result<String>>() {
                         @Override
                         public void onResponse(Result<String> response) {
                             commonDialog.isSingle = true;
-                            commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("诉求任务评价填写成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                            commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("工作人员能力评价成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                                 @Override
                                 public void onPositiveClick() {
                                     commonDialog.dismiss();
@@ -232,5 +249,6 @@ public class TaskEstimateActivity extends BaseActivity {
                 break;
         }
     }
+
 
 }

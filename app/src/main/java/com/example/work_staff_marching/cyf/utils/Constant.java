@@ -148,8 +148,8 @@ public class Constant {
     public static String get_usertaskshow= BASE_URL + "/UserTaskShowServlet";
     /**
      * 诉求任务的评价查看
-     */
-    public static String get_estimateshow= BASE_URL + "/ShowEstimateServlet";
+
+    public static String get_estimateshow= BASE_URL + "/ShowEstimateServlet";     */
     /**
      * 工作人员的信息查看
      */
@@ -214,5 +214,14 @@ public class Constant {
      *上传照片
      */
     public static String UploadImageServlet= BASE_URL + "/UploadImageServlet";
+    /**
+     *工作人员的评价信息显示
+     */
+    public static String ShowWorkUserEstimate= BASE_URL + "/ShowWorkUserEstimate";
+    /**
+     *普通用户诉求任务的办理结束
+     */
+    public static String UpdateTasklStatusServlet= BASE_URL + "/UpdateTasklStatusServlet";
+
 
 }

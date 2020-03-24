@@ -81,8 +81,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:paddingTop="2dp">
+                android:paddingTop="2dp"
+                >
 
                 <ImageView
                     android:id="@+id/imageView3"
@@ -101,6 +101,30 @@
                     android:textSize="16dp" />
 
             </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:paddingTop="2dp">
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:layout_marginLeft="30dp"
+                android:text="所需要的工作人员数量："
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="TextView"
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
         </LinearLayout>
     <View
         android:layout_width="wrap_content"

@@ -25,6 +25,7 @@ import com.example.work_staff_marching.cyf.ui.ChangeOnlinePetitionActivity;
 import com.example.work_staff_marching.cyf.ui.EstimateActivity;
 import com.example.work_staff_marching.cyf.ui.TaskEstimateActivity;
 import com.example.work_staff_marching.cyf.ui.WorkUserDetailActivity;
+import com.example.work_staff_marching.cyf.ui.WorkUserEvaluateActivity;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
 import com.example.work_staff_marching.cyf.utils.CommonDialog;
 import com.example.work_staff_marching.cyf.utils.Constant;
@@ -106,56 +107,29 @@ public class TaskFragment extends BaseFragment {
                         intent.setClass(getContext(), ChangeOnlinePetitionActivity.class);
                         startActivityForResult(intent, 1);
                         break;
-                    case R.id.marched:
-                        Intent intent33 = new Intent();
-                        intent33.putExtra("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID() + "");
-                        intent33.setClass(getContext(), WorkUserDetailActivity.class);
-                        startActivity(intent33);
-                        break;
+//                    case R.id.marched:
+//                        Intent intent33 = new Intent();
+//                        intent33.putExtra("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID() + "");
+//                        intent33.setClass(getContext(), WorkUserDetailActivity.class);
+//                        startActivity(intent33);
+//                        break;
                     case R.id.detailEndButton:
                         Intent intent2 = new Intent();
                         intent2.putExtra("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID() + "");
-                        intent2.setClass(getContext(), EstimateActivity.class);
+                        intent2.setClass(getContext(), WorkUserDetailActivity.class);
                         startActivity(intent2);
                         break;
-                    case R.id.marchig:
-                        Intent intent3 = new Intent();
-                        intent3.putExtra("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID() + "");
-                        intent3.setClass(getContext(), WorkUserDetailActivity.class);
-                        startActivity(intent3);
-                        break;
+//                    case R.id.marchig:
+//                        Intent intent3 = new Intent();
+//                        intent3.putExtra("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID() + "");
+//                        intent3.setClass(getContext(), WorkUserDetailActivity.class);
+//                        startActivity(intent3);
+//                        break;
                     case R.id.wanchengbutton:
-                        taskStatus = "3";
-                        Map<String, String> map1 = new HashMap<>();
-                        map1.put("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID() + "");
-                        map1.put("taskStatus", taskStatus);
-                        OkHttp.post(getContext(), Constant.get_taskaudit, map1, new OkCallback<Result<String>>() {
-                            @Override
-                            public void onResponse(Result<String> response) {
-                                commonDialog.isSingle = true;
-                                commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("完成办理成功,请完成对该诉求任务的评价！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
-                                    @Override
-                                    public void onPositiveClick() {
-                                        commonDialog.dismiss();
-                                        Intent intent1 = new Intent();
-                                        intent1.putExtra("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID() + "");
-                                        intent1.setClass(getContext(), TaskEstimateActivity.class);
-                                        startActivityForResult(intent1, 2);
-                                        // finish();
-                                    }
-
-                                    @Override
-                                    public void onNegtiveClick() {
-                                        commonDialog.dismiss();
-                                    }
-                                }).show();
-                            }
-
-                            @Override
-                            public void onFailure(String state, String msg) {
-                                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        Intent intent1 = new Intent();
+                        intent1.putExtra("taskID", mRecyclerViewFragmentAdapter.getItem(position).getTaskID() + "");
+                        intent1.setClass(getContext(), WorkUserEvaluateActivity.class);
+                        startActivityForResult(intent1, 2);
                         break;
                 }
             }

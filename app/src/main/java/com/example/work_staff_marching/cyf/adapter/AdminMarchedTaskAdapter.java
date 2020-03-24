@@ -30,17 +30,15 @@ public class AdminMarchedTaskAdapter extends  BaseRecyclerViewAdapter<TaskBean, 
     @Override
     protected void convert(RecyclerViewHolder holder, TaskBean data, int position, int viewType) {
         TextView task_catagery,task_content,task_time,address,detailaddress;
-        Button machedbutton,pingjiabutton,jilubutton;
+        Button machedbutton,jilubutton;
         task_catagery=(TextView)holder.getView(R.id.task_catagery);
         task_content=(TextView)holder.getView(R.id.task_content);
         task_time=(TextView)holder.getView(R.id.task_time);
         detailaddress=(TextView)holder.getView(R.id.detailaddress);
         address=(TextView)holder.getView(R.id.address);
         machedbutton=(Button) holder.getView(R.id.machedbutton);
-        pingjiabutton=(Button) holder.getView(R.id.pingjiabutton);
         jilubutton=(Button) holder.getView(R.id.jilubutton);
         holder.addOnClickListener(R.id.machedbutton);
-        holder.addOnClickListener(R.id.pingjiabutton);
         holder.addOnClickListener(R.id.jilubutton);
                     task_catagery.setText(data.getTaskCatagery());
                     task_content.setText(data.getTaskContent());

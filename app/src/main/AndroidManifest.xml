@@ -17,7 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".cyf.ui.AddTaskNumberActivity"></activity>
+        <activity android:name=".cyf.ui.UpdateUserEvaluateActivity"></activity>
+        <activity android:name=".cyf.ui.WorkUserEvaluateActivity" />
+        <activity android:name=".cyf.ui.AddTaskNumberActivity" />
         <activity android:name=".cyf.ui.WorkUserDetailActivity" />
         <activity android:name=".cyf.ui.EstimateActivity" />
         <activity android:name=".cyf.ui.TaskHandledDetailActivity" />

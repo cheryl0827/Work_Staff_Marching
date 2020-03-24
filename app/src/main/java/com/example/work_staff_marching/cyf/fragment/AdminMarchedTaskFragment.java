@@ -22,6 +22,7 @@ import com.example.work_staff_marching.cyf.inteface.OnItemChildClickListener;
 import com.example.work_staff_marching.cyf.ui.EstimateActivity;
 import com.example.work_staff_marching.cyf.ui.MarchedDetailActivity;
 import com.example.work_staff_marching.cyf.ui.TransactionRecordShowActivity;
+import com.example.work_staff_marching.cyf.ui.WorkUserDetailActivity;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
 import com.example.work_staff_marching.cyf.utils.Constant;
 import com.example.work_staff_marching.cyf.utils.CustomToast;
@@ -78,29 +79,8 @@ public class AdminMarchedTaskFragment extends BaseFragment {
                         Intent intent1 = new Intent();
                         intent1.putExtra("taskID", adminMarchedTaskAdapter.getItem(position).getTaskID() + "");
                         //intent1.putExtra("workuserNo", adminMarchedTaskAdapter.getItem(position).getWorkuserNo()+"");
-                        intent1.setClass(getContext(), MarchedDetailActivity.class);
+                        intent1.setClass(getContext(), WorkUserDetailActivity.class);
                         startActivity(intent1);
-                        break;
-                    case R.id.pingjiabutton:
-                        Map<String, String> map1 = new HashMap<>();
-                        map1.put("taskID", adminMarchedTaskAdapter.getItem(position).getTaskID() + "");
-                        OkHttp.get(getContext(), Constant.get_estimateshow, map1, new OkCallback<Result<WorkuserEvaluatingIndicatorBean>>() {
-                            @Override
-                            public void onResponse(Result response) {
-                                if (response.getData() != null) {
-                                    Intent intent = new Intent();
-                                    intent.putExtra("taskID", adminMarchedTaskAdapter.getItem(position).getTaskID() + "");
-                                    intent.setClass(getContext(), EstimateActivity.class);
-                                    startActivity(intent);
-                                }
-                                if (response.getData() == null)
-                                    Toast.makeText(getContext(), "该诉求任务未进行评价，请等待普通用户进行评价！", Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onFailure(String state, String msg) {
-                            }
-                        });
                         break;
                     case R.id.jilubutton:
                         Intent intent2 = new Intent();

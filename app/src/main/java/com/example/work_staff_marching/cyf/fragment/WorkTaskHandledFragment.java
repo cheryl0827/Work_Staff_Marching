@@ -15,6 +15,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.adapter.BaseRecyclerViewAdapter;
 import com.example.work_staff_marching.cyf.adapter.WorkTaskHandledAdapter;
+import com.example.work_staff_marching.cyf.entity.EstimateBean;
 import com.example.work_staff_marching.cyf.entity.MarchingBean;
 import com.example.work_staff_marching.cyf.entity.UserBean;
 import com.example.work_staff_marching.cyf.entity.WorkuserEvaluatingIndicatorBean;
@@ -22,6 +23,7 @@ import com.example.work_staff_marching.cyf.inteface.OnItemChildClickListener;
 import com.example.work_staff_marching.cyf.ui.EstimateActivity;
 import com.example.work_staff_marching.cyf.ui.TaskHandledDetailActivity;
 import com.example.work_staff_marching.cyf.ui.TransactionRecordShowActivity;
+import com.example.work_staff_marching.cyf.ui.UpdateUserEvaluateActivity;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
 import com.example.work_staff_marching.cyf.utils.Constant;
 import com.example.work_staff_marching.cyf.utils.CustomToast;
@@ -91,23 +93,28 @@ public class WorkTaskHandledFragment extends BaseFragment {
                         startActivity(intent);
                         break;
                     case R.id.pingjiabutton:
-                        Map<String, String> map1 = new HashMap<>();
-                        map1.put("taskID", workTaskHandledAdapter.getItem(position).getTaskID() + "");
-                        OkHttp.post(getContext(), Constant.get_estimateshow, map1, new OkCallback<Result<WorkuserEvaluatingIndicatorBean>>() {
+                        Map<String, String> map = new HashMap<>();
+                        map.put("taskID",workTaskHandledAdapter.getItem(position).getTaskID() + "");
+                        map.put("workuserNo",SharePrefrenceUtil.getObject(getContext(), UserBean.class).getWorkuserNo()+"");
+                        OkHttp.get(getContext(), Constant.ShowWorkUserEstimate, map, new OkCallback<Result<EstimateBean>>() {
                             @Override
-                            public void onResponse(Result response) {
+                            public void onResponse(Result<EstimateBean> response) {
+                                if (response.getData() == null) {
+                                    Toast.makeText(getContext(), "上访人员未对该诉求任务进行评价，不能进行查看操作", Toast.LENGTH_SHORT).show();
+                                }
                                 if (response.getData() != null) {
                                     Intent intent = new Intent();
+                                    intent.putExtra("workuserNo", SharePrefrenceUtil.getObject(getContext(), UserBean.class).getWorkuserNo()+"");
+                                    intent.putExtra("username", SharePrefrenceUtil.getObject(getContext(), UserBean.class).getUserName()+"");
                                     intent.putExtra("taskID", workTaskHandledAdapter.getItem(position).getTaskID() + "");
-                                    intent.setClass(getContext(), EstimateActivity.class);
+                                    intent.setClass(getContext(), UpdateUserEvaluateActivity.class);
                                     startActivity(intent);
                                 }
-                                if (response.getData() == null)
-                                    Toast.makeText(getContext(), "该诉求任务未进行评价，请等待普通用户进行评价！", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void onFailure(String state, String msg) {
+
                             }
                         });
                         break;

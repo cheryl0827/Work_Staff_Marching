@@ -34,12 +34,13 @@ public class MineRadioAdapter extends  BaseRecyclerViewAdapter<TaskBean, Recycle
     }
     @Override
     protected void convert(RecyclerViewHolder holder, TaskBean data, int position, int viewType) {
-        TextView task_catagery,task_time,task_content,address,detailaddress;
+        TextView task_catagery,task_time,task_content,address,detailaddress,num;
         RelativeLayout mRootView;
         QMUIRoundButton ivIsSelect = (QMUIRoundButton) holder.getView(R.id.iv_is_select);
         task_catagery=(TextView)holder.getView(R.id.task_catagery);
         task_time=(TextView)holder.getView(R.id.task_time);
         address=(TextView)holder.getView(R.id.address);
+        num=(TextView)holder.getView(R.id.num);
         detailaddress=(TextView)holder.getView(R.id.detailaddress);
         task_content=(TextView)holder.getView(R.id.task_content);
         task_catagery.setText(data.getTaskCatagery());
@@ -47,6 +48,7 @@ public class MineRadioAdapter extends  BaseRecyclerViewAdapter<TaskBean, Recycle
         task_time.setText(data.getTaskTime());
         detailaddress.setText(data.getTaskDetaiAdress());
         address.setText(data.getTaskAdress());
+        num.setText(data.getWorkUserNumber());
         if (isSelect()) {//判断复选框的出现
             ivIsSelect.setVisibility(View.VISIBLE);
         } else {

@@ -35,7 +35,7 @@ public class TaskRecycleViewAdapter extends BaseRecyclerViewAdapter<TaskBean,Rec
     @Override
     protected void convert(RecyclerViewHolder holder, TaskBean data, int position, int viewType) {
         TextView task_catagery,task_content,task_time,address,detailaddress;
-        Button updateButton,deleteButton,detailEndButton,marchig,wanchengbutton,marched;
+        Button updateButton,deleteButton,detailEndButton,wanchengbutton;
         LinearLayout pingjia,opetation,detailEndLinearLayout,adressLinearLayout;
        // String workuserno=data.getTaskWorknumber();
         task_catagery=(TextView)holder.getView(R.id.task_catagery);
@@ -58,15 +58,11 @@ public class TaskRecycleViewAdapter extends BaseRecyclerViewAdapter<TaskBean,Rec
         updateButton=(Button)holder.getView(R.id.updateButton);
         deleteButton=(Button)holder.getView(R.id.deleteButton);
         detailEndButton=(Button)holder.getView(R.id.detailEndButton);
-        marchig=(Button)holder.getView(R.id.marchig);
         wanchengbutton=(Button)holder.getView(R.id.wanchengbutton);
-        marched=(Button)holder.getView(R.id.marched);
         holder.addOnClickListener(R.id.deleteButton);
         holder.addOnClickListener(R.id.updateButton);
         holder.addOnClickListener(R.id.detailEndButton);
-        holder.addOnClickListener(R.id.marchig);
         holder.addOnClickListener(R.id.wanchengbutton);
-        holder.addOnClickListener(R.id.marched);
         switch(data.getTaskStatus()){
             case 1:
                 opetation.setVisibility(View.VISIBLE);

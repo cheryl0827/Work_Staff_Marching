@@ -4,20 +4,34 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical">
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/swiperereshlayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#fff"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             >
 
         </androidx.recyclerview.widget.RecyclerView>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="2dp"
+        android:background="@color/gray" />
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:text="办理评价结束"
+        android:layout_gravity="center"
+        android:textSize="22dp"
+        android:background="@drawable/setbutton"
+        android:textColor="#808080"/>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+
+        android:layout_marginBottom="2dp"
+        android:background="@color/gray" />
 
 </LinearLayout>

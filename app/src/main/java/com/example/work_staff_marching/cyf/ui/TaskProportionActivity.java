@@ -46,12 +46,12 @@ public class TaskProportionActivity extends BaseActivity {
 
     @Override
     protected int getContentView() {
-        return R.layout.activity_task_proportion;
+        return R.layout.activity_taskproportion;
     }
 
     @Override
     protected void init(Bundle saveInstanceState) {
-        setTitle("诉求任务权重值填写");
+        setTitle("工作人员能力要求填写");
         community.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

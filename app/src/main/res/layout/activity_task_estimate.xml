@@ -12,8 +12,18 @@
             android:layout_gravity="center"
             />
 
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="120dp"
+        android:text="张三"
+        android:textColor="@color/qmui_config_color_gray_1"
+        android:textSize="27dp"/>
+
     <LinearLayout
-        android:paddingTop="30dp"
+        android:paddingTop="20dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
