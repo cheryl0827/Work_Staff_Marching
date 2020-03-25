@@ -42,15 +42,15 @@ public class HomeFragment extends BaseFragment {
     LinearLayout detailAdressLinearLayout;
     @BindView(R.id.button)
     Button button;
-    public static String contentString;
+    public static String contentString="";
     public static String catagery1String;
     public static String catagery2String;
     public static String catagery3String;
-    public static String catageryString;
+    public static String catageryString="";
     public static String address1String;
     public static String address2String;
     public static String address3String;
-    public static String addressString;
+    public static String addressString="";
 
     @Override
     protected int initLayout() {
@@ -137,11 +137,9 @@ if (resultCode==RESULT_OK){
         content.setText(contentString);
     if (requestCode==3)
         catagery.setText(catageryString);
-
     if (requestCode==4)
         address.setText(addressString);
 
 }
-
     }
 }

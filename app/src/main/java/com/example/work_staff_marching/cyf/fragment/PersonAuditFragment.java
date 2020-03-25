@@ -3,9 +3,9 @@ package com.example.work_staff_marching.cyf.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -63,6 +63,12 @@ public class PersonAuditFragment extends BaseFragment {
     RadioButton user;
     @BindView(R.id.radio)
     RadioGroup radio;
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.edit_search_context)
+    EditText editSearchContext;
+    @BindView(R.id.iv_search)
+    ImageView ivSearch;
     private List<UserBean> mUserBeans = new ArrayList<>();
     private PeopleAuditRecycleViewAdapter mPeopleAuditRecycleViewAdapter = null;
     String registerStatus = "1";
@@ -251,7 +257,7 @@ public class PersonAuditFragment extends BaseFragment {
                             @Override
                             public void onResponse(Result response) {
                                 commonDialog11.isSingle = true;
-                                commonDialog11.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("删除人员指标成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                                commonDialog11.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("删除工作人员评价指标信息成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                                     @Override
                                     public void onPositiveClick() {
                                         commonDialog11.dismiss();
@@ -291,7 +297,7 @@ public class PersonAuditFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.go, R.id.ed, R.id.no, R.id.exit})
+    @OnClick({R.id.go, R.id.ed, R.id.no, R.id.exit,R.id.back, R.id.iv_search})
     public void onViewClicked(View view) {
         CommonDialog commonDialog = new CommonDialog(getContext());
         switch (view.getId()) {
@@ -324,6 +330,28 @@ public class PersonAuditFragment extends BaseFragment {
                         commonDialog.dismiss();
                     }
                 }).show();
+                break;
+            case R.id.back:
+                editSearchContext.setText("");
+                registerStatus = "1";
+                setEnable(go);
+                loadData();
+                break;
+            case R.id.iv_search:
+                Map<String, String> map = new HashMap<>();
+                map.put("name", editSearchContext.getText().toString());
+                OkHttp.get(getContext(), Constant.UserDimShowServlet, map,
+                        new OkCallback<Result<List<UserBean>>>() {
+                            @Override
+                            public void onResponse(Result<List<UserBean>> response) {
+                                mPeopleAuditRecycleViewAdapter.setNewData(response.getData());
+                            }
+
+                            @Override
+                            public void onFailure(String state, String msg) {
+                                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                            }
+                        });
                 break;
         }
     }

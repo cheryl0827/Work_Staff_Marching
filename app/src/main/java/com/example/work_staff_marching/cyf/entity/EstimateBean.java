@@ -8,7 +8,14 @@ public class EstimateBean {
 	  private int organization;
 	  private int analyse;
 	  private int law;
-	  private int taskID;
+	private int marchingID;
+
+	public int getMarchingID() {
+		return marchingID;
+	}
+	public void setMarchingID(int marchingID) {
+		this.marchingID = marchingID;
+	}
 	  public int getEstimateID() {
 		return estimateID;
 	}
@@ -50,12 +57,6 @@ public class EstimateBean {
 	}
 	public void setLaw(int law) {
 		this.law = law;
-	}
-	public int getTaskID() {
-		return taskID;
-	}
-	public void setTaskID(int taskID) {
-		this.taskID = taskID;
 	}
 	
 }

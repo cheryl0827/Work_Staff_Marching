@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#E6E6FA">
+    android:background="@color/white">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="65dp"
@@ -25,53 +25,10 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="340dp"
-        android:layout_marginTop="10dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/red"
-        android:layout_gravity="center"
-        android:text="请点击底部的选择按钮进行选择要匹配的诉求任务，注意选择的诉求任务需要的工作人员人数要一致！" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
-            android:text="请输入诉求任务需要的工作人员数量："
-            android:textSize="16dp"
-            android:textColor="@color/black"/>
-        <EditText
-            android:id="@+id/num"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:ems="10"
-            android:focusable="true"
-            android:inputType="textPersonName"
-            android:text=""
-            android:textColor="@color/black" />
-
-
-
-    </LinearLayout>
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="2dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="2dp"
-        android:background="@color/gray" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview1"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />

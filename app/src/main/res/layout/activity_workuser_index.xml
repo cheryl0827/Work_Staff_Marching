@@ -51,6 +51,16 @@
             android:textColor="@color/black"
             android:text="办理结束任务"
             android:textSize="16dp"/>
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/radiobutton_count"
+            style="@style/main_radiobutton_stype"
+            android:drawableTop="@mipmap/count1"
+            android:textColor="@color/black"
+            android:text="信息统计"
+            android:textSize="16dp"/>
 
         <RadioButton
             android:layout_width="0dp"

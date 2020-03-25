@@ -185,7 +185,7 @@ public class TaskProportionActivity extends BaseActivity {
                         @Override
                         public void onResponse(Result<String> response) {
                             commonDialog.isSingle=true;
-                            commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("诉求任务权重值填写成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                            commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("工作人员能力要求填写成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                                 @Override
                                 public void onPositiveClick() {
                                     commonDialog.dismiss();

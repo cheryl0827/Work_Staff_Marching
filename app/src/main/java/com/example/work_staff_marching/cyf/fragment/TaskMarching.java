@@ -50,8 +50,6 @@ public class TaskMarching extends BaseFragment {
     @BindView(R.id.tv_quit_all_choose)
     TextView mTvQuitAllChoose;
 
-    @BindView(R.id.num)
-    TextView num;
 
     private MineRadioAdapter mRadioAdapter = null;
     List<TaskBean> mList = new ArrayList<>();
@@ -156,11 +154,7 @@ public class TaskMarching extends BaseFragment {
             case R.id.tv_commit:
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
                 String time = sdf.format(new Date());
-
-                if (num.getText().toString().equals("")){
-                    CustomToast.showToast(getContext(), "请选择输入诉求任务所需要的工作人员数量！");
-                }
-                else if (select.size() == 0) {
+                 if (select.size() == 0) {
                 CustomToast.showToast(getContext(), "请选择诉求任务！");
                 return;
             }
@@ -174,7 +168,7 @@ public class TaskMarching extends BaseFragment {
                         public void onPositiveClick() {
                             commonDialog.dismiss();
                             mMap.put("all_id", mTotalId);
-                            mMap.put("Number", num.getText().toString());
+
                             mMap.put("adminID", SharePrefrenceUtil.getObject(getContext(), UserBean.class).getUserID() + "");
                             mMap.put("marchingTime", time);
                             OkHttp.post(getContext(), Constant.CalculatePorprotionServlet, mMap, new OkCallback<Result<String>>() {
@@ -186,7 +180,6 @@ public class TaskMarching extends BaseFragment {
                                         public void onPositiveClick() {
                                             commonDialog.dismiss();
                                             loadData();
-                                            num.setText("");
                                             select.clear();
 
                                         }

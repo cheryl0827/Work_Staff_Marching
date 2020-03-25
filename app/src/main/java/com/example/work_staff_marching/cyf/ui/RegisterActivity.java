@@ -98,8 +98,8 @@ public class RegisterActivity extends BaseActivity {
             public void afterTextChanged(Editable s) {
                 if (!("").equals(userName.getText().toString()))
                     userName1.setText("");
-                else
-                    userName1.setText("*");
+                if (("").equals(userName.getText().toString()))
+                    userName1.setText("用户名不能为空");
             }
         });
         phone.addTextChangedListener(new TextWatcher() {
@@ -113,8 +113,10 @@ public class RegisterActivity extends BaseActivity {
             public void afterTextChanged(Editable s) {
                 if (!("").equals(phone.getText().toString()) && (isMobileNo(phone.getText().toString())))
                     phone1.setText("");
-                else
-                    phone1.setText("*");
+                if (("").equals(phone.getText().toString()))
+                    phone1.setText("手机号码不能为空");
+                if(!isMobileNo(phone.getText().toString()))
+                    phone1.setText("手机号码不合法");
             }
         });
         password.addTextChangedListener(new TextWatcher() {
@@ -128,8 +130,10 @@ public class RegisterActivity extends BaseActivity {
             public void afterTextChanged(Editable s) {
                 if (!("").equals(password.getText().toString()))
                     password1.setText("");
-                else
-                    password1.setText("*");
+                if (("").equals(password.getText().toString()))
+                    password1.setText("密码不能为空");
+                if(password.getText().toString().trim().length()<6||password.getText().toString().trim().length()>6)
+                    password1.setText("输入6-16位由字母和数字组成的密码");
             }
         });
         passwordSure.addTextChangedListener(new TextWatcher() {
@@ -143,8 +147,10 @@ public class RegisterActivity extends BaseActivity {
             public void afterTextChanged(Editable s) {
                 if (!("").equals(passwordSure.getText().toString()) && password.getText().toString().equals(passwordSure.getText().toString()))
                     passwordSure1.setText("");
-                else
-                    passwordSure1.setText("*");
+                if(("").equals(passwordSure.getText().toString()))
+                    passwordSure1.setText("确认密码不能为空");
+                if(!password.getText().toString().equals(passwordSure.getText().toString()))
+                    passwordSure1.setText("两次密码不一致");
             }
         });
         sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -223,6 +229,8 @@ public class RegisterActivity extends BaseActivity {
         }
         if (!(userName1.getText().toString().equals("") && password1.getText().toString().equals("") && passwordSure1.getText().toString().equals("") && phone1.getText().toString().equals("")))
             Toast.makeText(RegisterActivity.this, "请正确填写以上信息！", Toast.LENGTH_SHORT).show();
+
+
     }
 
     //验证手机号码

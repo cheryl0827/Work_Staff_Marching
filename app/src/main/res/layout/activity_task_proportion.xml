@@ -210,7 +210,7 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
-        android:text="注意：数据的填写要符合各个数据在0-100之间，且数据的总和只能为100！！"
+        android:text="注意：数据的填写要符合各个数据在0-100之间的整数，且数据的总和只能为100！！"
         android:textSize="18dp"
         android:textColor="@color/red"/>
 

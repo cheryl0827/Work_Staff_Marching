@@ -21,7 +21,6 @@
         <activity android:name=".cyf.ui.WorkUserEvaluateActivity" />
         <activity android:name=".cyf.ui.AddTaskNumberActivity" />
         <activity android:name=".cyf.ui.WorkUserDetailActivity" />
-        <activity android:name=".cyf.ui.EstimateActivity" />
         <activity android:name=".cyf.ui.TaskHandledDetailActivity" />
         <activity android:name=".cyf.ui.TransactionRecordShowActivity" />
         <activity android:name=".cyf.ui.TransactionRecordActivity" />

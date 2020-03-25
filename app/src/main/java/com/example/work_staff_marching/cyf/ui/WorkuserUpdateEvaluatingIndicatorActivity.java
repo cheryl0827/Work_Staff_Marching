@@ -201,7 +201,7 @@ public class WorkuserUpdateEvaluatingIndicatorActivity extends BaseActivity {
                         @Override
                         public void onResponse(Result<String> response) {
                             commonDialog.isSingle = true;
-                            commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("工作人员指标修改成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                            commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("工作人员评价指标信息修改成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                                 @Override
                                 public void onPositiveClick() {
                                     commonDialog.dismiss();

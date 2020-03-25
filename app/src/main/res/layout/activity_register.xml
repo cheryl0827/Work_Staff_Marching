@@ -13,7 +13,7 @@
             android:layout_weight="1"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="25dp">
+            android:layout_marginLeft="50dp">
 
         <TextView
                 android:id="@+id/textView2"
@@ -25,11 +25,11 @@
 
         <EditText
             android:id="@+id/userName"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:background="#ffffff"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="text"
             android:text=""
             android:textColor="@color/black" />
 
@@ -39,15 +39,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/red"
-            android:text="*"
-            android:textSize="20dp" />
+            android:text=""
+            android:textSize="14dp" />
     </LinearLayout>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_weight="1"
-            android:layout_marginLeft="25dp">
+            android:layout_marginLeft="50dp">
 
             <TextView
                 android:id="@+id/textView4"
@@ -60,11 +60,11 @@
 
             <EditText
                 android:id="@+id/phone"
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="text"
                 android:text=""
                 android:textColor="@color/black"/>
             <TextView
@@ -73,8 +73,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/red"
-                android:textSize="20dp"
-                android:text="*"/>
+                android:textSize="14dp"
+                android:text=""/>
         </LinearLayout>
 
 
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_weight="1"
-            android:layout_marginLeft="25dp">
+            android:layout_marginLeft="50dp">
 
             <TextView
                 android:id="@+id/textView0"
@@ -95,8 +95,9 @@
 
             <EditText
                 android:id="@+id/password"
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:digits="0123456789qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM"
                 android:background="#ffffff"
                 android:ems="10"
                 android:inputType="textPassword"
@@ -108,8 +109,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/red"
-                android:textSize="20dp"
-                android:text="*"/>
+                android:textSize="14dp"
+                android:text=""/>
         </LinearLayout>
 
         <LinearLayout
@@ -117,7 +118,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_weight="1"
-            android:layout_marginLeft="25dp">
+            android:layout_marginLeft="50dp">
 
             <TextView
                 android:id="@+id/textView01"
@@ -129,11 +130,12 @@
 
             <EditText
                 android:id="@+id/passwordSure"
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
                 android:ems="10"
                 android:inputType="textPassword"
+                android:digits="0123456789qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM"
                 android:text=""
                 android:textColor="@color/black"/>
             <TextView
@@ -142,15 +144,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/red"
-                android:textSize="20dp"
-                android:text="*"/>
+                android:textSize="14dp"
+                android:text=""/>
         </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="1"
-        android:layout_marginLeft="25dp"
+        android:layout_marginLeft="50dp"
         >
 
         <TextView
@@ -192,7 +194,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_weight="1"
-            android:layout_marginLeft="25dp">
+            android:layout_marginLeft="50dp">
 
             <TextView
                 android:id="@+id/textView"

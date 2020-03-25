@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.work_staff_marching.R;
+import com.example.work_staff_marching.cyf.fragment.CountFragment;
 import com.example.work_staff_marching.cyf.fragment.WorkTaskHandledFragment;
 import com.example.work_staff_marching.cyf.fragment.WorkTaskMarchedFragment;
 import com.example.work_staff_marching.cyf.fragment.WorkUserFragment;
@@ -27,6 +28,8 @@ public class WorkUserIndexActivity extends AppCompatActivity {
     RadioButton radiobuttonTaskend;
     @BindView(R.id.radiobutton_me)
     RadioButton radiobuttonMe;
+    @BindView(R.id.radiobutton_count)
+    RadioButton radiobuttonCount;
     private ArrayList<Fragment> fragmentList = new ArrayList<>();
     private RadioGroup radioGroup;
     private FragmentManager fragmentManager;
@@ -42,6 +45,7 @@ public class WorkUserIndexActivity extends AppCompatActivity {
         radiobuttonTask.setBackgroundColor(getResources().getColor(R.color.gainsboro));
         radiobuttonTaskend.setBackgroundColor(getResources().getColor(R.color.white));
         radiobuttonMe.setBackgroundColor(getResources().getColor(R.color.white));
+        radiobuttonCount.setBackgroundColor(getResources().getColor(R.color.white));
     }
 
     private void initViews() {
@@ -66,6 +70,7 @@ public class WorkUserIndexActivity extends AppCompatActivity {
                         radiobuttonTask.setBackgroundColor(getResources().getColor(R.color.gainsboro));
                         radiobuttonTaskend.setBackgroundColor(getResources().getColor(R.color.white));
                         radiobuttonMe.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonCount.setBackgroundColor(getResources().getColor(R.color.white));
                         //radiobutton_task.
                         break;
                     }
@@ -74,14 +79,23 @@ public class WorkUserIndexActivity extends AppCompatActivity {
                         radiobuttonTaskend.setBackgroundColor(getResources().getColor(R.color.gainsboro));
                         radiobuttonTask.setBackgroundColor(getResources().getColor(R.color.white));
                         radiobuttonMe.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonCount.setBackgroundColor(getResources().getColor(R.color.white));
                         break;
                     case R.id.radiobutton_me: {
                         setCurrentFragment(2);
                         radiobuttonMe.setBackgroundColor(getResources().getColor(R.color.gainsboro));
                         radiobuttonTaskend.setBackgroundColor(getResources().getColor(R.color.white));
                         radiobuttonTask.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonCount.setBackgroundColor(getResources().getColor(R.color.white));
                         break;
                     }
+                    case R.id.radiobutton_count:
+                        setCurrentFragment(3);
+                        radiobuttonCount.setBackgroundColor(getResources().getColor(R.color.gainsboro));
+                        radiobuttonTaskend.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonTask.setBackgroundColor(getResources().getColor(R.color.white));
+                        radiobuttonMe.setBackgroundColor(getResources().getColor(R.color.white));
+                        break;
                     default: {
                     }
                 }
@@ -98,6 +112,8 @@ public class WorkUserIndexActivity extends AppCompatActivity {
         fragmentList.add(workTaskHandledFragment);
         WorkUserFragment workUserFragment = new WorkUserFragment();
         fragmentList.add(workUserFragment);
+        CountFragment countFragment=new CountFragment();
+        fragmentList.add(countFragment);
 //        //默认显示第1个也就是fragmentList.get(0)
         setCurrentFragment(0);
 

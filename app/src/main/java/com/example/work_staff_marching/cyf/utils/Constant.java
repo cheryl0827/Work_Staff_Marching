@@ -195,6 +195,10 @@ public class Constant {
      */
     public static String UserShowDimServlet= BASE_URL + "/UserShowDimServlet";
     /**
+     *人员信息的模糊查询
+     */
+    public static String UserDimShowServlet= BASE_URL + "/UserDimShowServlet";
+    /**
      *诉求任务审核的模糊查询
      */
     public static String TaskAuditDimShowServlet= BASE_URL + "/TaskAuditDimShowServlet";
