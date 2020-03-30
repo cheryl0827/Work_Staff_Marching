@@ -157,34 +157,37 @@ public class TaskProportionActivity extends BaseActivity {
     }
     @OnClick({R.id.ok, R.id.cancel})
     public void onViewClicked(View view) {
-        int community1 = Integer.parseInt(community.getText().toString());
-        int urgent1 = Integer.parseInt(urgent.getText().toString());
-        int psychology1 = Integer.parseInt(psychology.getText().toString());
-        int organization1 = Integer.parseInt(organization.getText().toString());
-        int analyse1 = Integer.parseInt(analyse.getText().toString());
-        int law1 = Integer.parseInt(law.getText().toString());
-        int count=community1+urgent1+psychology1+organization1+analyse1+law1;
-        Intent intent1=getIntent();
-        CommonDialog commonDialog = new CommonDialog(this);
-        Map<String, String> map = new HashMap<>();
-        map.put("taskContent",intent1.getStringExtra("content"));
-        map.put("taskCatagery",intent1.getStringExtra("catagery"));
-        map.put("taskAdress",intent1.getStringExtra("address"));
-        map.put("taskDetaiAdress",intent1.getStringExtra("detailaddress"));
-        map.put("community",community.getText().toString());
-        map.put("urgent",urgent.getText().toString());
-        map.put("psychology",psychology.getText().toString());
-        map.put("organization",organization.getText().toString());
-        map.put("analyse",analyse.getText().toString());
-        map.put("law",law.getText().toString());
-            if(view.getId()==R.id.ok) {
-                if(count!=100)
-                    Toast.makeText(TaskProportionActivity.this,"输入的总值只能是100，请重新输入",Toast.LENGTH_SHORT).show();
-                else{
+        if (community.getText().toString().equals("") || urgent.getText().toString().equals("") || psychology.getText().toString().equals("") || organization.getText().toString().equals("") || analyse.getText().toString().equals("") || law.getText().toString().equals(""))
+            Toast.makeText(TaskProportionActivity.this, "各项指标值不能为空，请输入！", Toast.LENGTH_SHORT).show();
+        else {
+            int community1 = Integer.parseInt(community.getText().toString());
+            int urgent1 = Integer.parseInt(urgent.getText().toString());
+            int psychology1 = Integer.parseInt(psychology.getText().toString());
+            int organization1 = Integer.parseInt(organization.getText().toString());
+            int analyse1 = Integer.parseInt(analyse.getText().toString());
+            int law1 = Integer.parseInt(law.getText().toString());
+            int count = community1 + urgent1 + psychology1 + organization1 + analyse1 + law1;
+            Intent intent1 = getIntent();
+            CommonDialog commonDialog = new CommonDialog(this);
+            Map<String, String> map = new HashMap<>();
+            map.put("taskContent", intent1.getStringExtra("content"));
+            map.put("taskCatagery", intent1.getStringExtra("catagery"));
+            map.put("taskAdress", intent1.getStringExtra("address"));
+            map.put("taskDetaiAdress", intent1.getStringExtra("detailaddress"));
+            map.put("community", community.getText().toString());
+            map.put("urgent", urgent.getText().toString());
+            map.put("psychology", psychology.getText().toString());
+            map.put("organization", organization.getText().toString());
+            map.put("analyse", analyse.getText().toString());
+            map.put("law", law.getText().toString());
+            if (view.getId() == R.id.ok) {
+                if (count != 100)
+                    Toast.makeText(TaskProportionActivity.this, "输入的总值只能是100，请重新输入", Toast.LENGTH_SHORT).show();
+                else {
                     OkHttp.get(TaskProportionActivity.this, Constant.get_taskproportion, map, new OkCallback<Result<String>>() {
                         @Override
                         public void onResponse(Result<String> response) {
-                            commonDialog.isSingle=true;
+                            commonDialog.isSingle = true;
                             commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("工作人员能力要求填写成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                                 @Override
                                 public void onPositiveClick() {
@@ -209,13 +212,14 @@ public class TaskProportionActivity extends BaseActivity {
                 }
 
             }
-             if(view.getId()==R.id.cancel) {
-                 community.setText("");
-                 urgent.setText("");
-                 psychology.setText("");
-                 organization.setText("");
-                 analyse.setText("");
-                 law.setText("");
-             }
+            if (view.getId() == R.id.cancel) {
+                community.setText("");
+                urgent.setText("");
+                psychology.setText("");
+                organization.setText("");
+                analyse.setText("");
+                law.setText("");
+            }
+        }
     }
 }

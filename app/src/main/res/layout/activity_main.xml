@@ -64,7 +64,7 @@
             android:id="@+id/user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="普通用户"
+            android:text="上访用户"
             android:checked="true"
             android:textColor="#515151"
             android:textSize="17dp"/>

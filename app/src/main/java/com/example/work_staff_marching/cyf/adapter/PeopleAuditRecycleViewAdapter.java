@@ -8,15 +8,22 @@ import android.widget.TextView;
 
 import com.example.work_staff_marching.R;
 import com.example.work_staff_marching.cyf.entity.UserBean;
+import com.example.work_staff_marching.cyf.entity.WorkuserEvaluatingIndicatorBean;
+import com.example.work_staff_marching.cyf.utils.Constant;
+import com.example.work_staff_marching.cyf.utils.OkCallback;
+import com.example.work_staff_marching.cyf.utils.OkHttp;
 import com.example.work_staff_marching.cyf.utils.RecyclerViewHolder;
+import com.example.work_staff_marching.cyf.utils.Result;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class PeopleAuditRecycleViewAdapter extends BaseRecyclerViewAdapter<UserBean, RecyclerViewHolder> {
-    public TextView userName,phone,workuserNoText,workuserNo,sex,address,identification,sexuser;
-    public Button audit,audit1,addworkEvaluatingIndicator,updateworkEvaluatingIndicator,deleteworkEvaluatingIndicator,add;
-    public LinearLayout addressLinearLayout,user,work,opetation,opetation1,workEvaluatingIndicator;
+    public TextView max,textView130,userName,phone,workuserNoText,workuserNo,sex,address,identification,sexuser;
+    public Button audit,audit1,audit2,audit3,updateworkEvaluatingIndicator,add;
+    public LinearLayout addressLinearLayout,ability,user,work,opetation,opetation1,opetation2,opetation3,workEvaluatingIndicator;
     private Context mContext;
-   // private String userID;
     public PeopleAuditRecycleViewAdapter(Context context) {
         super(context);
         mContext=context;
@@ -24,6 +31,8 @@ public class PeopleAuditRecycleViewAdapter extends BaseRecyclerViewAdapter<UserB
     @Override
     protected void convert(RecyclerViewHolder holder, UserBean data, int position, int viewType) {
         userName=(TextView)holder.getView(R.id.userName);
+        textView130=(TextView)holder.getView(R.id.textView130);
+        max=(TextView)holder.getView(R.id.max);
         phone=(TextView)holder.getView(R.id.phone);
         workuserNoText=(TextView)holder.getView(R.id.workuserNoText);
         workuserNo=(TextView)holder.getView(R.id.workuserNo);
@@ -32,6 +41,9 @@ public class PeopleAuditRecycleViewAdapter extends BaseRecyclerViewAdapter<UserB
         work=(LinearLayout)holder.getView(R.id.work);
         workEvaluatingIndicator=(LinearLayout)holder.getView(R.id.workEvaluatingIndicator);
         opetation=(LinearLayout)holder.getView(R.id.opetation);
+        opetation2=(LinearLayout)holder.getView(R.id.opetation2);
+        opetation3=(LinearLayout)holder.getView(R.id.opetation3);
+        ability=(LinearLayout)holder.getView(R.id.ability);
         opetation1=(LinearLayout)holder.getView(R.id.opetation1);
         sex=(TextView)holder.getView(R.id.sex);
         address=(TextView)holder.getView(R.id.address);
@@ -39,54 +51,70 @@ public class PeopleAuditRecycleViewAdapter extends BaseRecyclerViewAdapter<UserB
         sexuser=(TextView)holder.getView(R.id.sexuser);
         audit=(Button)holder.getView(R.id.audit);
         audit1=(Button)holder.getView(R.id.audit1);
+        audit2=(Button)holder.getView(R.id.audit2);
+        audit3=(Button)holder.getView(R.id.audit3);
         add=(Button)holder.getView(R.id.add);
-        addworkEvaluatingIndicator=(Button)holder.getView(R.id.addworkEvaluatingIndicator);
         updateworkEvaluatingIndicator=(Button)holder.getView(R.id.updateworkEvaluatingIndicator);
-        deleteworkEvaluatingIndicator=(Button)holder.getView(R.id.deleteworkEvaluatingIndicator);
         userName.setText(data.getUserName());
         phone.setText(data.getPhone());
         sex.setText(data.getSex());
+        max.setText(data.getMaxTaskNumber()+"");
         workuserNo.setText(data.getWorkuserNo());
         identification.setText(data.getIndentificationCard());
         sexuser.setText(data.getSex());
         holder.addOnClickListener(R.id.audit);
         holder.addOnClickListener(R.id.audit1);
-        holder.addOnClickListener(R.id.addworkEvaluatingIndicator);
+        holder.addOnClickListener(R.id.audit2);
+        holder.addOnClickListener(R.id.audit3);
         holder.addOnClickListener(R.id.updateworkEvaluatingIndicator);
-        holder.addOnClickListener(R.id.deleteworkEvaluatingIndicator);
         holder.addOnClickListener(R.id.add);
        //switch ()
        if(data.getRoleName().equals("工作用户")) {
             addressLinearLayout.setVisibility(View.GONE);
             user.setVisibility(View.GONE);
+            opetation.setVisibility(View.GONE);
+            opetation1.setVisibility(View.GONE);
             work.setVisibility(View.VISIBLE);
             if(data.getRegisterStatus()==1){
-                opetation.setVisibility(View.VISIBLE);
-                opetation1.setVisibility(View.GONE);
+                textView130.setVisibility(View.GONE);
+                max.setVisibility(View.GONE);
+                ability.setVisibility(View.GONE);
+                opetation2.setVisibility(View.VISIBLE);
+                opetation3.setVisibility(View.GONE);
                 workEvaluatingIndicator.setVisibility(View.GONE);
 
 
             }
             if(data.getRegisterStatus()==3){
-                opetation1.setVisibility(View.VISIBLE);
-                opetation.setVisibility(View.GONE);
+                textView130.setVisibility(View.GONE);
+                max.setVisibility(View.GONE);
+                ability.setVisibility(View.GONE);
+                opetation3.setVisibility(View.VISIBLE);
+                opetation2.setVisibility(View.GONE);
                 workEvaluatingIndicator.setVisibility(View.GONE);
 
 
             }
            if(data.getRegisterStatus()==2){
-               opetation1.setVisibility(View.GONE);
-               opetation.setVisibility(View.GONE);
+               textView130.setVisibility(View.VISIBLE);
+               max.setVisibility(View.VISIBLE);
+               ability.setVisibility(View.VISIBLE);
+               opetation3.setVisibility(View.GONE);
+               opetation2.setVisibility(View.GONE);
                workEvaluatingIndicator.setVisibility(View.VISIBLE);
 
            }
         }
-        if(data.getRoleName().equals("普通用户")) {
+        if(data.getRoleName().equals("上访用户")) {
             addressLinearLayout.setVisibility(View.VISIBLE);
             user.setVisibility(View.VISIBLE);
             work.setVisibility(View.GONE);
+            opetation2.setVisibility(View.GONE);
+            opetation3.setVisibility(View.GONE);
             workEvaluatingIndicator.setVisibility(View.GONE);
-
+            textView130.setVisibility(View.GONE);
+            max.setVisibility(View.GONE);
+            ability.setVisibility(View.GONE);
             if(data.getRegisterStatus()==1){
                 opetation.setVisibility(View.VISIBLE);
                 opetation1.setVisibility(View.GONE);
@@ -102,6 +130,35 @@ public class PeopleAuditRecycleViewAdapter extends BaseRecyclerViewAdapter<UserB
             }
 
         }
+
+        Map<String, String> map = new HashMap<>();
+        map.put("workuserNo",data.getWorkuserNo());
+        OkHttp.get(mContext, Constant.get_showworkuserevaluatingindicator,map,new OkCallback<Result<WorkuserEvaluatingIndicatorBean>>() {
+            @Override
+            public void onResponse(Result<WorkuserEvaluatingIndicatorBean> response) {
+                if(response.getData()!=null) {
+                    TextView community,urgent,psychology,organization,analyse,law;
+                    community=(TextView)holder.getView(R.id.community);
+                    urgent=(TextView)holder.getView(R.id.urgent);
+                    psychology=(TextView)holder.getView(R.id.psychology);
+                    organization=(TextView)holder.getView(R.id.organization);
+                    analyse=(TextView)holder.getView(R.id.analyse);
+                    law=(TextView)holder.getView(R.id.law);
+                    community.setText(response.getData().getCommunity() + " ");
+                    urgent.setText(response.getData().getUrgent() + " ");
+                    psychology.setText(response.getData().getPsychology() + " ");
+                    organization.setText(response.getData().getOrganization() + " ");
+                    analyse.setText(response.getData().getAnalyse() + " ");
+                    law.setText(response.getData().getLaw() + " ");
+                }
+            }
+
+            @Override
+            public void onFailure(String state, String msg) {
+
+            }
+        });
+
 
     }
 

@@ -52,7 +52,7 @@ public class ForgetPasswordActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle saveInstanceState) {
-        setTitle("找回密码");
+        setTitle("忘记密码");
 
     }
 
@@ -88,11 +88,14 @@ public class ForgetPasswordActivity extends BaseActivity {
             });
           break;
           case R.id.register:
-            if (identityCodeText.getText().toString().equals("") || passwordText.getText().toString().equals(""))
-                Toast.makeText(ForgetPasswordActivity.this, "请输入以上内容，不能为空！", Toast.LENGTH_SHORT).show();
-            if (!(identityCodeText.getText().toString().equals(indentifycode)))
+            if (identityCodeText.getText().toString().equals(""))
+                Toast.makeText(ForgetPasswordActivity.this, "请输入验证码！", Toast.LENGTH_SHORT).show();
+            else if (!(identityCodeText.getText().toString().equals(indentifycode)))
                 Toast.makeText(ForgetPasswordActivity.this, "验证码不正确，请重新输入！", Toast.LENGTH_SHORT).show();
-            if (identityCodeText.getText().toString().equals(indentifycode)){
+            else if (passwordText.getText().toString().equals(""))
+                  Toast.makeText(ForgetPasswordActivity.this, "请输入密码！", Toast.LENGTH_SHORT).show();
+
+           else {
                 Map<String, String> map1 = new HashMap<>();
                 map1.put("phone", phoneText.getText().toString());
                 map1.put("password", passwordText.getText().toString());

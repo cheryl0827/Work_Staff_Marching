@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     TextView forgetpassword,register;
     Button login;
     RadioGroup radio;
-    String usertype="普通用户";
+    String usertype="上访用户";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Result response){
                        SharePrefrenceUtil.saveObject(MainActivity.this,response.getData());
-                        if(usertype.equals("普通用户"))
+                        if(usertype.equals("上访用户"))
                             startActivity(new Intent(MainActivity.this,UserIndexActivity.class));
                         if(usertype.equals("管理员"))
                             startActivity(new Intent(MainActivity.this,AdminIndexActivity.class));

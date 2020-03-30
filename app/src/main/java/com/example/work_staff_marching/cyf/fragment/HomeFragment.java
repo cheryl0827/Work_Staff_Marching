@@ -59,9 +59,9 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        content.setText(contentString);
-        catagery.setText(catageryString);
-        address.setText(addressString);
+//        content.setText(contentString);
+//        catagery.setText(catageryString);
+//        address.setText(addressString);
         contentLineaeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,0 +1,363 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@color/powderblue"
+        >
+
+        <TextView
+            android:id="@+id/textView71"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_gravity="center"
+            android:text="指标信息值统计"
+            android:layout_marginTop="1dp"
+            android:textSize="30dp"
+            android:textStyle="italic"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="80dp"
+        android:orientation="horizontal">
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="完成总任务数："
+            android:textSize="16dp"
+            android:layout_marginLeft="250dp"
+        android:textColor="@color/black">
+        </TextView>
+        <TextView
+            android:id="@+id/num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="13件"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black">
+
+        </TextView>
+    </LinearLayout>
+    <TableLayout
+        android:id="@+id/table1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:padding="0.5dp"
+      >
+
+        <TableRow
+            android:orientation="horizontal"
+            android:gravity="center"
+
+           >
+            <TextView
+                android:id="@+id/text251"
+                android:layout_weight="1"
+
+                android:layout_gravity="center"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:layout_marginBottom="0.5dip"
+                android:text="指标信息"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/a"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="0.5dip"
+                android:background="@color/white"
+                android:text="指标评价平均值"
+                android:layout_marginBottom="0.5dip"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/b"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="0.5dip"
+                android:layout_marginBottom="0.5dip"
+                android:background="@color/white"
+                android:text="本身指标值"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                />
+        </TableRow>
+
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_height="60dp"
+            android:gravity="center"
+            >
+            <TextView
+                android:id="@+id/text21"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+
+                android:background="@color/white"
+                android:layout_marginBottom="0.5dip"
+                android:text="沟通亲和能力"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/community"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0.5dip"
+                android:layout_marginLeft="0.5dip"
+                android:background="@color/white"
+                android:text="5"
+                android:textSize="20dp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/community1"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0.5dip"
+                android:layout_marginLeft="0.5dip"
+                android:background="@color/white"
+                android:text="5"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                />
+        </TableRow>
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_height="60dp"
+            android:gravity="center"
+            >
+
+
+            <TextView
+                android:id="@+id/text211"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0.5dip"
+                android:background="@color/white"
+                android:text="组织协调能力"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/organization"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0.5dip"
+                android:layout_marginLeft="0.5dip"
+                android:background="@color/white"
+                android:text="5"
+                android:textSize="20dp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/organization1"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0.5dip"
+                android:layout_marginLeft="0.5dip"
+                android:background="@color/white"
+                android:text="6"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                />
+        </TableRow>
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_height="60dp"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/text1111"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0.5dip"
+                android:background="@color/white"
+                android:text="心理抗压能力"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/psychology"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0.5dip"
+                android:layout_marginLeft="0.5dip"
+                android:background="@color/white"
+                android:text="5"
+                android:textSize="20dp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/psychology1"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0.5dip"
+                android:layout_marginLeft="0.5dip"
+                android:background="@color/white"
+                android:text="6"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                />
+        </TableRow>
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_height="60dp"
+            android:gravity="center"
+           >
+
+            <TextView
+                android:id="@+id/text231"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0.5dip"
+                android:background="@color/white"
+                android:text="应急处理能力"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/urgent"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0.5dip"
+                android:layout_marginLeft="0.5dip"
+                android:background="@color/white"
+                android:text="5"
+                android:textSize="20dp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/urgent1"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0.5dip"
+                android:layout_marginLeft="0.5dip"
+                android:background="@color/white"
+                android:text="6"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                />
+        </TableRow>
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_height="60dp"
+            android:gravity="center"
+           >
+
+            <TextView
+                android:id="@+id/text31"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0.5dip"
+                android:background="@color/white"
+                android:text="分析判研能力"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/analyse"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0.5dip"
+                android:layout_marginLeft="0.5dip"
+                android:background="@color/white"
+                android:text="5"
+                android:textSize="20dp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/analyse1"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0.5dip"
+                android:layout_marginLeft="0.5dip"
+                android:background="@color/white"
+                android:text="6"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                />
+        </TableRow>
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_height="60dp"
+            android:gravity="center"
+           >
+
+            <TextView
+                android:id="@+id/text2531"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0.5dip"
+                android:background="@color/white"
+                android:text="依法办事能力"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/law"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0.5dip"
+                android:layout_marginLeft="0.5dip"
+                android:background="@color/white"
+                android:text="5"
+                android:textSize="20dp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/law1"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0.5dip"
+                android:layout_marginLeft="0.5dip"
+                android:background="@color/white"
+                android:text="6"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                />
+        </TableRow>
+    </TableLayout>
+
+
+
+</RelativeLayout>

@@ -84,6 +84,7 @@ public class AddTaskNumberActivity extends BaseActivity {
                            @Override
                            public void onPositiveClick() {
                                commonDialog.dismiss();
+                               setResult(RESULT_OK);
                                finish();
 
                            }

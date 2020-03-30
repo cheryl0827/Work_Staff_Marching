@@ -196,65 +196,69 @@ public class AdminAddTaskProportionActivity extends BaseActivity {
 
     @OnClick({R.id.ok, R.id.cancel})
     public void onViewClicked(View view) {
-        int community1 = Integer.parseInt(community.getText().toString());
-        int urgent1 = Integer.parseInt(urgent.getText().toString());
-        int psychology1 = Integer.parseInt(psychology.getText().toString());
-        int organization1 = Integer.parseInt(organization.getText().toString());
-        int analyse1 = Integer.parseInt(analyse.getText().toString());
-        int law1 = Integer.parseInt(law.getText().toString());
-        int count = community1 + urgent1 + psychology1 + organization1 + analyse1 + law1;
-        switch (view.getId()) {
-            case R.id.ok:
-                CommonDialog commonDialog = new CommonDialog(this);
-                Map<String, String> map = new HashMap<>();
-                map.put("community", community.getText().toString());
-                map.put("urgent", urgent.getText().toString());
-                map.put("psychology", psychology.getText().toString());
-                map.put("organization", organization.getText().toString());
-                map.put("analyse", analyse.getText().toString());
-                map.put("law", law.getText().toString());
-                map.put("taskID", taskID);
-                map.put("workUserNumber",num.getText().toString());
-                if (count != 100)
-                    Toast.makeText(AdminAddTaskProportionActivity.this, "输入的总值只能是100，请重新输入", Toast.LENGTH_SHORT).show();
-                else if(num.getText().toString().toString().equals(""))
-                    Toast.makeText(AdminAddTaskProportionActivity.this, "请输入诉求任务所需的人员数量！", Toast.LENGTH_SHORT).show();
-                else {
-                    OkHttp.post(AdminAddTaskProportionActivity.this, Constant.get_adminupdatetaskproportion, map, new OkCallback<Result<String>>() {
-                        @Override
-                        public void onResponse(Result<String> response) {
-                            commonDialog.isSingle = true;
-                            commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("诉求任务权重信息审核成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
-                                @Override
-                                public void onPositiveClick() {
-                                    commonDialog.dismiss();
-                                    setResult(RESULT_OK);
-                                    finish();
-                                }
+        if(community.getText().toString().equals("")||urgent.getText().toString().equals("")||psychology.getText().toString().equals("")||organization.getText().toString().equals("")||analyse.getText().toString().equals("")||law.getText().toString().equals(""))
+            Toast.makeText(AdminAddTaskProportionActivity.this, "各项指标值不能为空，请输入！", Toast.LENGTH_SHORT).show();
+        else {
+            int community1 = Integer.parseInt(community.getText().toString());
+            int urgent1 = Integer.parseInt(urgent.getText().toString());
+            int psychology1 = Integer.parseInt(psychology.getText().toString());
+            int organization1 = Integer.parseInt(organization.getText().toString());
+            int analyse1 = Integer.parseInt(analyse.getText().toString());
+            int law1 = Integer.parseInt(law.getText().toString());
+            int count = community1 + urgent1 + psychology1 + organization1 + analyse1 + law1;
+            switch (view.getId()) {
+                case R.id.ok:
+                    CommonDialog commonDialog = new CommonDialog(this);
+                    Map<String, String> map = new HashMap<>();
+                    map.put("community", community.getText().toString());
+                    map.put("urgent", urgent.getText().toString());
+                    map.put("psychology", psychology.getText().toString());
+                    map.put("organization", organization.getText().toString());
+                    map.put("analyse", analyse.getText().toString());
+                    map.put("law", law.getText().toString());
+                    map.put("taskID", taskID);
+                    map.put("workUserNumber", num.getText().toString());
+                    if (count != 100)
+                        Toast.makeText(AdminAddTaskProportionActivity.this, "输入的总值只能是100，请重新输入", Toast.LENGTH_SHORT).show();
+                    else if (num.getText().toString().toString().equals(""))
+                        Toast.makeText(AdminAddTaskProportionActivity.this, "请输入诉求任务所需的人员数量！", Toast.LENGTH_SHORT).show();
+                    else {
+                        OkHttp.post(AdminAddTaskProportionActivity.this, Constant.get_adminupdatetaskproportion, map, new OkCallback<Result<String>>() {
+                            @Override
+                            public void onResponse(Result<String> response) {
+                                commonDialog.isSingle = true;
+                                commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("诉求任务权重信息审核成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                                    @Override
+                                    public void onPositiveClick() {
+                                        commonDialog.dismiss();
+                                        setResult(RESULT_OK);
+                                        finish();
+                                    }
 
-                                @Override
-                                public void onNegtiveClick() {
-                                    commonDialog.dismiss();
-                                }
-                            }).show();
-                        }
+                                    @Override
+                                    public void onNegtiveClick() {
+                                        commonDialog.dismiss();
+                                    }
+                                }).show();
+                            }
 
-                        @Override
-                        public void onFailure(String state, String msg) {
-                            Toast.makeText(AdminAddTaskProportionActivity.this, msg, Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                            @Override
+                            public void onFailure(String state, String msg) {
+                                Toast.makeText(AdminAddTaskProportionActivity.this, msg, Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
-                }
-                break;
-            case R.id.cancel:
-                community.setText("");
-                urgent.setText("");
-                psychology.setText("");
-                organization.setText("");
-                analyse.setText("");
-                law.setText("");
-                break;
+                    }
+                    break;
+                case R.id.cancel:
+                    community.setText("");
+                    urgent.setText("");
+                    psychology.setText("");
+                    organization.setText("");
+                    analyse.setText("");
+                    law.setText("");
+                    break;
+            }
         }
     }
 

@@ -67,7 +67,7 @@ public class RegisterActivity extends BaseActivity {
     @BindView(R.id.sex)
     RadioGroup sex;
     String sex1="男";
-    String usertype="普通用户";
+    String usertype="上访用户";
     String date1;
     String workuserNo;
     @Override
@@ -172,7 +172,7 @@ public class RegisterActivity extends BaseActivity {
             if(usertype.equals("工作用户")){
                 workuserNo=dataOne(time);
             }
-            if(usertype.equals("普通用户")) {
+            if(usertype.equals("上访用户")) {
                 workuserNo = "";
             }
             Map<String, String> map = new HashMap<>();
@@ -192,10 +192,8 @@ public class RegisterActivity extends BaseActivity {
             OkHttp.post(RegisterActivity.this, Constant.get_register, map, new OkCallback<Result<String>>() {
                 @Override
                 public void onResponse(Result<String> response) {
-                    if (view.getId() == R.id.next && usertype.equals("普通用户")) {
-                       // map.put("workuserNo",workuserNo);
-                        //startActivity(new Intent(RegisterActivity.this,RegisterUserActivity.class));
-                        // Toast.makeText(RegisterActivity.this, "nisdajkd！", Toast.LENGTH_SHORT).show();
+                    if (view.getId() == R.id.next && usertype.equals("上访用户")) {
+
                       intent.setClass(RegisterActivity.this, RegisterUserActivity.class);
                        RegisterActivity.this.startActivity(intent);
                     }

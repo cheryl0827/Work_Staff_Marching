@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_gravity="center"
-            android:text="工作人员指标评价信息统计"
+            android:text="工作人员指标评价平均值统计"
             android:layout_marginTop="1dp"
             android:textSize="28dp"
             android:textStyle="italic"/>

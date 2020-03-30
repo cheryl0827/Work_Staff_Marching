@@ -188,67 +188,70 @@ public class TaskEstimateActivity extends BaseActivity {
 
     @OnClick({R.id.ok, R.id.cancel})
     public void onViewClicked(View view) {
-        int community1 = Integer.parseInt(community.getText().toString());
-        int urgent1 = Integer.parseInt(urgent.getText().toString());
-        int psychology1 = Integer.parseInt(psychology.getText().toString());
-        int organization1 = Integer.parseInt(organization.getText().toString());
-        int analyse1 = Integer.parseInt(analyse.getText().toString());
-        int law1 = Integer.parseInt(law.getText().toString());
-        int count = community1 + urgent1 + psychology1 + organization1 + analyse1 + law1;
-        CommonDialog commonDialog = new CommonDialog(this);
-        switch (view.getId()) {
-            case R.id.ok:
-                Intent intent1 = getIntent();
-                Map<String, String> map = new HashMap<>();
-                map.put("community", community.getText().toString());
-                map.put("urgent", urgent.getText().toString());
-                map.put("psychology", psychology.getText().toString());
-                map.put("organization", organization.getText().toString());
-                map.put("analyse", analyse.getText().toString());
-                map.put("law", law.getText().toString());
-                map.put("workuserNo", intent1.getStringExtra("workuserNo"));
-                map.put("taskID", intent1.getStringExtra("taskID"));
-                map.put("taskStatus", taskStatus);
-                map.put("pingjiaStatus", pingjiaStatus);
-                if (count != 100)
-                    Toast.makeText(TaskEstimateActivity.this, "输入的总值只能是100，请重新输入", Toast.LENGTH_SHORT).show();
-                else {
-                    OkHttp.post(TaskEstimateActivity.this, Constant.get_estimateadd, map, new OkCallback<Result<String>>() {
-                        @Override
-                        public void onResponse(Result<String> response) {
-                            commonDialog.isSingle = true;
-                            commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("工作人员能力评价成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
-                                @Override
-                                public void onPositiveClick() {
-                                    commonDialog.dismiss();
-                                    setResult(RESULT_OK);
-                                    finish();
-                                }
+        if (community.getText().toString().equals("") || urgent.getText().toString().equals("") || psychology.getText().toString().equals("") || organization.getText().toString().equals("") || analyse.getText().toString().equals("") || law.getText().toString().equals(""))
+            Toast.makeText(TaskEstimateActivity.this, "各项指标值不能为空，请输入！", Toast.LENGTH_SHORT).show();
+        else {
+            int community1 = Integer.parseInt(community.getText().toString());
+            int urgent1 = Integer.parseInt(urgent.getText().toString());
+            int psychology1 = Integer.parseInt(psychology.getText().toString());
+            int organization1 = Integer.parseInt(organization.getText().toString());
+            int analyse1 = Integer.parseInt(analyse.getText().toString());
+            int law1 = Integer.parseInt(law.getText().toString());
+            int count = community1 + urgent1 + psychology1 + organization1 + analyse1 + law1;
+            CommonDialog commonDialog = new CommonDialog(this);
+            switch (view.getId()) {
+                case R.id.ok:
+                    Intent intent1 = getIntent();
+                    Map<String, String> map = new HashMap<>();
+                    map.put("community", community.getText().toString());
+                    map.put("urgent", urgent.getText().toString());
+                    map.put("psychology", psychology.getText().toString());
+                    map.put("organization", organization.getText().toString());
+                    map.put("analyse", analyse.getText().toString());
+                    map.put("law", law.getText().toString());
+                    map.put("workuserNo", intent1.getStringExtra("workuserNo"));
+                    map.put("taskID", intent1.getStringExtra("taskID"));
+                    map.put("taskStatus", taskStatus);
+                    map.put("pingjiaStatus", pingjiaStatus);
+                    if (count != 100)
+                        Toast.makeText(TaskEstimateActivity.this, "输入的总值只能是100，请重新输入", Toast.LENGTH_SHORT).show();
+                    else {
+                        OkHttp.post(TaskEstimateActivity.this, Constant.get_estimateadd, map, new OkCallback<Result<String>>() {
+                            @Override
+                            public void onResponse(Result<String> response) {
+                                commonDialog.isSingle = true;
+                                commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("工作人员能力评价成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                                    @Override
+                                    public void onPositiveClick() {
+                                        commonDialog.dismiss();
+                                        setResult(RESULT_OK);
+                                        finish();
+                                    }
 
-                                @Override
-                                public void onNegtiveClick() {
-                                    commonDialog.dismiss();
-                                }
-                            }).show();
-                        }
+                                    @Override
+                                    public void onNegtiveClick() {
+                                        commonDialog.dismiss();
+                                    }
+                                }).show();
+                            }
 
-                        @Override
-                        public void onFailure(String state, String msg) {
-                            Toast.makeText(TaskEstimateActivity.this, msg, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-                break;
-            case R.id.cancel:
-                community.setText("");
-                urgent.setText("");
-                psychology.setText("");
-                organization.setText("");
-                analyse.setText("");
-                law.setText("");
-                break;
+                            @Override
+                            public void onFailure(String state, String msg) {
+                                Toast.makeText(TaskEstimateActivity.this, msg, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                    break;
+                case R.id.cancel:
+                    community.setText("");
+                    urgent.setText("");
+                    psychology.setText("");
+                    organization.setText("");
+                    analyse.setText("");
+                    law.setText("");
+                    break;
+            }
         }
     }
-
 
 }

@@ -103,7 +103,7 @@ public class RegisterUserActivity extends BaseActivity {
 
         @Override
         protected void init (Bundle saveInstanceState){
-            setTitle("普通用户注册");
+            setTitle("上访用户注册");
             setSpinner();
         }
         @OnClick({R.id.register})
