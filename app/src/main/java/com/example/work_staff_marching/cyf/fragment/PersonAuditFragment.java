@@ -393,6 +393,7 @@ public class PersonAuditFragment extends BaseFragment {
             case R.id.iv_search:
                 Map<String, String> map = new HashMap<>();
                 map.put("name", editSearchContext.getText().toString());
+                map.put("roleName", roleName);
                 OkHttp.get(getContext(), Constant.UserDimShowServlet, map,
                         new OkCallback<Result<List<UserBean>>>() {
                             @Override

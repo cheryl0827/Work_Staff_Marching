@@ -1,6 +1,8 @@
 package com.example.work_staff_marching.cyf.adapter;
 
 import android.content.Context;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.work_staff_marching.R;
@@ -29,7 +31,10 @@ public class WorkuserInformationRecycleViewAdapter extends BaseRecyclerViewAdapt
     @Override
     protected void convert(RecyclerViewHolder holder, UserBean data, int position, int viewType) {
         TextView userName,sex,workuserNo,count,community,urgent,psychology,organization,analyse,law;
+        ImageView countimage;
         userName=(TextView)holder.getView(R.id.userName);
+        countimage=(ImageView) holder.getView(R.id.countimage);
+        holder.addOnClickListener(R.id.countimage);
         sex=(TextView)holder.getView(R.id.sex);
         workuserNo=(TextView)holder.getView(R.id.workuserNo);
         count=(TextView)holder.getView(R.id.count);
@@ -69,9 +74,7 @@ public class WorkuserInformationRecycleViewAdapter extends BaseRecyclerViewAdapt
             public void onFailure(String state, String msg) {
             }
         });
-
-
-
+        
     }
 
     @Override

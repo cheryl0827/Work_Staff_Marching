@@ -82,7 +82,6 @@ public class WorkTaskHandledFragment extends BaseFragment {
                         intent1.putExtra("taskID", workTaskHandledAdapter.getItem(position).getTaskID() + "");
                         intent1.setClass(getContext(), TaskHandledDetailActivity.class);
                         startActivity(intent1);
-
                         break;
                     case R.id.banlibutton:
                         Intent intent = new Intent();

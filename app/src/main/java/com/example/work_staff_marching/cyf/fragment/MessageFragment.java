@@ -1,6 +1,7 @@
 package com.example.work_staff_marching.cyf.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,9 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.work_staff_marching.R;
+import com.example.work_staff_marching.cyf.adapter.BaseRecyclerViewAdapter;
 import com.example.work_staff_marching.cyf.adapter.WorkuserInformationRecycleViewAdapter;
 import com.example.work_staff_marching.cyf.entity.UserBean;
 import com.example.work_staff_marching.cyf.entity.WorkuserEvaluatingIndicatorBean;
+import com.example.work_staff_marching.cyf.inteface.OnItemChildClickListener;
+import com.example.work_staff_marching.cyf.ui.WorkUserTaskActivity;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
 import com.example.work_staff_marching.cyf.utils.Constant;
 import com.example.work_staff_marching.cyf.utils.CustomToast;
@@ -59,6 +63,22 @@ public class MessageFragment extends BaseFragment {
                 swiperereshlayout.setRefreshing(false);
             }
         });
+        mWorkuserInformationRecycleViewAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+
+            @Override
+            public void onItemChildClick(BaseRecyclerViewAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.countimage:
+                        Intent intent1 = new Intent();
+                        intent1.putExtra("workuserNo", mWorkuserInformationRecycleViewAdapter.getItem(position).getWorkuserNo() + "");
+                        intent1.putExtra("username",mWorkuserInformationRecycleViewAdapter.getItem(position).getUserName());
+                        intent1.setClass(getContext(), WorkUserTaskActivity.class);
+                        startActivity(intent1);
+
+                        break;
+                }
+            }
+            });
         loadData();
     }
 

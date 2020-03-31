@@ -50,7 +50,7 @@
             android:textColor="@color/black"
             android:textSize="18dp" />
         <ImageView
-            android:id="@+id/imageView113"
+            android:id="@+id/countimage"
             android:layout_width="27dp"
             android:layout_height="23dp"
             android:layout_marginLeft="20dp"

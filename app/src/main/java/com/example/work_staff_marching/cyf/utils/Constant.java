@@ -2,8 +2,8 @@ package com.example.work_staff_marching.cyf.utils;
 
 //请求对应
 public class Constant {
-    // 172.20.10.5 无线地址   Staff_Work_Marching服务器
-    public static String BASE_URL = "http://192.168.4.103:8080/Staff_Work_Marching";
+    // 192.168.4.104无线地址   Staff_Work_Marching服务器
+    public static String BASE_URL = "http://192.168.4.104:8080/Staff_Work_Marching";
     /**
      * 获取验证码,类似前后台交接的接口
      */
@@ -14,7 +14,7 @@ public class Constant {
      */
     public static String get_register = BASE_URL + "/UserBaseRegisterServlet";
     /**
-     * 普通用户注册
+     * 上访用户注册
      */
     public static String get_userregister = BASE_URL + "/UserRegisterServlet";
     /**
@@ -143,7 +143,7 @@ public class Constant {
      */
     public static String get_recordend= BASE_URL + "/UpdateTaskStatusServlet";
     /**
-     * 普通用户查看自己的诉求任务
+     * 上访用户查看自己的诉求任务
      */
     public static String get_usertaskshow= BASE_URL + "/UserTaskShowServlet";
     /**
@@ -207,7 +207,7 @@ public class Constant {
      */
     public static String MmarchedDimShowServlet= BASE_URL + "/MmarchedDimShowServlet";
     /**
-     *普通用户的诉求任务的模糊查询
+     *上访用户的诉求任务的模糊查询
      */
     public static String UserTaskDimShowServlet= BASE_URL + "/UserTaskDimShowServlet";
     /**
@@ -223,9 +223,17 @@ public class Constant {
      */
     public static String ShowWorkUserEstimate= BASE_URL + "/ShowWorkUserEstimate";
     /**
-     *普通用户诉求任务的办理结束
+     *上访用户诉求任务的办理结束
      */
     public static String UpdateTasklStatusServlet= BASE_URL + "/UpdateTasklStatusServlet";
+    /**
+     *工作用户处理诉求任务的查看
+     */
+    public static String WorkUserTaskShowServlet= BASE_URL + "/WorkUserTaskShowServlet";
+    /**
+     *模糊查看工作用户处理的诉求任务
+     */
+    public static String WorkUserTaskDimServlet= BASE_URL + "/WorkUserTaskDimServlet";
 
 
 
