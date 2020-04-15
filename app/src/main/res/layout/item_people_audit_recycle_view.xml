@@ -368,9 +368,9 @@
 
         <Button
             android:id="@+id/updateworkEvaluatingIndicator"
-            android:layout_width="80dp"
+            android:layout_width="90dp"
             android:layout_height="30dp"
-            android:text="修改指标值"
+            android:text="修改指标信息"
             android:layout_marginLeft="215dp"
             android:layout_marginTop="5dp"
             android:background="@color/mediumpurple"/>

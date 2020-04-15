@@ -110,7 +110,7 @@
             android:text="删除"
             android:layout_marginLeft="15dp"
             android:textSize="16dp"
-            android:background="@color/lightgreen"/>
+            android:background="@color/sandybrown"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/pingjia"
@@ -127,7 +127,7 @@
             android:textSize="16dp"
             android:layout_marginLeft="295dp"
 
-            android:background="@drawable/setbutton"/>
+            android:background="@color/mediumpurple"/>
         />
 
     </LinearLayout>
@@ -145,7 +145,7 @@
             android:text="匹配评价详情"
             android:layout_marginLeft="280dp"
             android:textSize="16dp"
-            android:background="@drawable/setbutton"/>
+            android:background="@color/mediumpurple"/>
         />
 
     </LinearLayout>

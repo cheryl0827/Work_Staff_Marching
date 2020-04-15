@@ -78,6 +78,7 @@
         <activity android:name=".cyf.ui.ChooseActivity" />
         <activity android:name=".cyf.ui.MarchedDetailActivity" />
         <activity android:name=".cyf.ui.WorkUserTaskActivity" />
+        <activity android:name=".cyf.ui.WorkUserMarchedDeatailActivity" />
     </application>
 
 </manifest>

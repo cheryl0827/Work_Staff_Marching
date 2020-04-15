@@ -20,7 +20,9 @@ import com.example.work_staff_marching.cyf.entity.TaskBean;
 import com.example.work_staff_marching.cyf.inteface.OnItemChildClickListener;
 import com.example.work_staff_marching.cyf.ui.TransactionRecordShowActivity;
 import com.example.work_staff_marching.cyf.ui.WorkUserDetailActivity;
+import com.example.work_staff_marching.cyf.ui.WorkUserMarchedDeatailActivity;
 import com.example.work_staff_marching.cyf.utils.BaseFragment;
+import com.example.work_staff_marching.cyf.utils.CommonDialog;
 import com.example.work_staff_marching.cyf.utils.Constant;
 import com.example.work_staff_marching.cyf.utils.CustomToast;
 import com.example.work_staff_marching.cyf.utils.OkCallback;
@@ -71,6 +73,7 @@ public class AdminMarchedTaskFragment extends BaseFragment {
 
             @Override
             public void onItemChildClick(BaseRecyclerViewAdapter adapter, View view, int position) {
+                CommonDialog commonDialog = new CommonDialog(getContext());
                 switch (view.getId()) {
                     case R.id.machedbutton:
                         Intent intent1 = new Intent();
@@ -84,6 +87,44 @@ public class AdminMarchedTaskFragment extends BaseFragment {
                         intent2.putExtra("taskID", adminMarchedTaskAdapter.getItem(position).getTaskID() + "");
                         intent2.setClass(getContext(), TransactionRecordShowActivity.class);
                         startActivity(intent2);
+                        break;
+                    case R.id.deleteButton:
+
+                        commonDialog.setTitle("提示").setImageResId(R.mipmap.exit).setMessage("您确定要对这条诉求任务进行重新匹配吗？如果是的话点击确定后进入匹配管理页面进行重新匹配！！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                            @Override
+                            public void onPositiveClick() {
+                                Map<String, String> map = new HashMap<>();
+                                map.put("taskID",adminMarchedTaskAdapter.getItem(position).getTaskID() + "");
+                                OkHttp.get(getContext(), Constant.DeleteMarchedTaskServlet, map,
+                                        new OkCallback<Result<String>>() {
+                                            @Override
+                                            public void onResponse(Result<String> response) {
+                                                onloadData();
+                                                Toast.makeText(getContext(), "请到匹配管理页面重新匹配！", Toast.LENGTH_SHORT).show();
+                                            }
+
+                                            @Override
+                                            public void onFailure(String state, String msg) {
+                                                onloadData();
+                                                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+                                            commonDialog.dismiss();
+                             }
+
+                            @Override
+                            public void onNegtiveClick() {
+                                commonDialog.dismiss();
+                            }
+                        }).show();
+                        break;
+                    case R.id.march:
+                        Intent intent11 = new Intent();
+                        intent11.putExtra("taskID", adminMarchedTaskAdapter.getItem(position).getTaskID() + "");
+                        //intent1.putExtra("workuserNo", adminMarchedTaskAdapter.getItem(position).getWorkuserNo()+"");
+                        intent11.setClass(getContext(), WorkUserMarchedDeatailActivity.class);
+                        startActivity(intent11);
                         break;
                 }
             }

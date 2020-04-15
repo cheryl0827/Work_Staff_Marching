@@ -118,7 +118,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="审核失败"
+                android:text="审核不通过"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 

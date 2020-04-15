@@ -67,7 +67,7 @@
             android:layout_height="30dp"
             android:text="详情"
             android:layout_marginLeft="305dp"
-            android:background="@color/lightgreen"/>
+            android:background="@color/mediumpurple"/>
     </LinearLayout>
 
     <View

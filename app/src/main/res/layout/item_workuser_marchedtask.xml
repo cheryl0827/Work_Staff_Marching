@@ -72,7 +72,7 @@
             android:layout_height="30dp"
             android:text="办理记录"
             android:layout_marginLeft="150dp"
-            android:background="@drawable/setbutton"/>
+            android:background="@color/sandybrown"/>
         />
         <Button
             android:id="@+id/pingjiabutton"
@@ -80,7 +80,7 @@
             android:layout_height="30dp"
             android:text="评价信息"
             android:layout_marginLeft="15dp"
-            android:background="@color/wheat"/>
+            android:background="@color/skyblue"/>
         />
 
 
