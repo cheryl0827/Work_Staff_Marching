@@ -49,7 +49,7 @@ public class WorkUserDetailActivity extends BaseActivity {
     protected void init(Bundle saveInstanceState) {
         Intent intent1 = getIntent();
         taskID=intent1.getStringExtra("taskID");
-        setTitle("工作人员匹配评价详情");
+        setTitle("信访人员匹配评价详情");
         taskWorkUserInformationAdapter = new TaskWorkUserInformationAdapter(WorkUserDetailActivity.this);
         mRecyclerview1.setAdapter(taskWorkUserInformationAdapter);
         mRecyclerview1.setLayoutManager(new LinearLayoutManager(WorkUserDetailActivity.this, RecyclerView.VERTICAL, false));
@@ -73,7 +73,7 @@ public class WorkUserDetailActivity extends BaseActivity {
                             @Override
                             public void onResponse(Result<EstimateBean> response) {
                                 if (response.getData() == null) {
-                                    Toast.makeText(WorkUserDetailActivity.this, "上访人员未对该工作人员能力进行评价，不能进行查看操作", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(WorkUserDetailActivity.this, "上访人员未对该信访人员能力进行评价，不能进行查看操作", Toast.LENGTH_SHORT).show();
                                 }
                                 if (response.getData() != null) {
                                     Intent intent = new Intent();

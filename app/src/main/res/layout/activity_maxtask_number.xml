@@ -17,7 +17,7 @@
                 android:layout_marginTop="7dp"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="工作人员姓名:"
+                android:text="信访人员姓名:"
                 android:textColor="#808080"
                 android:textSize="22dp" />
 
@@ -50,7 +50,7 @@
                 android:layout_marginTop="7dp"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="工作人员工号:"
+                android:text="信访人员工号:"
                 android:textColor="#808080"
                 android:textSize="22dp" />
 

@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_gravity="center"
-            android:text="工作人员指标评价平均值统计"
+            android:text="信访人员指标评价平均值统计"
             android:layout_marginTop="1dp"
             android:textSize="28dp"
             android:textStyle="italic"/>
@@ -51,7 +51,7 @@
             android:background="@null"
             android:layout_marginLeft="30dp"
             android:gravity="center_vertical"
-            android:hint="请输入需要搜索的工作人员姓名"
+            android:hint="请输入需要搜索的信访人员姓名"
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:lines="1"

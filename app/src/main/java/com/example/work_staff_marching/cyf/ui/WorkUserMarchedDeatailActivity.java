@@ -45,7 +45,7 @@ public class WorkUserMarchedDeatailActivity extends BaseActivity {
     protected void init(Bundle saveInstanceState) {
         Intent intent1 = getIntent();
         taskID = intent1.getStringExtra("taskID");
-        setTitle("工作人员匹配评价详情");
+        setTitle("信访人员匹配评价详情");
         taskWorkUserInformationAdapter = new WorkUserMarchedDetailAdapter(WorkUserMarchedDeatailActivity.this);
         mRecyclerview1.setAdapter(taskWorkUserInformationAdapter);
         mRecyclerview1.setLayoutManager(new LinearLayoutManager(WorkUserMarchedDeatailActivity.this, RecyclerView.VERTICAL, false));

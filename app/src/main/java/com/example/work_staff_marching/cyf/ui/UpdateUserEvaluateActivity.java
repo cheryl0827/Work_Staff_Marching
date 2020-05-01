@@ -57,7 +57,7 @@ public class UpdateUserEvaluateActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle saveInstanceState) {
-        setTitle("工作人员能力评价详情");
+        setTitle("信访人员能力评价详情");
         Intent intent = getIntent();
         username.setText(intent.getStringExtra("username"));
         Map<String, String> map = new HashMap<>();

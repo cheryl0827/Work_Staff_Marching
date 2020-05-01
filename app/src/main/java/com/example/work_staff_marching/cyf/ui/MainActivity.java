@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             String pphone = phone.getText().toString();
             String ppassword = password.getText().toString();
             if (!(isMobileNo(pphone))) {
-                Toast.makeText(MainActivity.this, "您输入的手机号码不正确，请重新输入！", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "请重新输入正确格式的手机号码！", Toast.LENGTH_LONG).show();
             }
             if (ppassword.equals(""))
                 Toast.makeText(MainActivity.this, "密码不能为空！", Toast.LENGTH_LONG).show();
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(String state, String msg) {
-                        Toast.makeText(MainActivity.this, "用户信息不正确，请重新输入！", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "手机号码、密码或用户角色不正确，请重新输入！", Toast.LENGTH_SHORT).show();
                     }
                 });
 

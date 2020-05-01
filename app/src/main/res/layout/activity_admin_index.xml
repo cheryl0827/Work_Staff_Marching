@@ -75,6 +75,6 @@
             android:textColor="@color/black"
 
             android:drawableTop="@mipmap/a"
-            android:text="工作人员信息统计" />
+            android:text="信访人员信息统计" />
     </RadioGroup>
 </LinearLayout>

@@ -56,7 +56,7 @@ public class WorkuserUpdateEvaluatingIndicatorActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle saveInstanceState) {
-        setTitle("工作人员评价指标信息修改");
+        setTitle("信访人员评价指标信息修改");
         Intent intent1 = getIntent();
         username.setText(intent1.getStringExtra("username"));
         community.addTextChangedListener(new TextWatcher() {
@@ -227,7 +227,7 @@ public class WorkuserUpdateEvaluatingIndicatorActivity extends BaseActivity {
                         @Override
                         public void onResponse(Result<String> response) {
                             commonDialog.isSingle = true;
-                            commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("工作人员评价指标信息修改成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                            commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("信访人员评价指标信息修改成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                                 @Override
                                 public void onPositiveClick() {
                                     commonDialog.dismiss();

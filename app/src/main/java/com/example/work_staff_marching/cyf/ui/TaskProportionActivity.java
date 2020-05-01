@@ -51,7 +51,7 @@ public class TaskProportionActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle saveInstanceState) {
-        setTitle("工作人员能力要求填写");
+        setTitle("信访人员能力权重要求填写");
         community.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -188,7 +188,7 @@ public class TaskProportionActivity extends BaseActivity {
                         @Override
                         public void onResponse(Result<String> response) {
                             commonDialog.isSingle = true;
-                            commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("工作人员能力要求填写成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                            commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("信访人员能力权重要求填写成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                                 @Override
                                 public void onPositiveClick() {
                                     commonDialog.dismiss();

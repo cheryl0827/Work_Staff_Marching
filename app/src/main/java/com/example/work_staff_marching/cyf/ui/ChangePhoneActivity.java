@@ -53,7 +53,7 @@ public class ChangePhoneActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle saveInstanceState) {
-        setTitle("修改手机号码");
+        setTitle("修改个人信息");
         usernameText.setText(SharePrefrenceUtil.getObject(getApplicationContext(), UserBean.class).getUserName() + "");
         phoneText.setText(SharePrefrenceUtil.getObject(getApplicationContext(), UserBean.class).getPhone() + "");
 

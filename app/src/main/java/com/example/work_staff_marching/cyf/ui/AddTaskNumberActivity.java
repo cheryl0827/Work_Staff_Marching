@@ -80,7 +80,7 @@ public class AddTaskNumberActivity extends BaseActivity {
                    @Override
                    public void onResponse(Result<String> response) {
                        commonDialog.isSingle = true;
-                       commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("工作人员处理的最大任务数填写成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                       commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("信访人员处理的最大任务数填写成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                            @Override
                            public void onPositiveClick() {
                                commonDialog.dismiss();

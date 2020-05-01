@@ -38,7 +38,7 @@
             style="@style/main_radiobutton_stype"
             android:checked="true"
             android:drawableTop="@mipmap/letter"
-            android:text="网上上访"
+            android:text="网上信访"
             android:textSize="18dp"/>
 
         <RadioButton

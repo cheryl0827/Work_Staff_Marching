@@ -102,14 +102,14 @@ public class HomeFragment extends BaseFragment {
         intent.putExtra("catagery",catagery.getText().toString());
         intent.putExtra("detailaddress",detailAdress.getText().toString());
         if(view.getId()==R.id.button){
-            if(content.getText().toString().equals(""))
-                Toast.makeText(getContext(), "请输入内容！", Toast.LENGTH_SHORT).show();
-            else if(detailAdress.getText().toString().equals(""))
-                Toast.makeText(getContext(), "请输入详细内容！", Toast.LENGTH_SHORT).show();
-            else if(catagery.getText().toString().equals(""))
+            if(catagery.getText().toString().equals(""))
                 Toast.makeText(getContext(), "请选择问题类别！", Toast.LENGTH_SHORT).show();
+            else if(content.getText().toString().equals(""))
+                Toast.makeText(getContext(), "请输入内容！", Toast.LENGTH_SHORT).show();
             else if(address.getText().toString().equals(""))
                 Toast.makeText(getContext(), "请选择事发地！", Toast.LENGTH_SHORT).show();
+            else if(detailAdress.getText().toString().equals(""))
+                Toast.makeText(getContext(), "请输入详细地址！", Toast.LENGTH_SHORT).show();
             else {
                 intent.setClass(getContext(), OnlinePetitionSureActivity.class);
                 this.startActivityForResult(intent,1);

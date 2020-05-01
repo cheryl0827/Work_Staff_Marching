@@ -57,7 +57,7 @@ public class WorkuserAddEvaluatingIndicatorActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle saveInstanceState) {
-        setTitle("工作人员评价指标信息填写");
+        setTitle("信访人员评价指标信息填写");
         Intent intent1 = getIntent();
         username.setText(intent1.getStringExtra("username"));
         community.addTextChangedListener(new TextWatcher() {
@@ -211,7 +211,7 @@ public class WorkuserAddEvaluatingIndicatorActivity extends BaseActivity {
                         @Override
                         public void onResponse(Result<String> response) {
                             commonDialog.isSingle = true;
-                            commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("工作人员评价指标信息和最大任务数填写成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                            commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("信访人员评价指标信息和最大任务数填写成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                                 @Override
                                 public void onPositiveClick() {
                                     commonDialog.dismiss();

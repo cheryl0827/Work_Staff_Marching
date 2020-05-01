@@ -54,7 +54,7 @@ public class WorkUserEvaluateActivity extends BaseActivity {
     protected void init(Bundle saveInstanceState) {
         Intent intent1 = getIntent();
         taskID = intent1.getStringExtra("taskID");
-        setTitle("工作人员的能力评价");
+        setTitle("匹配信访人员信息");
         taskWorkUserInformationAdapter = new WorkUserInformationAdapter(WorkUserEvaluateActivity.this);
         mRecyclerview1.setAdapter(taskWorkUserInformationAdapter);
         mRecyclerview1.setLayoutManager(new LinearLayoutManager(WorkUserEvaluateActivity.this, RecyclerView.VERTICAL, false));
@@ -73,7 +73,7 @@ public class WorkUserEvaluateActivity extends BaseActivity {
                             @Override
                             public void onResponse(Result<EstimateBean> response) {
                                 if (response.getData() != null) {
-                                    Toast.makeText(WorkUserEvaluateActivity.this, "上访人员已经对该工作人员能力进行评价，不能再次进行添加操作", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(WorkUserEvaluateActivity.this, "上访人员已经对该信访人员能力进行评价，不能再次进行添加操作", Toast.LENGTH_SHORT).show();
                                 }
                                 if (response.getData() == null) {
                                     Intent intent = new Intent();
@@ -101,7 +101,7 @@ public class WorkUserEvaluateActivity extends BaseActivity {
                             @Override
                             public void onResponse(Result<EstimateBean> response) {
                                 if (response.getData() == null) {
-                                    Toast.makeText(WorkUserEvaluateActivity.this, "上访人员未对该工作人员能力进行评价，不能进行查看操作", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(WorkUserEvaluateActivity.this, "上访人员未对该信访人员能力进行评价，不能进行查看操作", Toast.LENGTH_SHORT).show();
                                 }
                                 if (response.getData() != null) {
                                     Intent intent = new Intent();

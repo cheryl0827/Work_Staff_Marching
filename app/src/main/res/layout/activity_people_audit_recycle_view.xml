@@ -30,12 +30,12 @@
         <TextView
             android:id="@+id/exit"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="60dp"
+            android:layout_marginLeft="95dp"
             android:layout_height="wrap_content"
             android:textColor="@color/gray"
             android:textSize="24dp"
             android:layout_marginTop="20dp"
-            android:text="退出系统" />
+            android:text="注销" />
 
 
     </LinearLayout>

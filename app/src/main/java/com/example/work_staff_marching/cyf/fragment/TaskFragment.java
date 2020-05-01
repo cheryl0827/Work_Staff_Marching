@@ -100,6 +100,12 @@ public class TaskFragment extends BaseFragment {
                         intent.putExtra("taskCatagery", mRecyclerViewFragmentAdapter.getItem(position).getTaskCatagery());
                         intent.putExtra("taskContent", mRecyclerViewFragmentAdapter.getItem(position).getTaskContent());
                         intent.putExtra("taskDetailAdress", mRecyclerViewFragmentAdapter.getItem(position).getTaskDetaiAdress());
+                        intent.putExtra("community", mRecyclerViewFragmentAdapter.getItem(position).getCommunity()+"");
+                        intent.putExtra("analyse", mRecyclerViewFragmentAdapter.getItem(position).getAnalyse()+"");
+                        intent.putExtra("organization", mRecyclerViewFragmentAdapter.getItem(position).getOrganization()+"");
+                        intent.putExtra("law", mRecyclerViewFragmentAdapter.getItem(position).getLaw()+"");
+                        intent.putExtra("urgent", mRecyclerViewFragmentAdapter.getItem(position).getUrgent()+"");
+                        intent.putExtra("psychology", mRecyclerViewFragmentAdapter.getItem(position).getPsychology()+"");
                         intent.setClass(getContext(), ChangeOnlinePetitionActivity.class);
                         startActivityForResult(intent, 1);
                         break;

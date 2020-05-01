@@ -67,7 +67,7 @@ public class TaskEstimateActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle saveInstanceState) {
-        setTitle("工作人员能力评价");
+        setTitle("信访人员能力评价");
         Intent intent = getIntent();
         username.setText(intent.getStringExtra("username"));
         community.addTextChangedListener(new TextWatcher() {
@@ -220,7 +220,7 @@ public class TaskEstimateActivity extends BaseActivity {
                             @Override
                             public void onResponse(Result<String> response) {
                                 commonDialog.isSingle = true;
-                                commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("工作人员能力评价成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                                commonDialog.setTitle("提示").setImageResId(R.mipmap.registersuccess).setMessage("信访人员能力评价成功！").setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                                     @Override
                                     public void onPositiveClick() {
                                         commonDialog.dismiss();
